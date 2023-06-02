@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  $END$
+Hello im the about view
 </template>
 
 <style scoped>
