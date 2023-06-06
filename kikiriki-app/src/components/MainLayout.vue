@@ -33,14 +33,14 @@
         bordered
         :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
     >
-      <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: 0 }">
+      <q-scroll-area class="fit">
         <q-list padding>
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="inbox" class="custom-icon-color" />
             </q-item-section>
 
-            <q-item-section>
+            <q-item-section @click="gotoHome">
               Inbox
             </q-item-section>
           </q-item>
@@ -50,8 +50,10 @@
               <q-icon name="star" color="blue"/>
             </q-item-section>
 
-            <q-item-section>
-              Star
+            <q-item-section @click="gotoAbout">
+                Star
+
+
             </q-item-section>
           </q-item>
 
@@ -60,7 +62,7 @@
               <q-icon name="send" color="orange" />
             </q-item-section>
 
-            <q-item-section>
+            <q-item-section @click="gotoRegistration">
               Send
             </q-item-section>
           </q-item>
@@ -69,7 +71,7 @@
 
           <q-item clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="drafts" color="teal" />
+              <q-icon name="drafts" color="teal"/>
             </q-item-section>
 
             <q-item-section>
@@ -92,20 +94,43 @@
   color: rgb(120, 20, 66);
 }
 </style>
-<script>
-import {ref} from 'vue'
 
-const leftDrawerOpen = ref(false)
-const toggleLeftDrawer = () => {
-  leftDrawerOpen.value = !leftDrawerOpen.value
+<script lang="ts">
+import { ref, Ref } from 'vue';
+import { Router, useRoute, useRouter } from 'vue-router';
+import routes from "../router/router.ts";
+
+
+const drawer: Ref<boolean> = ref(false);
+const miniState: Ref<boolean> = ref(true);
+const route = useRoute();
+const router: Router = useRouter();
+
+const gotoAbout = (): void => {
+  routes.push('/About');
+};
+const gotoHome = (): void => {
+  routes.push('/');
+};
+
+const gotoRegistration = (): void => {
+  routes.push('/Registration');
 }
+
+const toggleLeftDrawer = (): void => {
+  drawer.value = !drawer.value;
+};
 
 export default {
-  setup () {
+  setup() {
     return {
-      drawer: ref(false),
-      miniState: ref(true)
-    }
-  }
-}
+      drawer,
+      miniState,
+      gotoAbout,
+      gotoHome,
+      gotoRegistration,
+      toggleLeftDrawer,
+    };
+  },
+};
 </script>

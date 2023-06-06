@@ -1,9 +1,8 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
-Hello im the about view
+Hello im the home view
 </template>
 
 <style scoped>
