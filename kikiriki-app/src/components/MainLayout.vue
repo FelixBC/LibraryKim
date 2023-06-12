@@ -14,9 +14,9 @@
       </q-toolbar>
 
       <q-tabs align="left">
-        <q-route-tab to="/page1" label="Registro"/>
-        <q-route-tab to="/page2" label="Informe"/>
-        <q-route-tab to="/page3" label="Preferidos"/>
+        <q-route-tab label="Registro"/>
+        <q-route-tab label="Informe"/>
+        <q-route-tab label="Preferidos"/>
       </q-tabs>
     </q-header>
 
@@ -50,7 +50,7 @@
               <q-icon name="star" color="blue"/>
             </q-item-section>
 
-            <q-item-section @click="gotoAbout">
+            <q-item-section @click="gotoPeople">
                 Star
 
 
@@ -95,42 +95,29 @@
 }
 </style>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { ref, Ref } from 'vue';
 import { Router, useRoute, useRouter } from 'vue-router';
 import routes from "../router/router.ts";
-
 
 const drawer: Ref<boolean> = ref(false);
 const miniState: Ref<boolean> = ref(true);
 const route = useRoute();
 const router: Router = useRouter();
 
-const gotoAbout = (): void => {
-  routes.push('/About');
+const gotoPeople = (): void => {
+  router.push('/People');
 };
+
 const gotoHome = (): void => {
-  routes.push('/');
+  router.push('/');
 };
 
 const gotoRegistration = (): void => {
-  routes.push('/Registration');
-}
+  router.push('/Registration');
+};
 
 const toggleLeftDrawer = (): void => {
   drawer.value = !drawer.value;
-};
-
-export default {
-  setup() {
-    return {
-      drawer,
-      miniState,
-      gotoAbout,
-      gotoHome,
-      gotoRegistration,
-      toggleLeftDrawer,
-    };
-  },
 };
 </script>

@@ -47,12 +47,14 @@ const phoneNumber = ref('');
 const forms = ref([])
 const form_id = ref(0)
 const isEditing = ref(false)
-const API_URL = "http://localhost:5173/#/about";
+const API_URL = "http://localhost:3000/people";
+
+
 const createForm = async() => {
   const res = await fetch(API_URL,{
     method: 'POST',
     headers: {
-      'Content-type': 'application/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       firstName: firstName.value,
@@ -60,7 +62,9 @@ const createForm = async() => {
       phoneNumber: phoneNumber.value
     })
   })
+
   const data = await res.json()
+
   forms.value.push(data)
   firstName.value = ''
   lastName.value = ''
