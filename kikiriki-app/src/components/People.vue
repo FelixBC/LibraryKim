@@ -33,7 +33,8 @@
         <q-card-actions align="right">
           <q-btn color= "primary" v-if="isEditing" @click="updateForm">Update</q-btn>
           <q-btn color="primary" v-if="isEditing" @click="cancelEdit">Cancel</q-btn>
-          <q-btn color="primary" v-else @click="createForm">Create</q-btn>
+          <q-btn color="primary" v-else @click="createPerson">Create</q-btn>
+          
         </q-card-actions>
       </q-card>
   </q-page>
@@ -44,13 +45,13 @@ import { ref, onMounted } from 'vue';
 const firstName = ref('');
 const lastName = ref('');
 const phoneNumber = ref('');
-const forms = ref([])
-const form_id = ref(0)
+const persons = ref([])
+const person_id = ref(0)
 const isEditing = ref(false)
 const API_URL = "http://localhost:3000/people";
 
 
-const createForm = async() => {
+const createPerson = async() => {
   const res = await fetch(API_URL,{
     method: 'POST',
     headers: {
@@ -65,11 +66,11 @@ const createForm = async() => {
 
   const data = await res.json()
 
-  forms.value.push(data)
+  persons.value.push(data)
   firstName.value = ''
   lastName.value = ''
   phoneNumber.value = ''
-  form_id.value = 0;
+  person_id.value = 0;
 }
 const updateForm = async () => {
  return true;
