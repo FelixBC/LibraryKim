@@ -1,58 +1,72 @@
 <template>
   <q-page>
-      <q-card class="q-ma-md">
-        <q-card-section>
+    <q-card class="q-ma-md">
+      <q-card-section>
 
-          <h4> Just a regular header of a test form:
-            What's up I'm the about page info tester
-          </h4>
-          <q-input
-              outlined
-              v-model="firstName"
-              type="text"
-              label="First Name"
-              required
-          ></q-input>
+        <h4> Just a regular header of a test form:
+          What's up I'm the about page info tester
+        </h4>
+        <q-input
+            outlined
+            v-model="firstName"
+            type="text"
+            label="First Name"
+            required
+        ></q-input>
 
-          <q-input
-              outlined
-              v-model="lastName"
-              label="Last Name"
-              required
-          ></q-input>
-          <q-input
-              outlined
-              v-model="phoneNumber"
-              label="Phone"
+        <q-input
+            outlined
+            v-model="lastName"
+            label="Last Name"
+            required
+        ></q-input>
+        <q-input
+            outlined
+            v-model="phoneNumber"
+            label="Phone"
 
-              require of a test formd
+            require of a test formd
 
-          ></q-input>
+        ></q-input>
 
-        </q-card-section>
-        <q-card-actions align="right">
-          <q-btn color= "primary" v-if="isEditing" @click="updateForm">Update</q-btn>
-          <q-btn color="primary" v-if="isEditing" @click="cancelEdit">Cancel</q-btn>
-          <q-btn color="primary" v-else @click="createPerson">Create</q-btn>
-          
-        </q-card-actions>
-      </q-card>
+      </q-card-section>
+      <q-card-actions align="right">
+        <q-btn color="primary" v-if="isEditing" @click="updatePerson">Update</q-btn>
+        <q-btn color="primary" v-if="isEditing" @click="cancelEdit">Cancel</q-btn>
+        <q-btn color="primary" v-else @click="createPerson">Create</q-btn>
+        <div v-for="person in persons" :key="person.id">
+          <h5>
+            [{{ person.firstName }} {{ person.lastName }} {{ person.phoneNumber}} ]
+           <q-btn  @click="editPerson(person.id)">Edit</q-btn>
+            <q-btn @click="deletePerson(person.id)">Delete</q-btn>
+
+          </h5>
+        </div>
+      </q-card-actions>
+    </q-card>
   </q-page>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import {ref, onMounted} from 'vue';
+import {Person} from "./types.ts";
+
 // Declare and initialize your data using the `ref()` function
 const firstName = ref('');
 const lastName = ref('');
 const phoneNumber = ref('');
-const persons = ref([])
-const person_id = ref(0)
+const persons = ref<Person[]>([])
+const personId = ref(0)
 const isEditing = ref(false)
 const API_URL = "http://localhost:3000/people";
 
+onMounted(async () => {
+  const res = await fetch(API_URL);
+  const data = await res.json();
+  persons.value = data as Person[];
+});
 
-const createPerson = async() => {
-  const res = await fetch(API_URL,{
+const createPerson = async () => {
+  const res = await fetch(API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -70,15 +84,27 @@ const createPerson = async() => {
   firstName.value = ''
   lastName.value = ''
   phoneNumber.value = ''
-  person_id.value = 0;
+  personId.value = 0;
 }
-const updateForm = async () => {
- return true;
+const updatePerson = async () => {
+  return true;
 }
 const cancelEdit = () => {
   return true;
 }
+const deletePerson = async (id) => {
+await fetch(`${API_URL}/${id}`, {
+  method: 'DELETE'
+})
+  persons.value = persons.value.filter(person => person.id !== id)
+}
+const editPerson = async (id) => {
 
+  const person = persons.value.find(person => person.id === id)
+  firstName.value = person.firstName
+  lastName.value = person.lastName
+  phoneNumber.value = String(person.phoneNumber)
+}
 </script>
 
 
