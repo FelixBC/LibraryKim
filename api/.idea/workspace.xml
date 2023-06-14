@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/People.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/People.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -287,6 +287,8 @@
       <workItem from="1686575885609" duration="11979000" />
       <workItem from="1686663019375" duration="3997000" />
       <workItem from="1686685803958" duration="604000" />
+      <workItem from="1686744903206" duration="623000" />
+      <workItem from="1686754595891" duration="3994000" />
     </task>
     <servers />
   </component>
