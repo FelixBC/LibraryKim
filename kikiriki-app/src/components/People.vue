@@ -34,15 +34,19 @@
         <q-btn color="primary" v-if="isEditing" @click="updatePerson">Update</q-btn>
         <q-btn color="primary" v-if="isEditing" @click="cancelEdit">Cancel</q-btn>
         <q-btn color="primary" v-else @click="createPerson">Create</q-btn>
-        <div v-for="person in persons" :key="person.id">
-          <h5>
-            [{{ person.firstName }} {{ person.lastName }} {{ person.phoneNumber}} ]
-           <q-btn  @click="editPerson(person.id)">Edit</q-btn>
-            <q-btn @click="deletePerson(person.id)">Delete</q-btn>
-
-          </h5>
-        </div>
       </q-card-actions>
+      <br>
+      <div v-for="person in persons" :key="person.id">
+        <h7>
+          [{{ person.firstName }} {{ person.lastName }} {{ person.phoneNumber }} ]
+        </h7>
+
+        <q-btn @click="editPerson(person.id)">Edit</q-btn>
+        <q-btn @click="deletePerson(person.id)">Delete</q-btn>
+
+
+      </div>
+
     </q-card>
   </q-page>
 </template>
@@ -87,24 +91,62 @@ const createPerson = async () => {
   personId.value = 0;
 }
 const updatePerson = async () => {
-  return true;
+  const res = await fetch(`${API_URL}/${personId.value}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      firstName: firstName.value,
+      lastName: lastName.value,
+      phoneNumber: phoneNumber.value,
+      id: personId.value
+    })
+  })
+  const data = await res.json()
+  const index = persons.value.findIndex(person => person.id === data.id)
+  persons.value[index] = data
+  firstName.value = ''
+  lastName.value = ''
+  phoneNumber.value = ''
+  isEditing.value = false
 }
 const cancelEdit = () => {
-  return true;
+  firstName.value = ''
+  lastName.value = ''
+  phoneNumber.value = ''
+  isEditing.value = false
+  personId.value = 0
+
 }
 const deletePerson = async (id) => {
-await fetch(`${API_URL}/${id}`, {
-  method: 'DELETE'
-})
+  await fetch(`${API_URL}/${id}`, {
+    method: 'DELETE'
+  })
   persons.value = persons.value.filter(person => person.id !== id)
 }
 const editPerson = async (id) => {
 
   const person = persons.value.find(person => person.id === id)
-  firstName.value = person.firstName
-  lastName.value = person.lastName
-  phoneNumber.value = String(person.phoneNumber)
+  if (person) {
+    firstName.value = person.firstName
+    lastName.value = person.lastName
+    phoneNumber.value = String(person.phoneNumber)
+    personId.value = person.id
+    isEditing.value = true
+
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
 }
 </script>
 
+<style>
+h7 {
+  position: relative;
+  margin: 20%;
+}
 
+</style>

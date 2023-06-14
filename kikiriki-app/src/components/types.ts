@@ -5,3 +5,8 @@ export interface Person {
     lastName: string;
     phoneNumber: number;
 }
+
+interface  DropdownItem {
+    id: number;
+    name: string;
+}

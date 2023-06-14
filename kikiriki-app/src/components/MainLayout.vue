@@ -13,11 +13,7 @@
         </q-toolbar-title>
       </q-toolbar>
 
-      <q-tabs align="left">
-        <q-route-tab label="Registro"/>
-        <q-route-tab label="Informe"/>
-        <q-route-tab label="Preferidos"/>
-      </q-tabs>
+
     </q-header>
 
     <q-drawer
@@ -40,7 +36,7 @@
               <q-icon name="inbox" class="custom-icon-color" />
             </q-item-section>
 
-            <q-item-section @click="gotoHome">
+            <q-item-section @click="toggleDropdown">
               Inbox
             </q-item-section>
           </q-item>
@@ -51,9 +47,7 @@
             </q-item-section>
 
             <q-item-section @click="gotoPeople">
-                Star
-
-
+                Registro
             </q-item-section>
           </q-item>
 
@@ -98,7 +92,6 @@
 <script lang="ts" setup>
 import { ref, Ref } from 'vue';
 import { Router, useRoute, useRouter } from 'vue-router';
-import routes from "../router/router.ts";
 
 const drawer: Ref<boolean> = ref(false);
 const miniState: Ref<boolean> = ref(true);
@@ -120,4 +113,7 @@ const gotoRegistration = (): void => {
 const toggleLeftDrawer = (): void => {
   drawer.value = !drawer.value;
 };
+
+
+
 </script>
