@@ -117,7 +117,6 @@ const cancelEdit = () => {
   phoneNumber.value = ''
   isEditing.value = false
   personId.value = 0
-
 }
 const deletePerson = async (id) => {
   await fetch(`${API_URL}/${id}`, {
@@ -148,5 +147,4 @@ h7 {
   position: relative;
   margin: 20%;
 }
-
 </style>

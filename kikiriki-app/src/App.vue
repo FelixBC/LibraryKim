@@ -4,6 +4,7 @@
 
 <script>
 import MainLayout from './components/MainLayout.vue';
+
 export default {
   name: 'App',
   components: {
@@ -11,3 +12,6 @@ export default {
   },
 };
 </script>
+<style lang="css">
+
+</style>

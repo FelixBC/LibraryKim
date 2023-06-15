@@ -12,7 +12,24 @@
           Kikiriki
         </q-toolbar-title>
       </q-toolbar>
-
+      <q-btn-dropdown color="primary" label="Dueños">
+        <q-tabs align="left">
+          <q-route-tab to="/page1" label="Lista"/>
+          <q-route-tab to="/page2" label="Crear"/>
+        </q-tabs>
+      </q-btn-dropdown>
+      <q-btn-dropdown color="primary" label="Gallos">
+        <q-tabs align="left">
+          <q-route-tab to="/page1" label="Lista"/>
+          <q-route-tab to="/page2" label="Crear"/>
+        </q-tabs>
+      </q-btn-dropdown>
+      <q-btn-dropdown color="primary" label="Encuentros">
+        <q-tabs align="left">
+          <q-route-tab to="/page1" label="Lista"/>
+          <q-route-tab to="/page2" label="Crear"/>
+        </q-tabs>
+      </q-btn-dropdown>
 
     </q-header>
 
@@ -30,49 +47,102 @@
         :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
     >
       <q-scroll-area class="fit">
-        <q-list padding>
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="inbox" class="custom-icon-color" />
-            </q-item-section>
+        <header class="header">
+          <div class="header__container">
 
-            <q-item-section @click="toggleDropdown">
-              Inbox
-            </q-item-section>
-          </q-item>
+            <a href="#" class="header__logo">Bedimcode</a>
 
-          <q-item active clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="star" color="blue"/>
-            </q-item-section>
+            <div class="header__search">
+              <input type="search" placeholder="Search" class="header__input">
+              <i class='bx bx-search header__icon'></i>
+            </div>
 
-            <q-item-section @click="gotoPeople">
-                Registro
-            </q-item-section>
-          </q-item>
+            <div class="header__toggle">
+              <i class='bx bx-menu' id="header-toggle"></i>
+            </div>
+          </div>
+        </header>
 
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="send" color="orange" />
-            </q-item-section>
+        <!--========== NAV ==========-->
+        <div class="nav" id="navbar">
+          <nav class="nav__container">
+            <div>
+              <a href="#" class="nav__link nav__logo">
+                <i class='bx bxs-disc nav__icon'></i>
+                <span class="nav__logo-name">Bedimcode</span>
+              </a>
 
-            <q-item-section @click="gotoRegistration">
-              Send
-            </q-item-section>
-          </q-item>
+              <div class="nav__list">
+                <div class="nav__items">
+                  <h3 class="nav__subtitle">Profile</h3>
 
-          <q-separator />
+                  <a href="#" class="nav__link active">
+                    <i class='bx bx-home nav__icon'></i>
+                    <span class="nav__name">Home</span>
+                  </a>
 
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="drafts" color="teal"/>
-            </q-item-section>
+                  <div class="nav__dropdown">
+                    <a href="#" class="nav__link">
+                      <i class='bx bx-user nav__icon'></i>
+                      <span class="nav__name">Profile</span>
+                      <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                    </a>
 
-            <q-item-section>
-              Drafts
-            </q-item-section>
-          </q-item>
-        </q-list>
+                    <div class="nav__dropdown-collapse">
+                      <div class="nav__dropdown-content">
+                        <a href="#" class="nav__dropdown-item">Passwords</a>
+                        <a href="#" class="nav__dropdown-item">Mail</a>
+                        <a href="#" class="nav__dropdown-item">Accounts</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a href="#" class="nav__link">
+                    <i class='bx bx-message-rounded nav__icon'></i>
+                    <span class="nav__name">Messages</span>
+                  </a>
+                </div>
+
+                <div class="nav__items">
+                  <h3 class="nav__subtitle">Menu</h3>
+
+                  <div class="nav__dropdown">
+                    <a href="#" class="nav__link">
+                      <i class='bx bx-bell nav__icon'></i>
+                      <span class="nav__name">Notifications</span>
+                      <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                    </a>
+
+                    <div class="nav__dropdown-collapse">
+                      <div class="nav__dropdown-content">
+                        <a href="#" class="nav__dropdown-item">Blocked</a>
+                        <a href="#" class="nav__dropdown-item">Silenced</a>
+                        <a href="#" class="nav__dropdown-item">Publish</a>
+                        <a href="#" class="nav__dropdown-item">Program</a>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <a href="#" class="nav__link">
+                    <i class='bx bx-compass nav__icon'></i>
+                    <span class="nav__name">Explore</span>
+                  </a>
+                  <a href="#" class="nav__link">
+                    <i class='bx bx-bookmark nav__icon'></i>
+                    <span class="nav__name">Saved</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <a href="#" class="nav__link nav__logout">
+              <i class='bx bx-log-out nav__icon'></i>
+              <span class="nav__name">Log Out</span>
+            </a>
+          </nav>
+        </div>
+
       </q-scroll-area>
     </q-drawer>
 
@@ -90,8 +160,8 @@
 </style>
 
 <script lang="ts" setup>
-import { ref, Ref } from 'vue';
-import { Router, useRoute, useRouter } from 'vue-router';
+import {ref, Ref} from 'vue';
+import {Router, useRoute, useRouter} from 'vue-router';
 
 const drawer: Ref<boolean> = ref(false);
 const miniState: Ref<boolean> = ref(true);
@@ -113,7 +183,6 @@ const gotoRegistration = (): void => {
 const toggleLeftDrawer = (): void => {
   drawer.value = !drawer.value;
 };
-
 
 
 </script>
