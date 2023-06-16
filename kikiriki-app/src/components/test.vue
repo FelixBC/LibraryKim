@@ -3,10 +3,10 @@
     <!-- HEADER -->
     <header class="header">
       <div class="header__container">
-        <img src="assets/img/perfil.jpg" alt="" class="header__img" />
+        <img src="assets/img/perfil.jpg" alt="" class="header__img"/>
         <a href="#" class="header__logo">Bedimcode</a>
         <div class="header__search">
-          <input type="search" placeholder="Search" class="header__input" />
+          <input type="search" placeholder="Search" class="header__input"/>
           <i class="bx bx-search header__icon"></i>
         </div>
         <div class="header__toggle">
@@ -110,23 +110,18 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isNavbarOpen: false,
-      isDropdownOpen: false,
-    };
-  },
-  methods: {
-    toggleNavbar() {
-      this.isNavbarOpen = !this.isNavbarOpen;
-    },
-    toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen;
-    },
-  },
+<script lang="ts" setup>
+import {ref} from 'vue';
+import ''
+const isNavbarOpen = ref(false);
+const isDropdownOpen = ref(false)
+const toggleNavbar = () => {
+  this.isNavbarOpen = !this.isNavbarOpen;
 };
+const toggleDropdown = () => {
+  this.isDropdownOpen = !this.isDropdownOpen;
+};
+
 </script>
 
 <style scoped>
