@@ -1,9 +1,16 @@
 
-export interface Person {
+export interface Owner {
+
     id: number;
-    firstName: string;
+    name: string;
     lastName: string;
-    phoneNumber: number;
+    age: number;
+    city: string;
+    phone: number;
+    identificationNumber: number;
+    wins: number;
+    loses: number;
+
 }
 
 interface  DropdownItem {

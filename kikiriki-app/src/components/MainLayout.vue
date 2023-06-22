@@ -6,36 +6,19 @@
         <q-toolbar>
 
           <q-toolbar-title class="header__logo">
+           <q-item clickable v-ripple @click="gotoDashboard">
             <q-avatar>
               <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
             </q-avatar>
             Kikiriki
+           </q-item>
           </q-toolbar-title>
         </q-toolbar>
-        <q-btn-dropdown color="primary" label="Dueños">
-          <q-tabs align="left">
-            <q-route-tab to="/page1" label="Lista"/>
-            <q-route-tab to="/page2" label="Crear"/>
-          </q-tabs>
-        </q-btn-dropdown>
-        <q-btn-dropdown color="primary" label="Gallos">
-          <q-tabs align="left">
-            <q-route-tab to="/page1" label="Lista"/>
-            <q-route-tab to="/page2" label="Crear"/>
-          </q-tabs>
-        </q-btn-dropdown>
-        <q-btn-dropdown color="primary" label="Encuentros">
-          <q-tabs align="left">
-            <q-route-tab to="/page1" label="Lista"/>
-            <q-route-tab to="/page2" label="Crear"/>
-          </q-tabs>
-        </q-btn-dropdown>
-
       </q-header>
-
 
       <!--========== DRAWER ==========-->
       <q-drawer
+          class="extraSpaceSideBarHeading"
           v-model="drawer"
           show-if-above
 
@@ -48,51 +31,164 @@
           bordered
           :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
       >
-        <q-scroll-area class="fit">
-          <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section avatar>
-                <q-icon name="inbox" />
-              </q-item-section>
 
-              <q-item-section>
-                Inbox
-              </q-item-section>
-            </q-item>
+        <q-list padding>
 
-            <q-item active clickable v-ripple>
-              <q-item-section avatar>
-                <q-icon name="star" />
-              </q-item-section>
+          <q-expansion-item
+              expand-separator
+              icon="perm_identity"
+              label="Usuarios"
+          >
+            <q-list padding>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoUserList">
+                  Lista
+                </q-item-section>
+              </q-item>
 
-              <q-item-section>
-                Star
-              </q-item-section>
-            </q-item>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoUserCreate">
+                  Create
+                </q-item-section>
+              </q-item>
 
-            <q-item clickable v-ripple>
-              <q-item-section avatar>
-                <q-icon name="send" />
-              </q-item-section>
+              <q-item clickable v-ripple>
+                <q-item-section>
+                  Restrinctions
+                </q-item-section>
+              </q-item>
+            </q-list>
 
-              <q-item-section>
-                Send
-              </q-item-section>
-            </q-item>
+          </q-expansion-item>
+        </q-list>
+        <q-list padding>
 
-            <q-separator />
+          <q-expansion-item
+              expand-separator
+              icon="person"
+              label="Dueño"
+          >
+            <q-list padding>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoOwnerList">
+                  Lista
+                </q-item-section>
+              </q-item>
 
-            <q-item clickable v-ripple>
-              <q-item-section avatar>
-                <q-icon name="drafts" />
-              </q-item-section>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoOwnerCreate">
+                  Crear
+                </q-item-section>
+              </q-item>
 
-              <q-item-section>
-                Drafts
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-scroll-area>
+            </q-list>
+
+          </q-expansion-item>
+        </q-list>
+        <q-list padding>
+
+          <q-expansion-item
+              expand-separator
+              icon="egg"
+              label="Gallos"
+          >
+            <q-list padding>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoRoosterList">
+                  Lista
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoRoosterCreate">
+                  Crear
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section>
+                  Restrinctions
+                </q-item-section>
+              </q-item>
+            </q-list>
+
+          </q-expansion-item>
+        </q-list>
+        <q-list padding>
+          <q-expansion-item
+              expand-separator
+              icon="calendar_today"
+              label="Encuentros"
+          >
+            <q-list padding>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoFightList">
+                  Lista
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoFightCreate">
+                  Crear
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section>
+                  Restrinctions
+                </q-item-section>
+              </q-item>
+            </q-list>
+
+          </q-expansion-item>
+        </q-list>
+        <q-list padding>
+
+          <q-expansion-item
+              expand-separator
+              icon="paid"
+              label="Jugadas"
+          >
+            <q-list padding>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoTicketList">
+                  Lista
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoTicketCreate">
+                  Crear
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoFightList">
+                  Proximos eventos
+                </q-item-section>
+              </q-item>
+            </q-list>
+
+          </q-expansion-item>
+
+        </q-list>
+
+        <q-item class="extraSpaceOntop">
+          <q-item-section>
+          </q-item-section>
+        </q-item>
+        <q-item
+
+            clickable
+            v-ripple
+            active-class="my-menu-link"
+        >
+          <q-item-section avatar>
+            <q-icon name="settings_power"/>
+          </q-item-section>
+
+          <q-item-section>Logout</q-item-section>
+        </q-item>
       </q-drawer>
 
       <q-page-container>
@@ -103,7 +199,16 @@
 
 </template>
 <style>
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+.extraSpaceOntop {
+  padding-top: 100%;
+}
+
+.extraSpaceSideBarHeading {
+  padding-top: 30%;
+}
 
 </style>
 <script lang="ts" setup>
@@ -115,17 +220,40 @@ const miniState: Ref<boolean> = ref(true);
 const route = useRoute();
 const router: Router = useRouter();
 
-const gotoPeople = (): void => {
-  router.push('/People');
+const gotoOwnerCreate = (): void => {
+  router.push('/OwnerCreate');
 };
-
-const gotoHome = (): void => {
+const gotoOwnerList = (): void => {
+  router.push('/OwnerList');
+};
+const gotoRoosterCreate = (): void => {
+  router.push('/RoosterCreate');
+};
+const gotoRoosterList = (): void => {
+  router.push('/RoosterList');
+};
+const gotoTicketCreate = (): void => {
+  router.push('/TicketCreate');
+};
+const gotoTicketList = (): void => {
+  router.push('/TicketList');
+};
+const gotoUserCreate = (): void => {
+  router.push('/UserCreate');
+};
+const gotoUserList = (): void => {
+  router.push('/UserList');
+};
+const gotoDashboard = (): void => {
   router.push('/');
 };
-
-const gotoRegistration = (): void => {
-  router.push('/Registration');
+const gotoFightCreate = (): void => {
+  router.push('/FightCreate');
 };
+const gotoFightList = (): void => {
+  router.push('/FightList');
+};
+
 
 const toggleLeftDrawer = (): void => {
   drawer.value = !drawer.value;

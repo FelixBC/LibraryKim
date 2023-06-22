@@ -2,7 +2,8 @@
 </script>
 
 <template>
-Hello im the home view
+  <h1>Dashboard</h1>
+  <q-separator dark />
 </template>
 
 <style scoped>

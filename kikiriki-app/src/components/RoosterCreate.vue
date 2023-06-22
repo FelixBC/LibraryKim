@@ -3,7 +3,8 @@
 </script>
 
 <template>
-  $END$
+  <h4>Crear gallo</h4>
+  <q-separator dark/>
 </template>
 
 <style scoped>

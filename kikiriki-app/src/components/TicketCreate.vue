@@ -3,7 +3,8 @@
 </script>
 
 <template>
-  $END$
+  <h4>Crear ticket</h4>
+  <q-separator dark/>
 </template>
 
 <style scoped>
