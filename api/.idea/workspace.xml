@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/FightCreate.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/FightList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterCreate.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/TicketCreate.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/TicketList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/UserCreate.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/UserList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/People.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/People.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/MainLayout.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +299,14 @@
       <workItem from="1686663019375" duration="3997000" />
       <workItem from="1686685803958" duration="604000" />
       <workItem from="1686744903206" duration="623000" />
-      <workItem from="1686754595891" duration="3994000" />
+      <workItem from="1686754595891" duration="4766000" />
+      <workItem from="1686852743704" duration="938000" />
+      <workItem from="1686859166831" duration="1333000" />
+      <workItem from="1686919165731" duration="1215000" />
+      <workItem from="1687183931595" duration="2695000" />
+      <workItem from="1687263616908" duration="3186000" />
+      <workItem from="1687295556094" duration="2731000" />
+      <workItem from="1687350169184" duration="5844000" />
     </task>
     <servers />
   </component>
