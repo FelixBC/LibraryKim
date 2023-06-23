@@ -5,25 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/FightCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/FightList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/TicketCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/TicketList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/UserCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/UserList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/owners_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/owners_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/owner.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/owners.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/MainLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/owners_controller_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/owners_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/owners.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/fixtures/owners_creates.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GeneratorOptions">
+    <option name="VCS_SHOW_CONFIRMATION" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -307,6 +303,8 @@
       <workItem from="1687263616908" duration="3186000" />
       <workItem from="1687295556094" duration="2731000" />
       <workItem from="1687350169184" duration="5844000" />
+      <workItem from="1687435100482" duration="5326000" />
+      <workItem from="1687449161547" duration="8744000" />
     </task>
     <servers />
   </component>
