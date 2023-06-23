@@ -37,24 +37,15 @@ const createOwner = async () => {
       lastName: lastName.value,
       phone: phone.value,
       city: city.value,
-      identitificationNumber: identificationNumber.value,
+      identificationNumber: identificationNumber.value,
       wins: wins.value,
       loses: loses.value,
-
     })
   })
 
   const data = await res.json()
   owners.value.push(data)
-  name.value = null
-  lastName.value = null
-  age.value = null
-  city.value = null
-  identificationNumber.value = null
-  phone.value = null
-  wins.value = null
-  loses.value = null
-  accept.value = false
+  onReset()
 }
 const updateOwner = async () => {
   const res = await fetch(`${API_URL}/${ownerId.value}`, {
@@ -63,49 +54,26 @@ const updateOwner = async () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
+      id: ownerId.value,
       name: name.value,
       age: age.value,
       lastName: lastName.value,
       phone: phone.value,
       city: city.value,
-      identitificationNumber: identificationNumber.value,
+      identificationNumber: identificationNumber.value,
       wins: wins.value,
       loses: loses.value,
-      id: ownerId.value
+
     })
   })
   const data = await res.json()
   const index = owners.value.findIndex(owner => owner.id === data.id)
   owners.value[index] = data
-  name.value = ''
-  lastName.value = ''
-  phone.value = 0;
-  ownerId.value = 0;
-  name.value = ''
-  age.value = 0;
-  lastName.value = ''
-  phone.value = 0;
-  city.value = ''
-  identificationNumber.value = 0;
-  wins.value = 0;
-  loses.value = 0;
-  isEditing.value = false
+  onReset()
 }
 const cancelEdit = () => {
-  name.value = ''
-  lastName.value = ''
-  phone.value = 0;
-  ownerId.value = 0;
-  name.value = ''
-  age.value = 0;
-  lastName.value = ''
-  phone.value = 0;
-  city.value = ''
-  identificationNumber.value = 0;
-  wins.value = 0;
-  loses.value = 0;
+  onReset()
   isEditing.value = false
-  ownerId.value = 0
 }
 const deleteOwner = async (id) => {
   await fetch(`${API_URL}/${id}`, {
@@ -117,10 +85,15 @@ const editOwner = async (id) => {
 
   const owner = owners.value.find(owner => owner.id === id)
   if (owner) {
+    ownerId.value = owner.id
     name.value = owner.name
+    age.value = owner.age
     lastName.value = owner.lastName
     phone.value = owner.phone
-    ownerId.value = owner.id
+    city.value = owner.city
+    identificationNumber.value = owner.identificationNumber
+    wins.value = owner.wins
+    loses.value = owner.loses
     isEditing.value = true
 
     window.scroll({
@@ -171,8 +144,6 @@ const onReset = () => {
       <div class="q-pa-md" style="max-width: 400px">
 
         <q-form
-            @submit="onSubmit"
-            @reset="onReset"
             class="q-gutter-md"
         >
           <q-input
@@ -254,10 +225,7 @@ const onReset = () => {
           val => val > 0 && val < 100 || 'Por favor digite un numero de perdidas'
         ]"
           />
-          <q-toggle v-model="accept" label="I accept the license and terms"/>
-          <q-card-actions align="right">
 
-          </q-card-actions>
           <br>
           <div v-for="owner in owners" :key="owner.id">
             <h7>
