@@ -139,7 +139,7 @@ const onReset = () => {
   <h4>Crear Dueño</h4>
   <q-separator dark/>
 </div>
-  <q-card>
+  <q-card class="cardContainer">
     <div class="div_form">
       <div class="q-pa-md" style="max-width: 400px">
 
@@ -259,7 +259,9 @@ const onReset = () => {
   padding-top: 5%;
   padding-bottom: 5%;
 }
-
+.cardContainer{
+  margin-right: 10%;
+}
 .header_form{
   padding-left: 35%;
   align-content: center;
