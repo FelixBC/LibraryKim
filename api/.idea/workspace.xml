@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +300,8 @@
       <workItem from="1687435100482" duration="5326000" />
       <workItem from="1687449161547" duration="8744000" />
       <workItem from="1687523763871" duration="1212000" />
-      <workItem from="1687530364932" duration="2005000" />
+      <workItem from="1687530364932" duration="2606000" />
+      <workItem from="1687732074576" duration="721000" />
     </task>
     <servers />
   </component>
