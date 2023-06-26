@@ -20,7 +20,7 @@ const isEditing = ref(false)
 const API_URL = "http://localhost:3000/owners";
 const filterValue = ref('')
 
-const itemsPerPage = ref(5);
+const itemsPerPage = ref(10);
 const perPageOptions = [
   { label: '5', value: 5 },
   { label: '10', value: 10 },
@@ -118,6 +118,12 @@ const onReset = () => {
 const onItemClick = () => {
   return true
 }
+const truncateText = (text, maxLenght) => {
+  if(text && text.length > maxLenght){
+    return text.slice(0,maxLenght) + "..." + ""+"";
+  }
+  return text;
+}
 
 
 </script>
@@ -144,7 +150,7 @@ const onItemClick = () => {
         </div>
         <div class="inputSearch">
           <q-input
-              v-model.trim="filter"
+              v-model.trim="filterValue"
               filled
               bottom-slots
               label="Buscar"
@@ -166,7 +172,8 @@ const onItemClick = () => {
           <thead>
 
           <tr>
-            <th class="text-left">Nombre</th>
+
+            <th class="text-right">Nombre</th>
             <th class="text-right">Apellido</th>
             <th class="text-right">Ciudad</th>
             <th class="text-right">Telefono</th>
@@ -177,17 +184,17 @@ const onItemClick = () => {
           </thead>
           <tbody v-for="owner in paginatedOwners" :key="owner.id">
           <tr>
-            <td class="text-left">{{ owner.name }}</td>
-            <td class="text-right">{{ owner.lastName }}</td>
-            <td class="text-right">{{ owner.city }}</td>
-            <td class="text-right">{{ owner.phone }}</td>
-            <td class="text-right">{{ owner.identificationNumber }}</td>
+            <td class="text-left truncate-cell">{{ truncateText(owner.name, 5) }}</td>
+            <td class="text-right truncate-cell">{{ truncateText(owner.lastName, 6) }}</td>
+            <td class="text-right truncate-cell">{{ owner.city  }}</td>
+            <td class="text-right truncate-cell">{{ owner.phone }}</td>
+            <td class="text-right truncate-cell">{{ owner.identificationNumber }}</td>
             <!-- CalculateWinFrequency formula: wins / total of the games played * 100 -->
             <td class="text-right">{{ (((owner.wins / (owner.wins + owner.loses))) * 100).toFixed(1) + "%" }}</td>
             <td class="text-right">
               <div>
-                <q-btn round color="secondary" icon="edit" @click="editOwner(owner.id)"></q-btn>
-                <q-btn round color="secondary" icon="delete" @click="deleteOwner(owner.id)"></q-btn>
+                <q-btn  round color="secondary" icon="edit" @click="editOwner(owner.id)" class="small-btn"></q-btn>
+                <q-btn  round color="secondary" icon="delete" @click="deleteOwner(owner.id)" class="small-btn"></q-btn>
               </div>
             </td>
             <th></th>
@@ -205,9 +212,22 @@ const onItemClick = () => {
 </template>
 
 <style scoped>
+
+.my-card {
+  max-width: 800px; /* Adjust the max-width as needed */
+  margin: 0 auto;
+}
+.truncate-cell {
+  max-width: 100px; /* Adjust the width as needed */
+  white-space: nowrap;
+  overflow: hidden;
+}
 .cardContainer {
-  width: 100%;
-  max-width: 1200px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .divHeader {
@@ -218,7 +238,10 @@ const onItemClick = () => {
   margin-left: 60%;
   position: relative;
 }
-
+.small-btn {
+  font-size: 82%; /* Adjust the font size as needed */
+  padding: 5%; /* Adjust the padding as needed */
+}
 .btnEntradaPorPagina {
   margin-right: 60%;
   position: fixed;
@@ -232,5 +255,16 @@ th {
 td {
   margin: 5%;
   padding: 5%;
+}
+.ellipsis-with-min-width {
+  min-width: 0;  /* Allows the cell to shrink beyond its content width */
+}
+
+.ellipsis-with-min-width .q-item-label {
+  display: -webkit-box;  /* Enable the use of flexbox for text truncation */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* Number of lines to show before truncation */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
