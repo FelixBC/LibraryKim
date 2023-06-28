@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/api.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/FightCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/FightCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/MainLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +49,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/controllers" />
+    </key>
+  </component>
   <component name="RubyModuleManagerSettings">
     <option name="blackListedRootsPaths">
       <list>
@@ -302,6 +315,9 @@
       <workItem from="1687523763871" duration="1212000" />
       <workItem from="1687530364932" duration="2606000" />
       <workItem from="1687732074576" duration="721000" />
+      <workItem from="1687786996267" duration="1445000" />
+      <workItem from="1687806809990" duration="405000" />
+      <workItem from="1687890744644" duration="2599000" />
     </task>
     <servers />
   </component>
