@@ -17,8 +17,9 @@
       </q-header>
 
       <!--========== DRAWER ==========-->
+
       <q-drawer
-          class="extraSpaceSideBarHeading"
+          class="extraSpaceSideBarHeading sidebar-content"
           v-model="drawer"
           show-if-above
 
@@ -190,7 +191,6 @@
           <q-item-section>Logout</q-item-section>
         </q-item>
       </q-drawer>
-
       <q-page-container>
         <router-view/>
       </q-page-container>
@@ -201,7 +201,6 @@
 <style>
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-
 .extraSpaceOntop {
   padding-top: 100%;
 }

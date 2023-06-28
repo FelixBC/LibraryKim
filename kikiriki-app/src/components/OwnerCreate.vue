@@ -135,135 +135,140 @@ const onReset = () => {
 </script>
 
 <template>
-<div class="header_form">
-  <h4>Crear Dueño</h4>
-  <q-separator dark/>
-</div>
-  <q-card class="cardContainer">
-    <div class="div_form">
-      <div class="q-pa-md" style="max-width: 400px">
+  <q-card>
+  <div class="header_form">
+    <h4>Crear Dueño</h4>
+    <q-separator dark/>
+  </div>
+  <div class="divMainContent">
 
-        <q-form
-            class="q-gutter-md"
-        >
-          <q-input
-              filled
-              v-model="name"
-              label="Nombre *"
-              hint="Jose"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Debe escribir un nombre']"
-          />
-          <q-input
-              filled
-              v-model="lastName"
-              label="Apellido *"
-              hint="Rodriguez"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Debe escribir un apellido']"
-          />
-          <q-input
-              filled
-              v-model="city"
-              label="Ciudad *"
-              hint="Santo Domigo"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Debe escribir una ciudad']"
-          />
-          <q-input
-              filled
-              type="number"
-              v-model="age"
-              label="Edad *"
-              lazy-rules
-              :rules="[
+      <q-form>
+        <div class="form-columns">
+          <div class="form-column">
+            <q-input
+                filled
+                v-model="name"
+                label="Nombre *"
+                hint="Jose"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Debe escribir un nombre']"
+            />
+            <q-input
+                filled
+                v-model="lastName"
+                label="Apellido *"
+                hint="Rodriguez"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Debe escribir un apellido']"
+            />
+            <q-input
+                filled
+                v-model="city"
+                label="Ciudad *"
+                hint="Santo Domigo"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Debe escribir una ciudad']"
+            />
+            <q-input
+                filled
+                type="number"
+                v-model="age"
+                label="Edad *"
+                lazy-rules
+                :rules="[
           val => val !== null && val !== '' || 'Digite su edad',
           val => val > 0 && val < 100 || 'Por favor digite una edad real'
         ]"
-          />
-          <q-input
-              filled
-              type="number"
-              v-model="identificationNumber"
-              label="Cedula *"
-              lazy-rules
-              :rules="[
+            />
+
+            <q-input
+                filled
+                type="number"
+                v-model="identificationNumber"
+                label="Cedula *"
+                lazy-rules
+                :rules="[
           val => val !== null && val !== '' || 'digite su cedula',
           val => val > 0 && val < 99999999999 || 'Por favor digite su cedula'
         ]"
-          />
-          <q-input
-              filled
-              type="number"
-              v-model="phone"
-              label="Telefono *"
-              lazy-rules
-              :rules="[
+            />
+          </div>
+          <div class="column">
+            <q-input
+                filled
+                type="number"
+                v-model="phone"
+                label="Telefono *"
+                lazy-rules
+                :rules="[
           val => val !== null && val !== '' || 'Digite su numero de telefono',
           val => val > 0 && val < 9999999999 || 'Por favor digite un telefono real'
         ]"
-          />
-          <q-input
-              filled
-              type="number"
-              v-model="wins"
-              label="Ganadas *"
-              lazy-rules
-              :rules="[
+            />
+            <q-input
+                filled
+                type="number"
+                v-model="wins"
+                label="Ganadas *"
+                lazy-rules
+                :rules="[
           val => val !== null && val !== '' || 'Por favor digite el numero de ganadas',
           val => val > 0 && val < 100 || 'Por favor digite un numero de ganadas real '
         ]"
-          />
-          <q-input
-              filled
-              type="number"
-              v-model="loses"
-              label="Perdidas *"
-              lazy-rules
-              :rules="[
+            />
+            <q-input
+                filled
+                type="number"
+                v-model="loses"
+                label="Perdidas *"
+                lazy-rules
+                :rules="[
           val => val !== null && val !== '' || 'Por favor digite numero de perdidas',
           val => val > 0 && val < 100 || 'Por favor digite un numero de perdidas'
         ]"
-          />
-
-          <br>
-          <div v-for="owner in owners" :key="owner.id">
-            <h7>
-              [{{ owner.name }} {{ owner.lastName }} {{ owner.age}} {{ owner.phone }} {{ owner.city}} {{ owner.identificationNumber}} {{ owner.wins }} {{owner.loses}} ]
-            </h7>
-
-            <q-btn @click="editOwner(owner.id)">Edit</q-btn>
-            <q-btn @click="deleteOwner(owner.id)">Delete</q-btn>
-
-
+            />
           </div>
+        </div>
+        <div class="divButtons">
+          <q-btn color="primary" @click="createOwner">Create</q-btn>
+          <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm"/>
+        </div>
 
-          <div>
-            <q-btn color="primary" v-if="isEditing" @click="updateOwner">Update</q-btn>
-            <q-btn color="primary" v-if="isEditing" @click="cancelEdit">Cancel</q-btn>
-            <q-btn color="primary" v-else @click="createOwner">Create</q-btn>
-            <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm"/>
-          </div>
+      </q-form>
 
-        </q-form>
-      </div>
-    </div>
+
+
+  </div>
   </q-card>
-
 </template>
 
 <style scoped>
-.div_form{
+
+.divMainContent {
+  margin-left: 25%;
+  padding-right: 25%;
+}
+
+.divButtons {
+  margin-left: 34%;
+  padding: 5%;
+}
+
+.form-columns {
+  position: relative;
   align-content: center;
-  padding-left: 30%;
+  display: flex;
+  padding: 8%;
+  margin-left: 15%;
+}
+
+.form-column {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.header_form {
   padding-top: 5%;
-  padding-bottom: 5%;
-}
-.cardContainer{
-  margin-right: 10%;
-}
-.header_form{
-  padding-left: 35%;
-  align-content: center;
+  text-align: center;
 }
 </style>

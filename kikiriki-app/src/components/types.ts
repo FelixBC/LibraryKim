@@ -17,3 +17,17 @@ interface  DropdownItem {
     id: number;
     name: string;
 }
+export interface Rooster {
+    id: number;
+    name: string;
+    breedId: number;
+    color: string;
+    wins: number;
+    loses: number;
+    strength: number;
+    resistance: number;
+    agility: number;
+    defence: number;
+    roosterOwnerId: number;
+
+}
