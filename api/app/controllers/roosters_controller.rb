@@ -46,6 +46,6 @@ class RoostersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rooster_params
-      params.require(:rooster).permit(:name, :breed_id, :color_id, :wins, :loses, :strength, :resistance, :agility, :defence, :owners_id)
+      params.require(:rooster).permit(:id, :name, :breed_id, :color_id, :wins, :loses, :strength, :resistance, :agility, :defence, :owners_id)
     end
 end

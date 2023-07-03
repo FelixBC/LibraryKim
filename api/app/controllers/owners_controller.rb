@@ -46,7 +46,7 @@ class OwnersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
       def owner_params
-        params.require(:owner).permit(:id, :name, :age, :phone, :city, :identificationNumber, :wins, :loses, :lastName)
+        params.require(:owner).permit(:id, :name, :age, :phone, :city, :identificationNumber, :wins, :loses)
       end
 
 end

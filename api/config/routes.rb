@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/roosters', to: 'roosters#index'
   put '/roosters/:id', to: 'roosters#update'
   delete '/roosters/:id', to: 'roosters#destroy'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"

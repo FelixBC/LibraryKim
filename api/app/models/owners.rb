@@ -6,5 +6,4 @@ class Owners < ApplicationRecord
   validates :identificationNumber, presence: true
   validates :wins, presence: true
   validates :loses, presence: true
-  validates :lastName, presence: true
 end
