@@ -6,7 +6,6 @@ import {Owner} from "./types.ts";
 const $q = useQuasar()
 
 const name = ref<string | null>(null)
-const lastName = ref<string | null>(null)
 const city = ref<string | null>(null)
 const age = ref<number | null>(null)
 const identificationNumber = ref<number | null>(null)
@@ -34,7 +33,6 @@ const createOwner = async () => {
     body: JSON.stringify({
       name: name.value,
       age: age.value,
-      lastName: lastName.value,
       phone: phone.value,
       city: city.value,
       identificationNumber: identificationNumber.value,
@@ -57,7 +55,6 @@ const updateOwner = async () => {
       id: ownerId.value,
       name: name.value,
       age: age.value,
-      lastName: lastName.value,
       phone: phone.value,
       city: city.value,
       identificationNumber: identificationNumber.value,
@@ -88,7 +85,6 @@ const editOwner = async (id) => {
     ownerId.value = owner.id
     name.value = owner.name
     age.value = owner.age
-    lastName.value = owner.lastName
     phone.value = owner.phone
     city.value = owner.city
     identificationNumber.value = owner.identificationNumber
@@ -123,7 +119,6 @@ const onSubmit = () => {
 
 const onReset = () => {
   name.value = null
-  lastName.value = null
   age.value = null
   city.value = null
   identificationNumber.value = null
@@ -150,14 +145,7 @@ const onReset = () => {
                lazy-rules
                :rules="[ val => val && val.length > 0 || 'Debe escribir un nombre']"
            />
-           <q-input
-               filled
-               v-model="lastName"
-               label="Apellido *"
-               hint="Rodriguez"
-               lazy-rules
-               :rules="[ val => val && val.length > 0 || 'Debe escribir un apellido']"
-           />
+
            <q-input
                filled
                v-model="city"

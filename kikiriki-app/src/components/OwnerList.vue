@@ -6,7 +6,6 @@ import {Owner} from "./types.ts";
 const $q = useQuasar()
 
 const name = ref<string | null>(null)
-const lastName = ref<string | null>(null)
 const city = ref<string | null>(null)
 const age = ref<number | null>(null)
 const identificationNumber = ref<number | null>(null)
@@ -34,7 +33,6 @@ const handleItemsPerPageChange = (value: number) => {
 const paginatedOwners = computed(() => {
   const filteredOwners = owners.value.filter(owner =>
       owner.name.toLowerCase().includes(filterValue.value.toLowerCase()) ||
-      owner.lastName.toLowerCase().includes(filterValue.value.toLowerCase()) ||
       owner.city.toLowerCase().includes(filterValue.value.toLowerCase())
   );
 
@@ -48,34 +46,8 @@ onMounted(async () => {
 });
 
 
-const updateOwner = async () => {
-  const res = await fetch(`${API_URL}/${ownerId.value}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      id: ownerId.value,
-      name: name.value,
-      age: age.value,
-      lastName: lastName.value,
-      phone: phone.value,
-      city: city.value,
-      identificationNumber: identificationNumber.value,
-      wins: wins.value,
-      loses: loses.value,
 
-    })
-  })
-  const data = await res.json()
-  const index = owners.value.findIndex(owner => owner.id === data.id)
-  owners.value[index] = data
-  onReset()
-}
-const cancelEdit = () => {
-  onReset()
-  isEditing.value = false
-}
+
 const deleteOwner = async (id) => {
   await fetch(`${API_URL}/${id}`, {
     method: 'DELETE'
@@ -89,7 +61,6 @@ const editOwner = async (id) => {
     ownerId.value = owner.id
     name.value = owner.name
     age.value = owner.age
-    lastName.value = owner.lastName
     phone.value = owner.phone
     city.value = owner.city
     identificationNumber.value = owner.identificationNumber
@@ -103,21 +74,8 @@ const editOwner = async (id) => {
     })
   }
 }
-const onReset = () => {
-  name.value = null
-  lastName.value = null
-  age.value = null
-  city.value = null
-  identificationNumber.value = null
-  phone.value = null
-  wins.value = null
-  loses.value = null
-  accept.value = false
 
-}
-const onItemClick = () => {
-  return true
-}
+
 const truncateText = (text, maxLength) => {
   if (text && text.length > maxLength) {
     return text.slice(0, maxLength) + "..." + "" + "";
@@ -187,8 +145,7 @@ const truncateText = (text, maxLength) => {
               </thead>
               <tbody v-for="owner in paginatedOwners" :key="owner.id">
               <tr>
-                <td  class="text-left truncate-cell">{{ truncateText(owner.name, 5) }}</td>
-                <td class="text-right truncate-cell">{{ truncateText(owner.lastName, 6) }}</td>
+                <td  class="text-left truncate-cell">{{ truncateText(owner.name, 14) }}</td>
                 <td class="text-right truncate-cell">{{ owner.city }}</td>
                 <td class="text-right truncate-cell">{{ owner.phone }}</td>
                 <td class="text-right truncate-cell">{{ owner.identificationNumber }}</td>

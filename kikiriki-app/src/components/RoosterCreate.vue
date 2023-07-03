@@ -1,52 +1,52 @@
 <script lang="ts" setup>
-import {useQuasar} from 'quasar'
-import {onMounted, ref, computed} from 'vue'
+import {useQuasar} from 'quasar';
+import {onMounted, ref, computed, watch, nextTick, toRef} from 'vue';
 import {Owner, Rooster} from "./types.ts";
 
-const $q = useQuasar()
+const $q = useQuasar();
 
-const name = ref<string | null>(null)
-const breed = ref<string | null>(null)
-const color = ref<string | null>(null)
-const strength = ref<number | null>(null)
-const resistance = ref<number | null>(null)
-const agility = ref<number | null>(null)
-const defence  = ref<number | null>(null)
-const wins = ref<number | null>(null)
-const loses = ref<number | null>(null)
-const accept = ref(false)
-const owners = ref<Owner[]>([])
-const ownerId = ref(0)
-const isEditing = ref(false)
-const API_URL = "http://localhost:3000/roosters";
-const model = ref('');
-const roosterOwner_id = ref(0)
-
-    const filteredOptions = computed(() => {
-  return owners.value.filter((owner) => {
-    const fullName = `${owner.name} ${owner.lastName}`;
-    return fullName.toLowerCase().includes(model.value.toLowerCase());
-  });
-});
-
-const filterFn = (query, option) => {
-  const fullName = `${option.name} ${option.lastName}`;
-  return fullName.toLowerCase().includes(query.toLowerCase());
-};
-
-const filterFnBreed = (query, option) => {
-  const fullName = `${option.name} ${option.lastName}`;
-  return fullName.toLowerCase().includes(query.toLowerCase());
-};
+const name = ref<string | null>(null);
+const breed = ref<string | null>(null);
+const color = ref<string | null>(null);
+const strength = ref<number | null>(null);
+const resistance = ref<number | null>(null);
+const agility = ref<number | null>(null);
+const defence = ref<number | null>(null);
+const wins = ref<number | null>(null);
+const loses = ref<number | null>(null);
+const accept = ref(false);
+const roosters = ref<Rooster[]>([]);
+const owners = ref<Owner[]>([]);
+const roosterOwner_id = ref('');
+const ownerId = ref<number | null>(null);
+const API_URLRoosters = "http://localhost:3000/roosters";
+const API_URLOwners = "http://localhost:3000/owners";
 
 onMounted(async () => {
-  const res = await fetch(API_URL);
+  const res = await fetch(API_URLOwners);
   const data = await res.json();
   owners.value = data as Owner[];
 });
 
+const filteredOptions = ref([])
+
+async function filterFunction(val, update){
+  if (val == ''){
+    update(() => {
+      filteredOptions.value = owners.value;
+    })
+  }
+ update(() => {
+   const needle = val.toLowerCase()
+   filteredOptions.value = owners.value.filter(owner => {
+     const fullName = `${owner.name} ${owner.lastName}`.toLowerCase();
+     return fullName.includes(needle);
+   })
+ })
+}
+
 const createRooster = async () => {
-  const res = await fetch(API_URL, {
+  const res = await fetch(API_URLRoosters, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -63,29 +63,27 @@ const createRooster = async () => {
       wins: wins.value,
       loses: loses.value,
     })
-  })
+  });
 
-  const data = await res.json()
-  roosters.value.push(data)
-  onReset()
-}
-
-
-
+  const data = await res.json();
+  roosters.value.push(data);
+  onReset();
+};
 
 const onReset = () => {
-  name.value = null
-  breed.value = null
-  color.value = null
-  strength.value = null
-  resistance.value = null
-  agility.value = null
-  defence.value = null
-  wins.value = null
-  loses.value = null
-  accept.value = false
+  name.value = null;
+  breed.value = null;
+  color.value = null;
+  strength.value = null;
+  resistance.value = null;
+  agility.value = null;
+  defence.value = null;
+  wins.value = null;
+  loses.value = null;
+  accept.value = false;
+};
 
-}
+
 </script>
 
 <template>
@@ -107,18 +105,7 @@ const onReset = () => {
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Debe escribir un nombre']"
             />
-            <q-select
-                filled
-                v-model="model"
-                use-input
-                input-debounce="0"
-                label="Seleccionar raza"
-                :options="filteredOptionsBreed"
-                :filter-method="filterfnBreed"
-                style="width: 250px"
-                behavior="menu"
-            >
-            </q-select>
+
             <q-input
                 filled
                 v-model="color"
@@ -151,7 +138,7 @@ const onReset = () => {
             />
 
           </div>
-            <div class="column">
+          <div class="column">
             <q-input
                 filled
                 type="number"
@@ -198,19 +185,24 @@ const onReset = () => {
           val => val > 0 && val < 100 || 'Por favor digite un numero de perdidas'
         ]"
             />
-              <q-select
-                  filled
-                  v-model="model"
-                  use-input
-                  input-debounce="0"
-                  label="Filter by Name and Last Name"
-                  :options="filteredOptions"
-                  :filter-method="filterFn"
-                  style="width: 250px"
-                  behavior="menu"
-              >
-              </q-select>
-            </div>
+            <q-select
+                filled
+                v-model="ownerId"
+                use-input
+                input-debounce="300"
+                label="Filter by Name and Last Name"
+                :options="filteredOptions"
+                @filter="filterFunction"
+                option-label="name"
+                option-value="id"
+                emit-value
+                transition-show="jump-up"
+                transition-hide="jump-down"
+                style="width: 250px"
+                behavior="menu"
+            >
+            </q-select>
+          </div>
         </div>
         <div class="divButtons">
           <q-btn color="primary" @click="createRooster">Create</q-btn>
@@ -218,7 +210,6 @@ const onReset = () => {
         </div>
 
       </q-form>
-
 
 
     </div>

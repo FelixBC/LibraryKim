@@ -21,7 +21,7 @@ export interface Rooster {
     id: number;
     name: string;
     breedId: number;
-    color: string;
+    colorId: number;
     wins: number;
     loses: number;
     strength: number;
