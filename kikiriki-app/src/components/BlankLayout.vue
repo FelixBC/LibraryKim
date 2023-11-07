@@ -1,16 +1,16 @@
 <template>
   <div id="q-app">
-    <router-view></router-view>
+    <Login />
   </div>
 </template>
 
 <script>
-import MainLayout from './components/MainLayout.vue';
+import Login from "./Login.vue";
 
 export default {
   name: 'App',
   components: {
-    MainLayout,
+    Login,
   },
 };
 </script>

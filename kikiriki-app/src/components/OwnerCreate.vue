@@ -2,7 +2,6 @@
 import {useQuasar} from 'quasar'
 import {onMounted, ref} from 'vue'
 import {Owner} from "./types.ts";
-
 const $q = useQuasar()
 
 const name = ref<string | null>(null)
@@ -63,7 +62,6 @@ const updateOwner = async () => {
       identificationNumber: identificationNumber.value,
       wins: wins.value,
       loses: loses.value,
-
     })
   })
   const data = await res.json()

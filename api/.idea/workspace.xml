@@ -5,15 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/controllers/colors_controller.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/color.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/BlankLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/ColorCreate.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/ColorList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/api.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/owners_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/owners_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/roosters_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/roosters_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/owners.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/owners.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/MainLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/People.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/People.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/router/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/router/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +38,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2QpvhdDpRRdXE4J6wUt7isQSpSX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -38,7 +50,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/xilef/Work/kikiriki/api&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/xilef/work/kikiriki/api/app/models/concerns&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -50,7 +62,11 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/models/concerns" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/models" />
       <recent name="$PROJECT_DIR$/app/controllers" />
     </key>
   </component>
@@ -171,6 +187,7 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="RakeRunConfigurationType" factoryName="Rake">
+      <predefined_log_file enabled="true" id="RUBY_RAKE" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
@@ -194,6 +211,7 @@
     </configuration>
     <configuration name="spec: api" type="RakeRunConfigurationType" factoryName="Rake">
       <module name="api" />
+      <predefined_log_file enabled="true" id="RUBY_RAKE" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
@@ -217,6 +235,7 @@
     </configuration>
     <configuration name="test: api" type="RakeRunConfigurationType" factoryName="Rake">
       <module name="api" />
+      <predefined_log_file enabled="true" id="RUBY_RAKE" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
@@ -319,7 +338,15 @@
       <workItem from="1687806809990" duration="405000" />
       <workItem from="1687890744644" duration="4687000" />
       <workItem from="1688391126147" duration="2754000" />
-      <workItem from="1688415851368" duration="1917000" />
+      <workItem from="1688415851368" duration="3937000" />
+      <workItem from="1688558953260" duration="2143000" />
+      <workItem from="1698431465615" duration="934000" />
+      <workItem from="1698439060404" duration="938000" />
+      <workItem from="1698517056872" duration="2870000" />
+      <workItem from="1698668179077" duration="721000" />
+      <workItem from="1698669215868" duration="6512000" />
+      <workItem from="1698759438767" duration="4772000" />
+      <workItem from="1699036160944" duration="704000" />
     </task>
     <servers />
   </component>

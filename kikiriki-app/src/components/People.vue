@@ -52,7 +52,7 @@
 </template>
 <script lang="ts" setup>
 import {ref, onMounted} from 'vue';
-import {Person} from "./types.ts";
+import {Person from "./types.ts";
 
 // Declare and initialize your data using the `ref()` function
 const firstName = ref('');

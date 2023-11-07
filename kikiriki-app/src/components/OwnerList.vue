@@ -45,9 +45,6 @@ onMounted(async () => {
   owners.value = data as Owner[];
 });
 
-
-
-
 const deleteOwner = async (id) => {
   await fetch(`${API_URL}/${id}`, {
     method: 'DELETE'

@@ -1,4 +1,3 @@
-
 export interface Owner {
 
     id: number;
@@ -10,7 +9,6 @@ export interface Owner {
     identificationNumber: number;
     wins: number;
     loses: number;
-
 }
 
 interface  DropdownItem {
@@ -30,4 +28,8 @@ export interface Rooster {
     defence: number;
     roosterOwnerId: number;
 
+}
+export interface Author {
+    id: number;
+    name: string;
 }
