@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_30_143021) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_16_150144) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,43 +20,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_30_143021) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "colors", force: :cascade do |t|
+  create_table "contacts", force: :cascade do |t|
+    t.integer "ID_Email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "emails", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "owners", force: :cascade do |t|
-    t.text "name"
-    t.integer "age"
-    t.text "city"
-    t.bigint "identification_number"
-    t.bigint "phone"
-    t.bigint "wins"
-    t.bigint "loses"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "people", force: :cascade do |t|
-    t.string "firstName"
-    t.text "lastName"
-    t.integer "phoneNumber"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "roosters", force: :cascade do |t|
-    t.text "name"
-    t.integer "breed_id"
-    t.integer "color_id"
-    t.integer "wins"
-    t.integer "loses"
-    t.integer "strength"
-    t.integer "resistance"
-    t.integer "agility"
-    t.integer "defence"
-    t.integer "owners_id"
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

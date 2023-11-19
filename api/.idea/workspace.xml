@@ -5,22 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controllers/colors_controller.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/color.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/BlankLayout.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/ColorCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/ColorList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/RoleCreate.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/RoleList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/colors_controller.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/owners_controller.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/people_controller.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/roosters_controller.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/color.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/owners.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/person.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/rooster.rb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/MainLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/People.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/People.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/colors_controller_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/owners_controller_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/people_controller_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/roosters_controller_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/colors.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/owners_creates.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/people.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fixtures/roosters.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/color_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/owner_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/person_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/models/rooster_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/ColorCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/AuthorCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/ColorList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/AuthorList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/FightCreate.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/FightList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerCreate.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/OwnerList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/People.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/Registration.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/RoosterList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/TicketCreate.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/TicketList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/UserCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/UserCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/test.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/router/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/router/router.ts" afterDir="false" />
     </list>
@@ -347,6 +370,9 @@
       <workItem from="1698669215868" duration="6512000" />
       <workItem from="1698759438767" duration="4772000" />
       <workItem from="1699036160944" duration="704000" />
+      <workItem from="1699450462004" duration="1454000" />
+      <workItem from="1699879707422" duration="3384000" />
+      <workItem from="1700051432397" duration="14197000" />
     </task>
     <servers />
   </component>

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import {ref} from 'vue'
-import {Author} from "./types.ts";
+import {Role} from "./types.ts";
 
 const name = ref<string | null>(null)
-const API_URL = "http://localhost:3000/authors";
-const authors = ref<Author[]>([]);
+const API_URL = "http://localhost:3000/roles";
+const roles = ref<Role[]>([]);
 
-const createAuthor = async () => {
+const createRoles = async () => {
   const res = await fetch(API_URL, {
     method: 'POST',
     headers: {
@@ -17,7 +17,7 @@ const createAuthor = async () => {
     })
   })
   const data = await res.json()
-  authors.value.push(data);
+  roles.value.push(data);
   onReset();
 }
 const onReset = () => {
@@ -32,10 +32,12 @@ const onReset = () => {
     <q-form>
       <q-card class="full-width" style="max-width: 450px;">
         <q-card-section
-            style="font-size: 1.3em;"
+            style="
+            font-size: 1.3em
+            ;"
             class="text-center">
           <q-card-section>
-            <h4>Crear Autor</h4>
+            <h4>Crear Role</h4>
           </q-card-section>
 
           <div class="form-columns">
@@ -44,15 +46,15 @@ const onReset = () => {
                 <q-input
                     filled
                     v-model="name"
-                    label="Author *"
-                    hint="Jhon Doe"
+                    label="Role"
+                    hint="Contable"
                     lazy-rules
-                    :rules="[ val => val && val.isEmpty || 'Debe escribir un Autor']"
+                    :rules="[ val => val && val.isEmpty || 'Debe escribir un Role']"
                 />
               </q-card-section>
             </div>
             <div class="divButtons">
-              <q-btn color="primary" @click="createAuthor">Create</q-btn>
+              <q-btn color="primary" @click="createRoles">Create</q-btn>
               <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm"/>
             </div>
           </div>

@@ -30,7 +30,10 @@ const password = ref<string | null>(null)
                   <q-btn unelevated color="grey" size="lg" class="full-width" label="Login"/>
                 </q-card-actions>
                 <q-card-section class="text-center q-pa-none">
-                  <p class="text-blue-grey-14">Not reigistered? Created an Account</p>
+                  <p class="text-blue-grey-14">Not registered?<br><router-link to="/UserCreate">Create an Account! </router-link>
+                    <br> <router-link to=""> Can't Login? </router-link>
+                  </p>
+
                 </q-card-section>
               </q-card>
             </div>

@@ -248,24 +248,7 @@ const leftDrawerOpen: Ref<boolean> = ref(false);
 const miniState: Ref<boolean> = ref(true);
 const router: Router = useRouter();
 
-const gotoOwnerCreate = (): void => {
-  router.push('/OwnerCreate');
-};
-const gotoOwnerList = (): void => {
-  router.push('/OwnerList');
-};
-const gotoRoosterCreate = (): void => {
-  router.push('/RoosterCreate');
-};
-const gotoRoosterList = (): void => {
-  router.push('/RoosterList');
-};
-const gotoTicketCreate = (): void => {
-  router.push('/TicketCreate');
-};
-const gotoTicketList = (): void => {
-  router.push('/TicketList');
-};
+
 const gotoUserCreate = (): void => {
   router.push('/UserCreate');
 };
@@ -274,22 +257,6 @@ const gotoUserList = (): void => {
 };
 const gotoDashboard = (): void => {
   router.push('/');
-};
-const gotoFightCreate = (): void => {
-  router.push('/FightCreate');
-};
-const gotoFightList = (): void => {
-  router.push('/FightList');
-};
-
-const gotoColorCreate = (): void => {
-  router.push('/ColorCreate');
-};
-const gotoColorList = (): void => {
-  router.push('/ColorList');
-};
-const gotoLogin = (): void => {
-  router.push('/Login');
 };
 
 const toggleLeftDrawer = (): void => {

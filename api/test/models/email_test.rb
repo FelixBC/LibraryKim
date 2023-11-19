@@ -1,6 +1,6 @@
 require "test_helper"
 
-class RoosterTest < ActiveSupport::TestCase
+class EmailTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

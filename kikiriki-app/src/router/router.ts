@@ -7,6 +7,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../components/Login.vue'),
     },
     {
+        path: '/userCreate',
+        name: 'UserCreate',
+        component: () => import('../components/UserCreate.vue'),
+    },
+    {
         path: '/mainLayout',
         name: 'MainLayout',
         component: () => import('../components/MainLayout.vue'),
@@ -17,55 +22,27 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('../components/Home.vue'),
             },
             {
-                path: '/userCreate',
-                name: 'UserCreate',
-                component: () => import('../components/UserCreate.vue'),
+                path: '/roleCreate',
+                name: 'RoleCreate',
+                component: () => import('../components/RoleCreate.vue'),
             },
             {
-                path: '/userList',
-                name: 'UserList',
-                component: () => import('../components/UserList.vue'),
+                path: '/roleList',
+                name: 'RoleList',
+                component: () => import('../components/RoleList.vue'),
             },
             {
-                path: '/ownerCreate',
-                name: 'OwnerCreate',
-                component: () => import('../components/OwnerCreate.vue'),
+                path: '/authorCreate',
+                name: 'AuthorCreate',
+                component: () => import('../components/AuthorCreate.vue'),
             },
             {
-                path: '/ownerList',
-                name: 'OwnerList',
-                component: () => import('../components/OwnerList.vue'),
+                path: '/authorList',
+                name: 'AuthorList',
+                component: () => import('../components/AuthorList.vue'),
             },
-            {
-                path: '/roosterCreate',
-                name: 'RoosterCreate',
-                component: () => import('../components/RoosterCreate.vue'),
-            },
-            {
-                path: '/roosterList',
-                name: 'RoosterList',
-                component: () => import('../components/RoosterList.vue'),
-            },
-            {
-                path: '/ticketCreate',
-                name: 'TicketCreate',
-                component: () => import('../components/TicketCreate.vue'),
-            },
-            {
-                path: '/ticketList',
-                name: 'TicketList',
-                component: () => import('../components/TicketList.vue'),
-            },
-            {
-                path: '/colorCreate',
-                name: 'ColorCreate',
-                component: () => import('../components/ColorCreate.vue'),
-            },
-            {
-                path: '/colorList',
-                name: 'ColorList',
-                component: () => import('../components/ColorList.vue'),
-            },
+
+
         ]
 
     }

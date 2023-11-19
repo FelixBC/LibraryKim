@@ -1,29 +1,25 @@
 Rails.application.routes.draw do
+  resources :contacts
+  resources :emails
+  resources :roles
   resources :authors
-  resources :colors
-  resources :roosters
-  resources :owners, only: [:create]
-  resources :people, only: [:create]
-  resources :login
+  resources :users
 
-  get '/people', to: 'people#index'
-  put '/people/:id', to: 'people#update'
-  delete '/people/:id', to: 'people#destroy'
-  get '/owners', to: 'owners#index'
-  put '/owners/:id', to: 'owners#update'
-  delete '/owners/:id', to: 'owners#destroy'
-  get '/roosters', to: 'roosters#index'
-  put '/roosters/:id', to: 'roosters#update'
-  delete '/roosters/:id', to: 'roosters#destroy'
-  get '/colors', to: 'colors#index'
-  put '/colors/:id', to: 'colors#update'
-  delete '/colors/:id', to: 'colors#destroy'
   get '/authors', to: 'authors#index'
   put '/authors/:id', to: 'authors#update'
   delete '/authors/:id', to: 'authors#destroy'
-
-
-
+  get '/users', to: 'users#index'
+  put '/users/:id', to: 'users#update'
+  delete '/users/:id', to: 'users#destroy'
+  get '/emails', to: 'emails#index'
+  put '/emails/:id', to: 'emails#update'
+  delete '/emails/:id', to: 'emails#destroy'
+  get '/contacts', to: 'contacts#index'
+  put '/contacts/:id', to: 'contacts#update'
+  delete '/contacts/:id', to: 'contacts#destroy'
+  get '/roles', to: 'roles#index'
+  put '/roles/:id', to: 'roles#update'
+  delete '/roles/:id', to: 'roles#destroy'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
