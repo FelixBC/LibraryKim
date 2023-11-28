@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :phones
+  resources :genders
+  resources :people
+  resources :provinces
+  resources :cities
+  resources :countries
+  resources :sectors
   resources :contacts
   resources :emails
   resources :roles

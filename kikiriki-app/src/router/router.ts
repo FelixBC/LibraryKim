@@ -42,6 +42,16 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('../components/AuthorList.vue'),
             },
 
+            {
+                path: '/genderCreate',
+                name: 'GenderCreate',
+                component: () => import('../components/GenderCreate.vue'),
+            },
+            {
+                path: '/genderList',
+                name: 'GenderList',
+                component: () => import('../components/GenderList.vue'),
+            },
 
         ]
 

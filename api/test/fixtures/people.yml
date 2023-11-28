@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Identification: 1
+  name: MyString
+  phoneNumber: 1
+  ID_Genero: 1
+  Fecha_Nacimiento: 2023-11-26
+  ID_Address: 1
+  ID_Email: 1
+
+two:
+  Identification: 1
+  name: MyString
+  phoneNumber: 1
+  ID_Genero: 1
+  Fecha_Nacimiento: 2023-11-26
+  ID_Address: 1
+  ID_Email: 1

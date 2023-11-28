@@ -20,3 +20,7 @@ export interface Contact {
     id: number;
     ID_email: number;
 }
+export interface Gender {
+    id: number;
+    name:string;
+}

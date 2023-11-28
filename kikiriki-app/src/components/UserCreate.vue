@@ -1,45 +1,59 @@
 <script lang="ts" setup>
-import {ref, computed} from 'vue'
-import {User} from "./types.ts";
+import { ref, computed } from 'vue';
+import { User } from "./types.ts";
+import { Notify } from 'quasar';
 
-const name = ref<string | null>(null)
-const password = ref<string | null>(null)
-const isPwd = ref<boolean>(true)
-const passwordsMatch = computed(() => password.value === confirmPassword.value)
-const confirmPassword = ref<string | null>(null)
-const email = ref<string | null>(null)
+const name = ref<string | null>(null);
+const password = ref<string | null>(null);
+const isPwd = ref<boolean>(true);
+const confirmPassword = ref<string | null>(null);
+const email = ref<string | null>(null);
 const API_URL = "http://localhost:3000/users";
 const users = ref<User[]>([]);
 
+const passwordsMatch = computed(() => password.value === confirmPassword.value);
+
 const createUser = async () => {
-  if (!passwordsMatch.value) {
-    console.error("Passwords do not match");
-    return;
+  try {
+    if (!passwordsMatch.value) {
+      throw new Error('Passwords do not match');
+    }
+
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value,
+      })
+    });
+
+    if (!res.ok) {
+      throw new Error('Registration failed');
+    }
+
+    const data = await res.json();
+    users.value.push(data);
+    Notify.create({
+      message: 'Registration successful!',
+      type: 'positive'
+    });
+    onReset();
+  } catch (error) {
+    console.error('Error during registration', error);
+    Notify.create({
+      message: 'Registration failed. Please try again.',
+      type: 'negative'
+    });
   }
-
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: name.value,
-      password: password.value,
-      email: email.value,
-    })
-  });
-
-  const data = await res.json();
-  users.value.push(data);
-  onReset();
 };
+
 const onReset = () => {
-  name.value = null;
   password.value = null;
   email.value = null;
-
-}
-
+};
 </script>
 <template>
   <q-layout>
@@ -68,11 +82,11 @@ const onReset = () => {
                     <q-card-section>
                       <q-input
                           filled
-                          v-model="name"
+                          v-model="email"
                           label="User "
-                          hint="Jhon Doe"
+                          hint="JhonDoe@gmail.com"
                           lazy-rules
-                          :rules="[ val => val != val.isEmpty || 'Debe escribir un nombre de usuario']"
+                          :rules="[ val => val != val.isEmpty || 'Debe escribir un email']"
                       />
                     </q-card-section>
                   </div>
@@ -104,18 +118,6 @@ const onReset = () => {
                           :rules="[val => val && passwordsMatch || 'Passwords do not match']"
                       />
                     </q-card-section>
-                    <div class="form-column">
-                      <q-card-section>
-                        <q-input
-                            filled
-                            v-model="email"
-                            label="Email "
-                            hint="JhonDoe@gmail.com"
-                            lazy-rules
-                            :rules="[ val => val && val.isEmpty || 'Debe escribir un email']"
-                        />
-                      </q-card-section>
-                    </div>
                     <q-card-section>
                       <div class="form-column">
                       </div>
