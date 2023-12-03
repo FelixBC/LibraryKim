@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/DirectionSectorCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/GenderCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/GenderList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/EmployeeCreate.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/EmployeeList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/development.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20230612185019_create_people.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/UserCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/UserCreate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/components/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/components/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kikiriki-app/src/router/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kikiriki-app/src/router/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +33,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/xilef/work/kikiriki/api/app/models/concerns&quot;,
@@ -349,6 +339,8 @@
       <workItem from="1700487134435" duration="4936000" />
       <workItem from="1700930036045" duration="1820000" />
       <workItem from="1701017632945" duration="4994000" />
+      <workItem from="1701355844042" duration="1999000" />
+      <workItem from="1701433794360" duration="1267000" />
     </task>
     <servers />
   </component>
