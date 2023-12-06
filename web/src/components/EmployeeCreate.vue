@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {ref} from 'vue'
-import {Author} from "./types.ts";
+import {Employee} from "./types.ts";
 
 const roles = ref<Roles[]>([])
 const name = ref<string | null>(null)
@@ -18,9 +18,13 @@ const API_URL = "http://localhost:3000/employee";
 const API_URL_GENDER = "";
 const API_URL_ROLES = "";
 const API_URL_Address = "";
-const API_URL
+const API_URL_PHONENUMBER = "";
 
 
+const genders = ref<Employee[]>([]);
+const roles = ref<Roles[]>([]);
+const adresses = ref<Adresses[]>([]);
+const phonenumbers = ref<Phonenumbers[]>([]);
 const employees = ref<Employee[]>([]);
 
 const createAuthor = async () => {
@@ -34,7 +38,13 @@ const createAuthor = async () => {
       name: name.value,
       genders: genders.value,
       identificationNumber: identificationNumber.value,
-      birth_date: birth_date.value
+      birth_date: birth_date.value,
+      phoneNumber: phoneNumber.value,
+      email: email.value,
+      country: country.value,
+      province: province.value,
+      sector: sector.value,
+      city: city.value,
     })
   })
   const data = await res.json()
@@ -43,6 +53,16 @@ const createAuthor = async () => {
 }
 const onReset = () => {
   name.value = null;
+  roles.value = null;
+  genders.value = null;
+  identificationNumber.value = null;
+  birth_date.value = null;
+  phoneNumber.value = null;
+  email.value = null;
+  country.value = null;
+  province.value = null;
+  sector.value = null;
+  city.value = null;
 }
 
 </script>
@@ -55,7 +75,7 @@ const onReset = () => {
             style="font-size: 1.3em;"
             class="text-center">
           <q-card-section>
-            <h4>Crear Autor</h4>
+            <h4>Crear Employee</h4>
           </q-card-section>
 
           <div class="form-columns">
@@ -64,16 +84,16 @@ const onReset = () => {
                 <q-input
                     filled
                     v-model="name"
-                    label="Author *"
+                    label="Employee*"
                     hint="Jhon Doe"
                     lazy-rules
-                    :rules="[ val => val && val.isEmpty || 'Debe escribir un Autor']"
+                    :rules="[ val => val && val.isEmpty || 'Debe escribir un empleado']"
                 />
               </q-card-section>
               <q-card-section>
                 <q-input
                     filled
-                    v-model="name"
+                    v-model=""
                     label="Author *"
                     hint="Jhon Doe"
                     lazy-rules
