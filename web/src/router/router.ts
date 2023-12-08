@@ -52,6 +52,46 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'GenderList',
                 component: () => import('../components/GenderList.vue'),
             },
+            {
+                path: '/employeeCreate',
+                name: 'EmployeeCreate',
+                component: () => import('../components/EmployeeCreate.vue'),
+            },
+            {
+                path: '/employeeList',
+                name: 'EmployeeList',
+                component: () => import('../components/EmployeeList.vue'),
+            },
+            {
+                path: '/cityCreate',
+                name: 'CityCreate',
+                component: () => import('../components/CityCreate.vue'),
+            },
+            {
+                path: '/cityList',
+                name: 'CityList',
+                component: () => import('../components/CityList.vue'),
+            },
+            {
+                path: '/provinceCreate',
+                name: 'ProvinceCreate',
+                component: () => import('../components/ProvinceCreate.vue'),
+            },
+            {
+                path: '/provinceList',
+                name: 'ProvinceList',
+                component: () => import('../components/ProvinceList.vue'),
+            },
+            {
+                path: '/sectorCreate',
+                name: 'SectorCreate',
+                component: () => import('../components/SectorCreate.vue'),
+            },
+            {
+                path: '/sectorList',
+                name: 'SectorList',
+                component: () => import('../components/SectorList.vue'),
+            },
 
         ]
 
