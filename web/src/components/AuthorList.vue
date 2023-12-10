@@ -55,8 +55,8 @@ const deleteAuthor = async (id) => {
   })
   authors.value = authors.value.filter(person => person.id !== id)
 }
-const updateNameEvent = async (id) => {
-  const res = await fetch(`${API_URL}/${id}`, {
+const updateNameEvent = async (editNameModalId) => {
+  const res = await fetch(`${API_URL}/${editNameModalId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -112,9 +112,8 @@ const updateNameEvent = async (id) => {
               <tbody v-for="author in paginatedAuthors" :key="author.id">
               <tr>
                 <td class="text-left">{{ author.name }}</td>
+
                 <td class="text-right">
-                  {{ editNameModalId }}
-                  {{ editNameModalName }}
                   <div>
 
                     <q-btn v-if="!showModal" round color="secondary" icon="edit" @click="editAuthor(author.id)"
@@ -133,8 +132,6 @@ const updateNameEvent = async (id) => {
         </q-card-section>
       </q-card>
     </q-page>
-    //the problem is that the edited name is having a value here and it doesnt change when i change the name in the
-    modal
     <EditNameModal v-if="showModal" :edited-name="editNameModalName" :edited-id="editNameModalId"
                    @close="showModal = false" @save="updateNameEvent(editNameModalId)"></EditNameModal>
   </q-layout>
