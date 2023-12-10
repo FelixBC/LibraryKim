@@ -4,7 +4,8 @@ export interface Author {
     id: number;
     name: string;
 }
-export interface Employee{
+
+export interface Employee {
     id: number;
     name: string;
     role: string;
@@ -18,30 +19,37 @@ export interface Employee{
     phoneNumber: string;
     email: number;
 }
+
 export interface Email {
     id: number;
     email: string;
 }
+
 export interface Phone {
     id: number;
     phoneNumber: string;
 }
+
 export interface Province {
     id: number;
     name: string;
 }
+
 export interface City {
     id: number;
     name: string;
 }
+
 export interface Sector {
     id: number;
     name: string;
 }
+
 export interface Identification {
     id: number;
     name: string;
 }
+
 export interface Address {
     id: number;
 
@@ -65,7 +73,13 @@ export interface Contact {
     id: number;
     ID_email: number;
 }
+
 export interface Gender {
     id: number;
-    name:string;
+    name: string;
+}
+
+export interface SupplierType {
+    id: number;
+    name: string;
 }
