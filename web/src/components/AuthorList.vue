@@ -6,10 +6,8 @@ import EditNameModal from "./EditNameModal.vue";
 const name = ref<string | null>(null)
 const API_URL = "http://localhost:3000/authors";
 const authors = ref<Author[]>([]);
-const editNameModalId = ref(0);
-const editNameModalName = ref('');
+const editingAuthor = ref<Author | null>(null);
 const showModal = ref(false);
-
 const filterValue = ref('')
 const itemsPerPage = ref(10);
 const perPageOptions = [
@@ -39,8 +37,7 @@ const editAuthor = async (id) => {
   showModal.value = true;
   const author = authors.value.find(author => author.id === id)
   if (author) {
-    editNameModalId.value = author.id
-    editNameModalName.value = author.name
+    editingAuthor.value = author;
 
     window.scroll({
       top: 0,
@@ -48,6 +45,10 @@ const editAuthor = async (id) => {
     })
   }
 }
+const onModalClose = () => {
+  showModal.value = false;
+};
+
 
 const deleteAuthor = async (id) => {
   await fetch(`${API_URL}/${id}`, {
@@ -55,23 +56,26 @@ const deleteAuthor = async (id) => {
   })
   authors.value = authors.value.filter(person => person.id !== id)
 }
-const updateNameEvent = async (editNameModalId) => {
-  const res = await fetch(`${API_URL}/${editNameModalId}`, {
+const onUpdateAuthor = async ({id, name}) => {
+  const res = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: editNameModalName.value,
+      name: name,
     })
-  })
-  const data = await res.json()
-  editNameModalName.value = data.name;
-  //push data to authors
-  editNameModalName.push(data);
-  showModal.value = false;
+  });
 
-}
+  const data = await res.json();
+
+  const index = authors.value.findIndex(author => author.id === id);
+  if (index !== -1) {
+    authors.value[index].name = data.name;
+  }
+
+  showModal.value = false;
+};
 
 </script>
 <template>
@@ -112,7 +116,6 @@ const updateNameEvent = async (editNameModalId) => {
               <tbody v-for="author in paginatedAuthors" :key="author.id">
               <tr>
                 <td class="text-left">{{ author.name }}</td>
-
                 <td class="text-right">
                   <div>
 
@@ -132,8 +135,8 @@ const updateNameEvent = async (editNameModalId) => {
         </q-card-section>
       </q-card>
     </q-page>
-    <EditNameModal v-if="showModal" :edited-name="editNameModalName" :edited-id="editNameModalId"
-                   @close="showModal = false" @save="updateNameEvent(editNameModalId)"></EditNameModal>
+    <EditNameModal v-model:show="showModal" v-bind="editingAuthor" @close="onModalClose"
+                   @save="onUpdateAuthor"></EditNameModal>
   </q-layout>
 </template>
 <style scoped>
