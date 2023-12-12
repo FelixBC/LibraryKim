@@ -1,24 +1,26 @@
 <script lang="ts" setup>
 import {onMounted, ref, computed} from "vue";
 import {City} from "./types.ts";
+import EditNameModal from "./EditNameModal.vue";
 
 const name = ref<string | null>(null)
-const city_ID = ref(0)
 const API_URL = "http://localhost:3000/cities";
 const cities = ref<City[]>([]);
-
+const editingCity = ref<City | null>(null);
+const showModal = ref(false);
 const filterValue = ref('')
-
 const itemsPerPage = ref(10);
-const perPageOptions = [
-  {label: '5', value: 5},
-  {label: '10', value: 10},
-  {label: '20', value: 20}
-];
 
-const handleItemsPerPageChange = (value: number) => {
-  itemsPerPage.value = value;
-};
+//not needed, could implement later
+// const perPageOptions = [
+//   {label: '5', value: 5},
+//   {label: '10', value: 10},
+//   {label: '20', value: 20}
+// ];
+//
+// const handleItemsPerPageChange = (value: number) => {
+//   itemsPerPage.value = value;
+// };
 
 const paginatedCitys = computed(() => {
   const filteredCitys = cities.value.filter(city =>
@@ -33,18 +35,11 @@ onMounted(async () => {
   const data = await res.json();
   cities.value = data as City[];
 });
-const deleteCity = async (id) => {
-  await fetch(`${API_URL}/${id}`, {
-    method: 'DELETE'
-  })
-  cities.value = cities.value.filter(person => person.id !== id)
-}
 const editCity = async (id) => {
-
+  showModal.value = true;
   const city = cities.value.find(city => city.id === id)
   if (city) {
-    city_ID.value = city.id
-    name.value = city.name
+    editingCity.value = city;
 
     window.scroll({
       top: 0,
@@ -52,7 +47,37 @@ const editCity = async (id) => {
     })
   }
 }
+const onModalClose = () => {
+  showModal.value = false;
+};
 
+
+const deleteCity = async (id) => {
+  await fetch(`${API_URL}/${id}`, {
+    method: 'DELETE'
+  })
+  cities.value = cities.value.filter(person => person.id !== id)
+}
+const onUpdateCity = async ({id, name}) => {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+    })
+  });
+
+  const data = await res.json();
+
+  const index = cities.value.findIndex(city => city.id === id);
+  if (index !== -1) {
+    cities.value[index].name = data.name;
+  }
+
+  showModal.value = false;
+};
 
 </script>
 <template>
@@ -63,7 +88,7 @@ const editCity = async (id) => {
             style="font-size: 1.3em;"
             class="text-center">
           <q-card-section>
-            <h4>Lista de Autores</h4>
+            <h4>Lista de Ciudades</h4>
           </q-card-section>
           <q-input
               v-model.trim="filterValue"
@@ -95,7 +120,9 @@ const editCity = async (id) => {
                 <td class="text-left">{{ city.name }}</td>
                 <td class="text-right">
                   <div>
-                    <q-btn round color="secondary" icon="edit" @click="editCity(city.id)" class="small-btn"></q-btn>
+
+                    <q-btn v-if="!showModal" round color="secondary" icon="edit" @click="editCity(city.id)"
+                           class="small-btn"></q-btn>
                     <q-btn round color="secondary" icon="delete" @click="deleteCity(city.id)"
                            class="small-btn"></q-btn>
                   </div>
@@ -110,8 +137,10 @@ const editCity = async (id) => {
         </q-card-section>
       </q-card>
     </q-page>
+    <EditNameModal v-model:show="showModal" v-bind="editingCity" @close="onModalClose"
+                   @save="onUpdateCity"></EditNameModal>
   </q-layout>
 </template>
 <style scoped>
 
-</style>
+<

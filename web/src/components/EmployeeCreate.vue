@@ -35,20 +35,27 @@ const filterOptionsRoles = (val, update) => {
 
 const API_URL = "http://localhost:3000/employee";
 const API_URL_ROLES = "http://localhost:3000/roles";
-
+const API_URL_PROVINCES = "http://localhost:3000/provinces";
+const API_URL_SECTORS = "http://localhost:3000/sectors";
+const API_URL_CITIES = "http://localhost:3000/cities";
 //load the data from the api
 onMounted(async () => {
   const res = await fetch(API_URL_ROLES);
   const data = await res.json();
   roles.value = data as Roles[];
+  provinces.value = data as Provinces[];
+  sectors.value = data as Sectors[];
+  cities.value = data as Cities[];
+
 });
 
 //this is the data that is going to be sent to the api
 
 const roles = ref<Role[]>([])
-const genders = ref<Gender[]>([]);
+const provinces = ref<Provinces[]>([])
+const sectors = ref<Sectors[]>([])
 const cities = ref<City[]>([]);
-const phonenumbers = ref<PhoneNumber[]>([]);
+const genders = ref<Gender[]>([]);
 const employees = ref<Employee[]>([]);
 const selection = ref<string | null>(null);
 
@@ -112,52 +119,54 @@ const onReset = () => {
                 <q-input
                     filled
                     v-model="name"
-                    label="Employee*"
-                    hint="Jhon Doe"
+                    label="nombre"
+                    hint="Jose Perez"
                     lazy-rules
-                    :rules="[ val => val && val.isEmpty || 'Debe escribir un empleado']"
+                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un empleado']"
                 />
               </q-card-section>
               <q-card-section>
                 <q-input
                     filled
                     v-model="identificationNumber"
-                    label="Cedula *"
+                    label="Cedula "
                     hint="402-0000000-7"
                     lazy-rules
-                    :rules="[ val => val && val.isEmpty || 'Debe escribir un Autor']"
+                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un identificacion']"
                 />
               </q-card-section>
               <q-card-section>
                 <q-input
                     filled
                     v-model="email"
-                    label="Gmail *"
+                    label="Gmail "
                     hint="Jhon Doe@gmail.com"
                     lazy-rules
-                    :rules="[ val => val && val.isEmpty || 'Debe escribir un Autor']"
+                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un gmail']"
+                />
+              </q-card-section>
+              <q-card-section>
+                <q-input
+                    filled
+                    v-model="phoneNumber"
+                    label="Celular"
+                    hint="Jhon Doe"
+                    lazy-rules
+                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un Autor']"
                 />
               </q-card-section>
               <q-card-section>
                 <q-input
                     filled
                     v-model="name"
-                    label="Author *"
+                    label="Author "
                     hint="Jhon Doe"
                     lazy-rules
-                    :rules="[ val => val && val.isEmpty || 'Debe escribir un Autor']"
+                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un Autor']"
                 />
-              </q-card-section>
-              <q-card-section>
-                <q-input
-                    filled
-                    v-model="name"
-                    label="Author *"
-                    hint="Jhon Doe"
-                    lazy-rules
-                    :rules="[ val => val && val.isEmpty || 'Debe escribir un Autor']"
-                />
-                <q-input filled v-model="date" mask="date" :rules="['date']">
+                <br>
+                <q-input filled hint="Fecha De nacimiento" label="12/12/2012" v-model="date" mask="date"
+                         :rules="['date']">
                   <template v-slot:append>
                     <q-icon name="event" class="cursor-pointer">
                       <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -186,6 +195,7 @@ const onReset = () => {
                   />
                 </q-card-section>
                 <q-card-section>
+
                   <q-select
                       filled
                       v-model="selection"

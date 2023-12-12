@@ -49,7 +49,7 @@ const onReset = () => {
                     label="Role"
                     hint="Contable"
                     lazy-rules
-                    :rules="[ val => val && val.isEmpty || 'Debe escribir un Role']"
+                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un Role']"
                 />
               </q-card-section>
             </div>

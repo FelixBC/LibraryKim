@@ -10,15 +10,16 @@ const editingAuthor = ref<Author | null>(null);
 const showModal = ref(false);
 const filterValue = ref('')
 const itemsPerPage = ref(10);
-const perPageOptions = [
-  {label: '5', value: 5},
-  {label: '10', value: 10},
-  {label: '20', value: 20}
-];
-
-const handleItemsPerPageChange = (value: number) => {
-  itemsPerPage.value = value;
-};
+// not needed could implement later
+// const perPageOptions = [
+//   {label: '5', value: 5},
+//   {label: '10', value: 10},
+//   {label: '20', value: 20}
+// ];
+//
+// const handleItemsPerPageChange = (value: number) => {
+//   itemsPerPage.value = value;
+// };
 
 const paginatedAuthors = computed(() => {
   const filteredAuthors = authors.value.filter(author =>

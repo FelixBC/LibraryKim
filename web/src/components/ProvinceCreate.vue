@@ -46,7 +46,7 @@ const onReset = () => {
                     label="City *"
                     hint="Jhon Doe"
                     lazy-rules
-                    :rules="[ val => val && val.isEmpty || 'Debe escribir un ciudad']"
+                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un ciudad']"
                 />
               </q-card-section>
             </div>

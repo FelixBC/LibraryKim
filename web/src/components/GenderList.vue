@@ -20,12 +20,12 @@ const handleItemsPerPageChange = (value: number) => {
   itemsPerPage.value = value;
 };
 
-const paginated = computed(() => {
-  const filtered = genders.value.filter(gender =>
+const paginatedGenders = computed(() => {
+  const filteredGenders = genders.value.filter(gender =>
       gender.name.toLowerCase().includes(filterValue.value.toLowerCase())
   );
 
-  return filtered.slice(0, itemsPerPage.value);
+  return filteredGenders.slice(0, itemsPerPage.value);
 });
 
 onMounted(async () => {
@@ -33,13 +33,13 @@ onMounted(async () => {
   const data = await res.json();
   genders.value = data as Gender[];
 });
-const deleteThis = async (id) => {
+const deleteGender = async (id) => {
   await fetch(`${API_URL}/${id}`, {
     method: 'DELETE'
   })
-  genders.value = genders.value.filter(item => item.id !== id)
+  genders.value = genders.value.filter(person => person.id !== id)
 }
-const edit = async (id) => {
+const editGender = async (id) => {
 
   const gender = genders.value.find(gender => gender.id === id)
   if (gender) {
@@ -63,7 +63,7 @@ const edit = async (id) => {
             style="font-size: 1.3em;"
             class="text-center">
           <q-card-section>
-            <h4>Lista de Generos</h4>
+            <h4>Lista de Autores</h4>
           </q-card-section>
           <q-input
               v-model.trim="filterValue"
@@ -90,13 +90,13 @@ const edit = async (id) => {
                 <th></th>
               </tr>
               </thead>
-              <tbody v-for="gender in paginated" :key="gender.id">
+              <tbody v-for="gender in paginatedGenders" :key="gender.id">
               <tr>
                 <td class="text-left">{{ gender.name }}</td>
                 <td class="text-right">
                   <div>
-                    <q-btn round color="secondary" icon="edit" @click="edit(gender.id)" class="small-btn"></q-btn>
-                    <q-btn round color="secondary" icon="delete" @click="deleteThis(gender.id)"
+                    <q-btn round color="secondary" icon="edit" @click="editGender(gender.id)" class="small-btn"></q-btn>
+                    <q-btn round color="secondary" icon="delete" @click="deleteGender(gender.id)"
                            class="small-btn"></q-btn>
                   </div>
                 </td>

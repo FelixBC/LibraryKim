@@ -46,7 +46,7 @@ const onReset = () => {
                     label="Author *"
                     hint="Jhon Doe"
                     lazy-rules
-                    :rules="[ val => val && val.isEmpty || 'Debe escribir un Autor']"
+                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un Autor']"
                 />
               </q-card-section>
             </div>

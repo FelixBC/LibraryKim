@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/api.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../web/src/components/AuthorList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/AuthorList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/src/components/EditNameModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/EditNameModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/src/components/CityList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/CityList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/src/components/GenderList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/GenderList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/src/components/ProvinceList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/ProvinceList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/src/components/RoosterCreate.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/src/components/SectorList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/SectorList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,7 +351,8 @@
       <workItem from="1702150316563" duration="630000" />
       <workItem from="1702221838914" duration="1070000" />
       <workItem from="1702234811097" duration="2008000" />
-      <workItem from="1702385954668" duration="1027000" />
+      <workItem from="1702385954668" duration="1698000" />
+      <workItem from="1702404070985" duration="2018000" />
     </task>
     <servers />
   </component>
