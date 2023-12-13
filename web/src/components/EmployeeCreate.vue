@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import {ref, onMounted} from 'vue'
-import {City, Employee, Gender} from "./types.ts";
-import {Role} from "./types.ts";
+import {Role, City, Employee, Gender, Province, Sector} from "./types.ts";
 
 
 const name = ref<string | null>(null)
@@ -11,10 +10,25 @@ const phoneNumber = ref<number | undefined>()
 const email = ref<string | undefined>()
 const country = ref<string | undefined>()
 const province = ref<string | undefined>()
-const sector = ref<string | undefined>()
 const city = ref<string | undefined>()
+const street = ref<string | undefined>()
 const date = ref<string | undefined>()
 const selectedValueRoles = ref<string | null>(null)
+const selectedValueProvinces = ref<string | null>(null)
+const selectedValueSectors = ref<string | null>(null)
+const selectedValueCities = ref<string | null>(null)
+const selectedValueGenders = ref<string | null>(null)
+
+//converting the data from the api to a type of data that we can use in the app (typescript)
+
+const roles = ref<Role[]>([])
+const provinces = ref<Province[]>([])
+const sectors = ref<Sector[]>([])
+const cities = ref<City[]>([]);
+const genders = ref<Gender[]>([]);
+const employees = ref<Employee[]>([]);
+
+//This is just to filter between the different options in the select
 const filteredOptionsRoles = ref([])
 const filterOptionsRoles = (val, update) => {
   if (val == '') {
@@ -30,37 +44,108 @@ const filterOptionsRoles = (val, update) => {
     })
   })
 }
+const filteredOptionsProvinces = ref([])
+const filterOptionsProvinces = (val, update) => {
+  if (val == '') {
+    update(() => {
+      filteredOptionsProvinces.value = provinces.value;
+    })
+  }
+  update(() => {
+    const needle = val.toLowerCase()
+    filteredOptionsProvinces.value = provinces.value.filter(province => {
+      const fullName = `${province.name}`.toLowerCase();
+      return fullName.includes(needle);
+    })
+  })
+}
+const filteredOptionsSectors = ref([])
+const filterOptionsSectors = (val, update) => {
+  if (val == '') {
+    update(() => {
+      filteredOptionsSectors.value = sectors.value;
+    })
+  }
+  update(() => {
+    const needle = val.toLowerCase()
+    filteredOptionsSectors.value = sectors.value.filter(sector => {
+      const fullName = `${sector.name}`.toLowerCase();
+      return fullName.includes(needle);
+    })
+  })
+}
+const filteredOptionsCities = ref([])
+const filterOptionsCities = (val, update) => {
+  if (val == '') {
+    update(() => {
+      filteredOptionsCities.value = cities.value;
+    })
+  }
+  update(() => {
+    const needle = val.toLowerCase()
+    filteredOptionsCities.value = cities.value.filter(city => {
+      const fullName = `${city.name}`.toLowerCase();
+      return fullName.includes(needle);
+    })
+  })
+}
+const filteredOptionsGenders = ref([])
+const filterOptionsGenders = (val, update) => {
+  if (val == '') {
+    update(() => {
+      filteredOptionsGenders.value = genders.value;
+    })
+  }
+  update(() => {
+    const needle = val.toLowerCase()
+    filteredOptionsGenders.value = genders.value.filter(gender => {
+      const fullName = `${gender.name}`.toLowerCase();
+      return fullName.includes(needle);
+    })
+  })
+}
+
 
 //this takes the data from the api
 
-const API_URL = "http://localhost:3000/employee";
+const API_URL = "http://localhost:3000/employees";
 const API_URL_ROLES = "http://localhost:3000/roles";
 const API_URL_PROVINCES = "http://localhost:3000/provinces";
 const API_URL_SECTORS = "http://localhost:3000/sectors";
 const API_URL_CITIES = "http://localhost:3000/cities";
+const API_URL_GENDERS = "http://localhost:3000/genders"
+
 //load the data from the api
+
 onMounted(async () => {
-  const res = await fetch(API_URL_ROLES);
-  const data = await res.json();
-  roles.value = data as Roles[];
-  provinces.value = data as Provinces[];
-  sectors.value = data as Sectors[];
-  cities.value = data as Cities[];
+
+  //Get the data from the api
+  const resRoles = await fetch(API_URL_ROLES);
+  const resProvinces = await fetch(API_URL_PROVINCES);
+  const resSectors = await fetch(API_URL_SECTORS);
+  const resCities = await fetch(API_URL_CITIES);
+  const resGenders = await fetch(API_URL_GENDERS)
+
+//this is going to take the data from the api and push it to the employees array
+  const dataRoles = await resRoles.json();
+  roles.value = dataRoles as Roles[];
+  const dataProvinces = await resProvinces.json();
+  provinces.value = dataProvinces as Provinces[];
+  const dataSectors = await resSectors.json();
+  sectors.value = dataSectors as Sectors[];
+  const dataCities = await resCities.json();
+  cities.value = dataCities as City[];
+  const dataGenders = await resGenders.json();
+  genders.value = dataGenders as City[];
+
 
 });
 
 //this is the data that is going to be sent to the api
 
-const roles = ref<Role[]>([])
-const provinces = ref<Provinces[]>([])
-const sectors = ref<Sectors[]>([])
-const cities = ref<City[]>([]);
-const genders = ref<Gender[]>([]);
-const employees = ref<Employee[]>([]);
-const selection = ref<string | null>(null);
 
 //the create function is going to send the data to the api
-const createAuthor = async () => {
+const createEmployee = async () => {
   const res = await fetch(API_URL, {
     method: 'POST',
     headers: {
@@ -76,11 +161,13 @@ const createAuthor = async () => {
       email: email.value,
       country: country.value,
       province: province.value,
-      sector: sector.value,
+      sector: sectors.value,
       city: city.value,
+      street: street.value
     })
   })
   //this is going to take the data from the api and push it to the employees array
+
   const data = await res.json()
   employees.value.push(data);
   onReset();
@@ -97,8 +184,9 @@ const onReset = () => {
   email.value = null;
   country.value = null;
   province.value = null;
-  sector.value = null;
+  sectors.value = null;
   city.value = null;
+  street.value = null;
 }
 
 </script>
@@ -119,7 +207,7 @@ const onReset = () => {
                 <q-input
                     filled
                     v-model="name"
-                    label="nombre"
+                    label="Nombre"
                     hint="Jose Perez"
                     lazy-rules
                     :rules="[ val => val && !val.isEmpty || 'Debe escribir un empleado']"
@@ -131,41 +219,38 @@ const onReset = () => {
                     v-model="identificationNumber"
                     label="Cedula "
                     hint="402-0000000-7"
+                    mask="###-#######-#"
                     lazy-rules
-                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un identificacion']"
+                    :rules="[val => val && !val.isEmpty && val.length == 13 && (val.includes(402) || val.includes(31)) || 'Debe escribir un identificacion']"
                 />
               </q-card-section>
               <q-card-section>
                 <q-input
                     filled
                     v-model="email"
-                    label="Gmail "
-                    hint="Jhon Doe@gmail.com"
+                    type="email"
+                    suffix="@gmail.com"
+                    label="Gmail"
+                    hint="JhonDoe@gmail.com"
                     lazy-rules
-                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un gmail']"
+                    :rules="[ val => val && !val.isEmpty  || 'Debe escribir un email']"
                 />
               </q-card-section>
               <q-card-section>
                 <q-input
                     filled
+                    type="tel"
+                    mask="###-###-####"
                     v-model="phoneNumber"
                     label="Celular"
-                    hint="Jhon Doe"
+                    hint="809-000-0000"
                     lazy-rules
-                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un Autor']"
+                    :rules="[val => val && !val.isEmpty && val.length == 12 && (val.includes(849) || val.includes(809) || val.includes(829)) || 'Debe escribir un celular valido']"
+
                 />
               </q-card-section>
               <q-card-section>
-                <q-input
-                    filled
-                    v-model="name"
-                    label="Author "
-                    hint="Jhon Doe"
-                    lazy-rules
-                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un Autor']"
-                />
-                <br>
-                <q-input filled hint="Fecha De nacimiento" label="12/12/2012" v-model="date" mask="date"
+                <q-input filled hint="Fecha De nacimiento" label="2000/01/13" v-model="date" mask="date"
                          :rules="['date']">
                   <template v-slot:append>
                     <q-icon name="event" class="cursor-pointer">
@@ -198,38 +283,67 @@ const onReset = () => {
 
                   <q-select
                       filled
-                      v-model="selection"
-                      bg-color="red-2"
-                      label="Ciudad"
-                      :options="cities"
+                      v-model="selectedValueGenders"
+                      bg-color="grey-4"
+                      label="Genero"
+                      option-value="id"
+                      option-label="name"
+                      :options="genders"
+                      :filter="filterOptionsGenders"
                   />
 
                 </q-card-section>
                 <q-card-section>
                   <q-select
                       filled
-                      v-model="selection"
-                      bg-color="red-2"
+                      v-model="selectedValueCities"
+                      bg-color="grey-4"
                       label="Ciudad"
+                      option-value="id"
+                      option-label="name"
                       :options="cities"
+                      :filter="filterOptionsCities"
                   />
 
                 </q-card-section>
                 <q-card-section>
                   <q-select
                       filled
-                      v-model="selection"
-                      bg-color="red-2"
-                      label="Ciudad"
-                      :options="cities"
+                      v-model="selectedValueProvinces"
+                      bg-color="grey-4"
+                      label="Provincia"
+                      option-value="id"
+                      option-label="name"
+                      :options="provinces"
+                      :filter="filterOptionsProvinces"
                   />
-
                 </q-card-section>
-
+                <q-card-section>
+                  <q-select
+                      filled
+                      v-model="selectedValueSectors"
+                      bg-color="grey-4"
+                      label="Sector"
+                      option-value="id"
+                      option-label="name"
+                      :options="sectors"
+                      :filter="filterOptionsSectors"
+                  />
+                </q-card-section>
+                <q-card-section>
+                  <q-input
+                      filled
+                      v-model="street"
+                      label="Calle"
+                      hint="Calle 1"
+                      lazy-rules
+                      :rules="[ val => val && !val.isEmpty || 'Debe escribir una calle']"
+                  />
+                </q-card-section>
               </div>
             </div>
             <div class="divButtons">
-              <q-btn color="primary" @click="createAuthor">Create</q-btn>
+              <q-btn color="primary" @click="createEmployee">Create</q-btn>
               <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm"/>
             </div>
           </div>
