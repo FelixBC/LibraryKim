@@ -79,6 +79,29 @@ export interface Gender {
     name: string;
 }
 
+export interface Product {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    stock: number;
+    idSupplier: number;
+    idCategory: number;
+    idBrand: number;
+}
+export interface People{
+    id: number;
+    name: string;
+    identification: string;
+    idGender: number;
+    idProvince: number;
+    idCity: number;
+    idSector: number;
+    address: string;
+    birthdate: date;
+    phoneNumber: string;
+    email: string;
+}
 export interface SupplierType {
     id: number;
     name: string;
