@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_10_192709) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_15_025708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_192709) do
   end
 
   create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "colors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,6 +52,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_192709) do
 
   create_table "genders", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.text "name"
+    t.integer "age"
+    t.text "city"
+    t.bigint "identification_number"
+    t.bigint "phone"
+    t.bigint "wins"
+    t.bigint "loses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,7 +98,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_192709) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roosters", force: :cascade do |t|
+    t.text "name"
+    t.integer "breed_id"
+    t.integer "color_id"
+    t.integer "wins"
+    t.integer "loses"
+    t.integer "strength"
+    t.integer "resistance"
+    t.integer "agility"
+    t.integer "defence"
+    t.integer "owners_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sectors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "suplier_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "supplier_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -88,6 +133,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_10_192709) do
 
   create_table "supplier_types", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

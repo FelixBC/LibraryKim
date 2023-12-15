@@ -1,0 +1,2 @@
+class SupplierCategory < ApplicationRecord
+end

@@ -101,6 +101,16 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/supplierTypeList',
                 name: 'SupplierTypeList',
                 component: () => import('../components/SupplierTypeList.vue'),
+            },
+            {
+                path: '/supplierCategoryCreate',
+                name: 'SupplierCategoryCreate',
+                component: () => import('../components/SupplierCategoryCreate.vue'),
+            },
+            {
+                path: '/supplierCategoryList',
+                name: 'SupplierCategoryList',
+                component: () => import('../components/SupplierCategoryList.vue'),
             }
         ]
 

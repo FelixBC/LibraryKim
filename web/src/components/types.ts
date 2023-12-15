@@ -106,3 +106,8 @@ export interface SupplierType {
     id: number;
     name: string;
 }
+
+export interface SupplierCategory {
+    id: number;
+    name: string;
+}

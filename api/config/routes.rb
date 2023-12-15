@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :supplier_categories
   resources :supplier_types
   resources :phones
   resources :genders
@@ -31,6 +32,9 @@ Rails.application.routes.draw do
   get '/supplier_types', to: 'supplier_types#index'
   put '/supplier_types/:id', to: 'supplier_types#update'
   delete '/supplier_types/:id', to: 'supplier_types#destroy'
+  get '/supplier_categories', to: 'supplier_categories#index'
+  put '/supplier_categories/:id', to: 'supplier_categories#update'
+  delete '/supplier_categories/:id', to: 'supplier_categories#destroy'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
