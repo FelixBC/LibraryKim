@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :supplier_types
   resources :phones
   resources :genders
-  resources :people
   resources :provinces
   resources :cities
   resources :countries

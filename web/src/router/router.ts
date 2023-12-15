@@ -7,6 +7,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../components/Login.vue'),
     },
     {
+        path: '/test',
+        name: 'Test',
+        component: () => import('../components/Test.vue'),
+    },
+    {
+        path: '/mainUserLayout',
+        name: 'MainUserLayout',
+        component: () => import('../components/MainUserLayout.vue'),
+    },
+    {
         path: '/userCreate',
         name: 'UserCreate',
         component: () => import('../components/UserCreate.vue'),
@@ -101,6 +111,11 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/supplierTypeList',
                 name: 'SupplierTypeList',
                 component: () => import('../components/SupplierTypeList.vue'),
+            },
+            {
+                path: '/productCreate',
+                name: 'ProductCreate',
+                component: () => import('../components/ProductCreate.vue'),
             },
             {
                 path: '/supplierCategoryCreate',
