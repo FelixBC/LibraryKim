@@ -1,0 +1,2 @@
+class PeopleVsEmployee < ApplicationRecord
+end

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :address_vs_employees
+  resources :people_vs_employees
+  resources :addresses
+  resources :people
   resources :reservations
   resources :events
   resources :reservation_spaces

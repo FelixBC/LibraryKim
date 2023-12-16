@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_16_022600) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_16_181840) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "address_vs_employees", force: :cascade do |t|
+    t.integer "idPeoplevsEmployee"
+    t.integer "idAddress"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "idCountry"
+    t.integer "idProvincia"
+    t.integer "idCity"
+    t.integer "idSector"
+    t.string "street"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -21,12 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_022600) do
   end
 
   create_table "cities", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "colors", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,18 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_022600) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "owners", force: :cascade do |t|
-    t.text "name"
-    t.integer "age"
-    t.text "city"
-    t.bigint "identification_number"
-    t.bigint "phone"
-    t.bigint "wins"
-    t.bigint "loses"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "people", force: :cascade do |t|
     t.integer "Identification"
     t.string "name"
@@ -86,6 +85,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_022600) do
     t.date "Fecha_Nacimiento"
     t.integer "ID_Address"
     t.integer "ID_Email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "people_vs_employees", force: :cascade do |t|
+    t.integer "idPeople"
+    t.integer "idEmpleado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -124,28 +130,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_022600) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "roosters", force: :cascade do |t|
-    t.text "name"
-    t.integer "breed_id"
-    t.integer "color_id"
-    t.integer "wins"
-    t.integer "loses"
-    t.integer "strength"
-    t.integer "resistance"
-    t.integer "agility"
-    t.integer "defence"
-    t.integer "owners_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "sectors", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "suplier_categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -159,14 +144,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_022600) do
 
   create_table "supplier_types", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "password"
-    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

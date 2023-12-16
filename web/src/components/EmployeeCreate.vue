@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import {ref, onMounted} from 'vue'
-import {Role, City, Employee, Gender, Province, Sector, People} from "./types.ts";
+import {Role, City, Employee, Gender, Province, Sector} from "./types.ts";
+
 
 
 const name = ref<string | null>(null)
@@ -114,7 +115,9 @@ const API_URL_PROVINCES = "http://localhost:3000/provinces";
 const API_URL_SECTORS = "http://localhost:3000/sectors";
 const API_URL_CITIES = "http://localhost:3000/cities";
 const API_URL_GENDERS = "http://localhost:3000/genders";
-const API_URL_PEOPLE = "http://localhost:3000/people";
+const API_URL_PEOPLEVSEMPLOYEE = "http://localhost:3000/peopleVsEmployees";
+const API_URL_EMPLOYEEVSADDRESS = "http://localhost:3000/employeeVsAddress";
+
 
 //load the data from the api
 
@@ -126,7 +129,6 @@ onMounted(async () => {
   const resSectors = await fetch(API_URL_SECTORS);
   const resCities = await fetch(API_URL_CITIES);
   const resGenders = await fetch(API_URL_GENDERS);
-  const resPeople = await fetch(API_URL_PEOPLE);
 
 //this is going to take the data from the api and push it to the employees array
   const dataRoles = await resRoles.json();
@@ -139,8 +141,6 @@ onMounted(async () => {
   cities.value = dataCities as City[];
   const dataGenders = await resGenders.json();
   genders.value = dataGenders as City[];
-  const dataPeople = await resPeople.json();
-  people.value = dataPeople as People[];
 
 
 });
@@ -150,7 +150,6 @@ onMounted(async () => {
 
 //the create function is going to send the data to the api
 const createEmployee = async () => {
-  createPeople()
   const res = await fetch(API_URL, {
     method: 'POST',
     headers: {
@@ -178,31 +177,7 @@ const createEmployee = async () => {
   onReset();
 }
 
-const createPeople = async () => {
-  const res = await fetch(API_URL_PEOPLE, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: name.value,
-      identificationNumber: identificationNumber.value,
-      birth_date: birth_date.value,
-      phoneNumber: phoneNumber.value,
-      email: email.value,
-      country: country.value,
-      province: province.value,
-      sector: sectors.value,
-      city: city.value,
-      street: street.value
-    })
-  })
-  //this is going to take the data from the api and push it to the employees array
 
-  const data = await res.json()
-  people.value.push(data);
-  onReset();
-}
 
 //this is going to reset the form(put it empty)
 const onReset = () => {

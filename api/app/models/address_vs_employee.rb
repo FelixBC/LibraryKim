@@ -1,0 +1,2 @@
+class AddressVsEmployee < ApplicationRecord
+end
