@@ -1,16 +1,18 @@
 <script lang="ts" setup>
 import { onMounted, ref, computed } from "vue";
-import { Event } from "./types.ts";
+import { Order } from "./types.ts";
 
-const name = ref<string | null>(null);
-const dateEvent = ref<string| null>(null);
-const timeEvent = ref<string | null>(null);
-const currentDate = ref<string | null>(null);
-const description = ref<string | null>(null);
+const trackingNumber = ref<string | null>(null);
+const supplierID = ref<number | null>(null);
+const userID = ref<number | null>(null);
+const totalOrder = ref<number | null>(null);
+const deliveryDate = ref<string | null>(null);
+const realArrivalDate = ref<string | null>(null);
+const paymentMethodID = ref<number | null>(null);
+const status = ref<string | null>(null);
 
-
-const API_URL = "http://localhost:3000/events";
-const events = ref<Event[]>([]);
+const API_URL = "http://localhost:3000/orders";
+const orders = ref<Order[]>([]);
 
 const filterValue = ref('');
 
@@ -25,36 +27,39 @@ const handleItemsPerPageChange = (value: number) => {
   itemsPerPage.value = value;
 };
 
-const paginatedEvents = computed(() => {
-  const filteredEvents = events.value.filter(event =>
-      event.name.toLowerCase().includes(filterValue.value.toLowerCase())
+const paginatedOrders = computed(() => {
+  const filteredOrders = orders.value.filter(order =>
+      order.trackingNumber.toLowerCase().includes(filterValue.value.toLowerCase())
   );
 
-  return filteredEvents.slice(0, itemsPerPage.value);
+  return filteredOrders.slice(0, itemsPerPage.value);
 });
 
 onMounted(async () => {
   const res = await fetch(API_URL);
   const data = await res.json();
-  events.value = data as Event[];
+  orders.value = data as Order[];
 });
 
-const deleteEvent = async (id) => {
+const deleteOrder = async (id) => {
   await fetch(`${API_URL}/${id}`, {
     method: 'DELETE'
   });
-  events.value = events.value.filter(event => event.id !== id);
+  orders.value = orders.value.filter(order => order.id !== id);
 };
 
-const editEvent = async (id) => {
-  const event = events.value.find(event => event.id === id);
-  if (event) {
-    eventID.value = event.id;
-    name.value = event.name;
-    dateEvent.value = event.dateEvent;
-    timeEvent.value = event.timeEvent;
-    currentDate.value = nevent.currentDate;
-    description.value = event.description;
+const editOrder = async (id) => {
+  const order = orders.value.find(order => order.id === id);
+  if (order) {
+    orderID.value = order.id;
+    trackingNumber.value = order.trackingNumber;
+    supplierID.value = order.supplierID;
+    userID.value = order.userID;
+    totalOrder.value = order.totalOrder;
+    deliveryDate.value = order.deliveryDate;
+    realArrivalDate.value = order.realArrivalDate;
+    paymentMethodID.value = order.paymentMethodID;
+    status.value = order.status;
 
     window.scroll({
       top: 0,
@@ -68,10 +73,10 @@ const editEvent = async (id) => {
 <template>
   <q-layout>
     <q-page class="flex-md-center" padding>
-      <q-card class="full-width" style="max-width: 580px;">
+      <q-card class="full-width" style="max-width: 1100px;">
         <q-card-section style="font-size: 1.3em;" class="text-center">
           <q-card-section>
-            <h4>Lista de Eventos</h4>
+            <h4>Lista de Ordenes</h4>
           </q-card-section>
           <q-input
               v-model.trim="filterValue"
@@ -93,26 +98,32 @@ const editEvent = async (id) => {
             <q-markup-table>
               <thead>
               <tr>
-                <th class="text-right">Nombre</th>
-                <th class="text-right">Fecha del Evento</th>
-                <th class="text-right">Hora del Evento</th>
-                <th class="text-right">Fecha de Registro</th>
-                <th class="text-right">Descripcion</th>
+                <th class="text-right">Número de Seguimiento</th>
+                <th class="text-right">ID de Suplidor</th>
+                <th class="text-right">ID de Usuario</th>
+                <th class="text-right">Total de la Orden</th>
+                <th class="text-right">Fecha de Entrega</th>
+                <th class="text-right">Fecha Real de Llegada</th>
+                <th class="text-right">ID de Método de Pago</th>
+                <th class="text-right">Estado</th>
                 <th></th>
                 <th></th>
               </tr>
               </thead>
-              <tbody v-for="event in paginatedEvents" :key="event.id">
+              <tbody v-for="order in paginatedOrders" :key="order.id">
               <tr>
-                <td class="text-left">{{ event.name }}</td>
-                <td class="text-left">{{ event.dateEvent }}</td>
-                <td class="text-left">{{ event.timeEvent }}</td>
-                <td class="text-left">{{ event.currentDate }}</td>
-                <td class="text-left">{{ event.description }}</td>
+                <td class="text-left">{{ order.trackingNumber }}</td>
+                <td class="text-left">{{ order.supplierID }}</td>
+                <td class="text-left">{{ order.userID }}</td>
+                <td class="text-left">{{ order.totalOrder }}</td>
+                <td class="text-left">{{ order.deliveryDate }}</td>
+                <td class="text-left">{{ order.realArrivalDate }}</td>
+                <td class="text-left">{{ order.paymentMethodID }}</td>
+                <td class="text-left">{{ order.status }}</td>
                 <td class="text-right">
                   <div>
-                    <q-btn round color="secondary" icon="edit" @click="editEvent(event.id)" class="small-btn"></q-btn>
-                    <q-btn round color="secondary" icon="delete" @click="deleteEvent(event.id)" class="small-btn"></q-btn>
+                    <q-btn round color="secondary" icon="edit" @click="editOrder(order.id)" class="small-btn"></q-btn>
+                    <q-btn round color="secondary" icon="delete" @click="deleteOrder(order.id)" class="small-btn"></q-btn>
                   </div>
                 </td>
                 <td></td>
@@ -129,3 +140,4 @@ const editEvent = async (id) => {
 <style scoped>
 
 </style>
+
