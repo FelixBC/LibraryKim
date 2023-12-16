@@ -77,6 +77,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_181840) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_details", force: :cascade do |t|
+    t.integer "orderID"
+    t.integer "productTypeID"
+    t.integer "quantity"
+    t.decimal "unitPrice"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "trackingNumber"
+    t.integer "supplierID"
+    t.integer "userID"
+    t.decimal "totalOrder"
+    t.datetime "deliveryDate"
+    t.datetime "realArrivalDate"
+    t.integer "paymentMethodID"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "people", force: :cascade do |t|
     t.integer "Identification"
     t.string "name"

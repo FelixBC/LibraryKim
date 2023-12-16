@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :people_vs_employees
   resources :addresses
   resources :people
+  resources :order_details
+  resources :orders
   resources :reservations
   resources :events
   resources :reservation_spaces
@@ -50,6 +52,9 @@ Rails.application.routes.draw do
   get '/reservations', to: 'reservations#index'
   put '/reservations/:id', to: 'reservations#update'
   delete '/reservations/:id', to: 'reservations#destroy'
+  get '/orders', to: 'orders#index'
+  put '/orders/:id', to: 'orders#update'
+  delete '/orders/:id', to: 'orders#destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"

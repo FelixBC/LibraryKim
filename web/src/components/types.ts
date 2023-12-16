@@ -135,3 +135,23 @@ export interface Reservation {
     clientID: number;
     status: string;
 }
+
+export interface Order {
+    id: number;
+    trackingNumber: string;
+    supplierID: number;
+    userID: number;
+    totalOrder: number;
+    deliveryDate: string;
+    realArrivalDate: string;
+    paymentMethodID: number;
+    status: string;
+}
+
+export interface OrderDetail {
+    id: number;
+    orderID: number;
+    productTypeID: number;
+    quantity: number;
+    unitPrice: number;
+}
