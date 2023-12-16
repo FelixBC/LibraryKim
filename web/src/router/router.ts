@@ -11,15 +11,23 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Test',
         component: () => import('../components/Test.vue'),
     },
-    {
-        path: '/mainUserLayout',
-        name: 'MainUserLayout',
-        component: () => import('../components/MainUserLayout.vue'),
-    },
+
     {
         path: '/userCreate',
         name: 'UserCreate',
         component: () => import('../components/UserCreate.vue'),
+    },
+    {
+        path: '/mainUserLayout',
+        name: 'MainUserLayout',
+        component: () => import('../components/MainUserLayout.vue'),
+        children: [
+            {
+                path: '/test',
+                name: 'Test',
+                component: () => import('../components/Test.vue'),
+            }
+        ]
     },
     {
         path: '/mainLayout',

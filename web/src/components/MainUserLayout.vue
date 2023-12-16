@@ -195,6 +195,35 @@
 
         <q-expansion-item
             expand-separator
+            icon="shopping_cart"
+            label="Carrito"
+        >
+          <q-list padding>
+            <q-item clickable v-ripple>
+              <q-item-section @click="gotoTicketList">
+                Lista
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple>
+              <q-item-section @click="gotoTicketCreate">
+                Crear
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple>
+              <q-item-section @click="gotoFightList">
+                Proximos eventos
+              </q-item-section>
+            </q-item>
+          </q-list>
+
+        </q-expansion-item>
+      </q-list>
+      <q-list padding>
+
+        <q-expansion-item
+            expand-separator
             icon="manage_accounts"
             label="Mi cuenta"
         >
