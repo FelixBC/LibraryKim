@@ -128,3 +128,10 @@ export interface Event {
     currentDate: string;
     description: string;
 }
+
+export interface Reservation {
+    id: number;
+    eventID: number;
+    clientID: number;
+    status: string;
+}

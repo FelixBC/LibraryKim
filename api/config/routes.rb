@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reservations
   resources :events
   resources :reservation_spaces
   resources :supplier_categories
@@ -42,6 +43,9 @@ Rails.application.routes.draw do
   get '/events', to: 'events#index'
   put '/events/:id', to: 'events#update'
   delete '/events/:id', to: 'events#destroy'
+  get '/reservations', to: 'reservations#index'
+  put '/reservations/:id', to: 'reservations#update'
+  delete '/reservations/:id', to: 'reservations#destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"

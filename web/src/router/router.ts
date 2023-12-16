@@ -146,7 +146,17 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/eventList',
                 name: 'EventList',
                 component: () => import('../components/EventList.vue'),
-            }
+            },
+            {
+                path: '/reservationCreate',
+                name: 'ReservationCreate',
+                component: () => import('../components/ReservationCreate.vue'),
+            },
+            {
+                path: '/reservationList',
+                name: 'ReservationList',
+                component: () => import('../components/ReservationList.vue'),
+            },
         ]
 
     }

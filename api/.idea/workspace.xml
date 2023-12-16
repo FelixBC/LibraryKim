@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../web/src/components/EventCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/src/components/EventList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/src/components/ReservationSpaceCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/src/components/ReservationSpaceList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../web/src/components/ReservationCreate.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../web/src/components/ReservationList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../web/src/components/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/src/router/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/router/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,7 +329,7 @@
       <workItem from="1702385954668" duration="1698000" />
       <workItem from="1702404070985" duration="2066000" />
       <workItem from="1702578848863" duration="738000" />
-      <workItem from="1702690933621" duration="307000" />
+      <workItem from="1702690933621" duration="995000" />
     </task>
     <servers />
   </component>
