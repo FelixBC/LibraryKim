@@ -1,4 +1,5 @@
 import {date} from "quasar";
+import {ref} from "vue";
 
 export interface Author {
     id: number;
@@ -110,4 +111,20 @@ export interface SupplierType {
 export interface SupplierCategory {
     id: number;
     name: string;
+}
+
+export interface ReservationSpace {
+    id: number;
+    name: string;
+    capacity: number;
+    availability: string;
+}
+
+export interface Event {
+    id: number;
+    name: string;
+    dateEvent: string;
+    timeEvent: string;
+    currentDate: string;
+    description: string;
 }
