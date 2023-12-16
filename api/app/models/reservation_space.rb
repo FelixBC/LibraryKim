@@ -1,0 +1,2 @@
+class ReservationSpace < ApplicationRecord
+end
