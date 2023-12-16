@@ -147,3 +147,11 @@ export interface Order {
     paymentMethodID: number;
     status: string;
 }
+
+export interface OrderDetail {
+    id: number;
+    orderID: number;
+    productTypeID: number;
+    quantity: number;
+    unitPrice: number;
+}

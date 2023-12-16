@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onMounted, ref, computed } from "vue";
-import { Order } from "./types.ts";
+import { Order, OrderDetail } from "./types.ts";
 
 const trackingNumber = ref<string | null>(null);
 const supplierID = ref<number | null>(null);
@@ -13,6 +13,7 @@ const status = ref<string | null>(null);
 
 const API_URL = "http://localhost:3000/orders";
 const orders = ref<Order[]>([]);
+const ordersDetails = ref<OrderDetail[]>([]);
 
 const filterValue = ref('');
 

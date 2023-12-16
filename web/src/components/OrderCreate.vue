@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { Order } from "./types.ts";
+import { Order, OrderDetail } from "./types.ts";
 
 const trackingNumber = ref<string | null>(null);
 const supplierID = ref<number | null>(null);
@@ -13,6 +13,7 @@ const status = ref<string | null>(null);
 
 const API_URL = "http://localhost:3000/orders";
 const orders = ref<Order[]>([]);
+const ordersDetails = ref<OrderDetail[]>([]);
 
 const create = async () => {
   const res = await fetch(API_URL, {
@@ -73,7 +74,7 @@ const onReset = () => {
                     filled
                     v-model="supplierID"
                     label="ID de Suplidor"
-                    type="number"
+                    hint=" "
                     lazy-rules
                     :rules="[val => !isNaN(val) || 'Debe ser un número']"
                 />
@@ -81,7 +82,7 @@ const onReset = () => {
                     filled
                     v-model="userID"
                     label="ID de Usuario"
-                    type="number"
+                    hint=" "
                     lazy-rules
                     :rules="[val => !isNaN(val) || 'Debe ser un número']"
                 />
@@ -89,7 +90,7 @@ const onReset = () => {
                     filled
                     v-model="totalOrder"
                     label="Total de la Orden"
-                    type="number"
+                    hint=" "
                     lazy-rules
                     :rules="[val => !isNaN(val) || 'Debe ser un número']"
                 />
@@ -113,7 +114,7 @@ const onReset = () => {
                     filled
                     v-model="paymentMethodID"
                     label="ID de Método de Pago"
-                    type="number"
+                    hint=" "
                     lazy-rules
                     :rules="[val => !isNaN(val) || 'Debe ser un número']"
                 />
