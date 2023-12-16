@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controllers/order_details_controller.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/order.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/order_detail.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20231216171821_create_orders.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20231216202518_create_order_details.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/controllers/order_details_controller_test.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/controllers/orders_controller_test.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/fixtures/order_details.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/fixtures/orders.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/models/order_detail_test.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/models/order_test.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/src/components/OrderCreate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../web/src/components/OrderList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/src/components/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/src/router/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/router/router.ts" afterDir="false" />
-    </list>
+    <list default="true" id="4206c6f1-8464-4bdb-9cd5-38cb6ac14cd9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
