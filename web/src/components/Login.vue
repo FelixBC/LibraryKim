@@ -13,12 +13,14 @@ const password = ref<string | null>(null)
         <q-page class="bg-light-grey window-height window-width row justify-center items-center">
 
           <div class="column">
-            <div class="div_h5">
-              <h5 class="text-h5 q-my-md">Sign In</h5>
-            </div>
+
             <div class="row">
               <q-card square bordered class="q-pa-lg shadow-1">
+                <div class="div_h5">
+                  <h5 class="text-h5 q-my-md">Sign In</h5>
+                </div>
                 <q-card-section>
+
                   <q-form class="q-gutter-md">
                     <q-input filled v-model="email" label="Email" lazy-rules
                              :rules="[ val => val && val.isEmpty || 'Please enter your email']"/>
