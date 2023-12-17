@@ -13,7 +13,6 @@ const password = ref<string | null>(null)
         <q-page class="bg-light-grey window-height window-width row justify-center items-center">
 
           <div class="column">
-
             <div class="row">
               <q-card square bordered class="q-pa-lg shadow-1">
                 <div class="div_h5">
@@ -32,8 +31,10 @@ const password = ref<string | null>(null)
                   <q-btn unelevated color="grey" size="lg" class="full-width" label="Login"/>
                 </q-card-actions>
                 <q-card-section class="text-center q-pa-none">
-                  <p class="text-blue-grey-14">Not registered?<br><router-link to="/UserCreate">Create an Account! </router-link>
-                    <br> <router-link to=""> Can't Login? </router-link>
+                  <p class="text-blue-grey-14">Not registered?<br>
+                    <router-link to="/UserCreate">Create an Account!</router-link>
+                    <br>
+                    <router-link to=""> Can't Login?</router-link>
                   </p>
 
                 </q-card-section>
@@ -51,13 +52,15 @@ const password = ref<string | null>(null)
   background-image: url('public/LibraryHD.jpg');
   background-size: cover;
 }
-.div_h5{
+
+.div_h5 {
   text-align: center;
   font-size: 2rem;
   font-weight: 600;
   color: rgb(0, 0, 0);
   margin-left: 10px;
 }
+
 .q-card {
   width: 360px;
 }
