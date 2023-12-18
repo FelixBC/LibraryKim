@@ -100,7 +100,6 @@
                 Lista
               </q-item-section>
             </q-item>
-
             <q-item clickable v-ripple>
               <q-item-section @click="gotoRoosterCreate">
                 Crear

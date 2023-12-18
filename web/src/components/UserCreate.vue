@@ -32,6 +32,7 @@ const createUser = async () => {
 
     if (!res.ok) {
       throw new Error('Registration failed');
+
     }
 
     const data = await res.json();
@@ -52,6 +53,7 @@ const createUser = async () => {
 
 const onReset = () => {
   password.value = null;
+  confirmPassword.value = null;
   email.value = null;
 };
 </script>
@@ -86,7 +88,7 @@ const onReset = () => {
                           label="User "
                           hint="JhonDoe@gmail.com"
                           lazy-rules
-                          :rules="[ val => val != val.isEmpty || 'Debe escribir un email']"
+                          :rules="[ val => val && !val.isEmpty || 'Debe escribir un email']"
                       />
                     </q-card-section>
                   </div>

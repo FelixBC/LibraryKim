@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :authors
   resources :users
 
+
+  post '/login', to: 'sessions#create'
   get '/authors', to: 'authors#index'
   put '/authors/:id', to: 'authors#update'
   delete '/authors/:id', to: 'authors#destroy'
