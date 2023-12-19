@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :employees
   resources :address_vs_employees
   resources :people_vs_employees
   resources :addresses

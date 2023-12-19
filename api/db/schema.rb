@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_17_233632) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_19_195135) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_17_233632) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.date "birth_date"
+    t.bigint "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_employees_on_address_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -182,4 +190,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_17_233632) do
     t.string "password_digest"
   end
 
+  add_foreign_key "employees", "addresses"
 end

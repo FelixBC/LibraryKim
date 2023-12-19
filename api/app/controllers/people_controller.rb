@@ -1,16 +1,16 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: %i[ show update destroy ]
+  before_action :set_person, only: %i[show update destroy]
 
   # GET /people
   def index
-    @people = Person.all
+    @people = Person.all.includes(:address, :employee)
 
-    render json: @people
+    render json: @people, include: [:address, :employee]
   end
 
   # GET /people/1
   def show
-    render json: @person
+    render json: @person, include: [:address, :employee]
   end
 
   # POST /people
@@ -39,13 +39,14 @@ class PeopleController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_person
-      @person = Person.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def person_params
-      params.require(:person).permit(:identification, :nombre, :idTelefono, :idGenero, :birthDate, :idAddress, :idEmail)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_person
+    @person = Person.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def person_params
+    params.require(:person).permit(:identification, :nombre, :idTelefono, :idGenero, :birthDate, :idAddress, :idEmail)
+  end
 end
