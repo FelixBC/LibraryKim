@@ -3,13 +3,11 @@
 Hope you can use some of this code and create something awesome too.
 
 ## Description
-
 This is a software with Ruby on Rails based api and some new tech in the front-end like Quasar + Vue & Vite + TS, made for a project as the integration of different tech that makes an modern app work, implementing competitive and smart (well thought-structured modules) that are still on the making.
 
-.es
-
+.es -v
 Este es un software con api basada en Ruby on Rails y algunas tecnologías nuevas en el front-end como Quasar + Vue & Vite + TS, hecho para un proyecto como la integración de diferentes tecnologías que hacen que una aplicación moderna funcione, implementándose competitiva e inteligente ( módulos bien estructurados ) que aún están en desarrollo.
-## you can just download any Virtual Machine runner and our VM with everything set up and just do step 11 and 13 on terminal. 
+## You can just download any Virtual Machine runner and our VM with everything set up and just do step 11 and 13 on terminal. 
 
 ## To run this code you're going to need:
 
