@@ -64,31 +64,176 @@
           </q-expansion-item>
         </q-list>
         <q-list padding>
-
           <q-expansion-item
               expand-separator
-              icon="person"
-              label="Administradores"
+              icon="library_books"
+              label="Autores"
           >
             <q-list padding>
               <q-item clickable v-ripple>
-                <q-item-section @click="gotoOwnerList">
-                  Lista de administradores
+                <q-item-section @click="gotoFightList">
+                  Lista
                 </q-item-section>
               </q-item>
 
               <q-item clickable v-ripple>
-                <q-item-section @click="gotoOwnerCreate">
+                <q-item-section @click="gotoFightCreate">
+                  Crear
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-expansion-item>
+        </q-list>
+
+        <q-list padding>
+          <q-expansion-item
+              expand-separator
+              icon="perm_identity"
+              label="Roles"
+          >
+            <q-list padding>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoTicketList">
+                  Lista
+                </q-item-section>
+              </q-item>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoTicketCreate">
+                  Crear
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-expansion-item>
+        </q-list>
+
+        <q-list padding>
+          <q-expansion-item
+              expand-separator
+              icon="perm_identity"
+              label="Genders"
+          >
+            <q-list padding>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoTicketList">
+                  Lista
+                </q-item-section>
+              </q-item>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoTicketCreate">
+                  Crear
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-expansion-item>
+        </q-list>
+
+        <q-list padding>
+          <q-expansion-item
+              expand-separator
+              icon="location_city"
+              label="Direcciones"
+          >
+            <q-list padding>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoTicketList">
+                  Lista
+                </q-item-section>
+              </q-item>
+              <q-item clickable v-ripple>
+                <q-item-section @click="gotoTicketCreate">
                   Crear
                 </q-item-section>
               </q-item>
 
-            </q-list>
+              <q-list padding>
+                <q-expansion-item
+                    expand-separator
+                    icon="location_city"
+                    label="Paises"
+                >
+                  <q-list padding>
+                    <q-item clickable v-ripple>
+                      <q-item-section @click="gotoTicketList">
+                        Lista
+                      </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple>
+                      <q-item-section @click="gotoTicketCreate">
+                        Crear
+                      </q-item-section>
+                    </q-item>
 
+                    <q-list padding>
+                      <q-expansion-item
+                          expand-separator
+                          icon="location_city"
+                          label="Ciudades"
+                      >
+                        <q-list padding>
+                          <q-item clickable v-ripple>
+                            <q-item-section @click="gotoTicketList">
+                              Lista
+                            </q-item-section>
+                          </q-item>
+                          <q-item clickable v-ripple>
+                            <q-item-section @click="gotoTicketCreate">
+                              Crear
+                            </q-item-section>
+                          </q-item>
+
+                          <q-list padding>
+                            <q-expansion-item
+                                expand-separator
+                                icon="location_city"
+                                label="Provincias"
+                            >
+                              <q-list padding>
+                                <q-item clickable v-ripple>
+                                  <q-item-section @click="gotoTicketList">
+                                    Lista
+                                  </q-item-section>
+                                </q-item>
+                                <q-item clickable v-ripple>
+                                  <q-item-section @click="gotoTicketCreate">
+                                    Crear
+                                  </q-item-section>
+                                </q-item>
+
+                                <q-list padding>
+                                  <q-expansion-item
+                                      expand-separator
+                                      icon="location_city"
+                                      label="Sectores"
+                                  >
+                                    <q-list padding>
+                                      <q-item clickable v-ripple>
+                                        <q-item-section @click="gotoTicketList">
+                                          Lista
+                                        </q-item-section>
+                                      </q-item>
+                                      <q-item clickable v-ripple>
+                                        <q-item-section @click="gotoTicketCreate">
+                                          Crear
+                                        </q-item-section>
+                                      </q-item>
+                                    </q-list>
+                                  </q-expansion-item>
+                                </q-list>
+                              </q-list>
+                            </q-expansion-item>
+                          </q-list>
+                        </q-list>
+                      </q-expansion-item>
+                    </q-list>
+                  </q-list>
+                </q-expansion-item>
+              </q-list>
+            </q-list>
           </q-expansion-item>
         </q-list>
-        <q-list padding>
 
+
+        <q-list padding>
           <q-expansion-item
               expand-separator
               icon="book"
@@ -111,8 +256,8 @@
 
                   <q-expansion-item
                       expand-separator
-                      icon="palette"
-                      label="Color"
+                      icon="inventory"
+                      label="Inventario"
                   >
                     <q-list padding>
                       <q-item clickable v-ripple>
@@ -152,15 +297,10 @@
                   Crear
                 </q-item-section>
               </q-item>
-
-              <q-item clickable v-ripple>
-                <q-item-section>
-                  Restrinctions
-                </q-item-section>
-              </q-item>
             </q-list>
           </q-expansion-item>
         </q-list>
+
         <q-list padding>
 
           <q-expansion-item
@@ -180,17 +320,12 @@
                   Crear
                 </q-item-section>
               </q-item>
-
-              <q-item clickable v-ripple>
-                <q-item-section @click="gotoFightList">
-                  Proximos eventos
-                </q-item-section>
-              </q-item>
             </q-list>
 
           </q-expansion-item>
 
         </q-list>
+
 
         <q-item class="extraSpaceOntop">
           <q-item-section>
