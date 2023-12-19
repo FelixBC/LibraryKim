@@ -115,8 +115,6 @@ const API_URL_PROVINCES = "http://localhost:3000/provinces";
 const API_URL_SECTORS = "http://localhost:3000/sectors";
 const API_URL_CITIES = "http://localhost:3000/cities";
 const API_URL_GENDERS = "http://localhost:3000/genders";
-const API_URL_PEOPLEVSEMPLOYEE = "http://localhost:3000/peopleVsEmployees";
-const API_URL_EMPLOYEEVSADDRESS = "http://localhost:3000/employeeVsAddress";
 
 
 //load the data from the api

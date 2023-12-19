@@ -1,7 +1,7 @@
 // FILE: main.js
 
 import { createApp } from 'vue';
-import { Quasar, Notify } from 'quasar';
+import {Quasar, Notify, Dialog} from 'quasar';
 
 // Import icon libraries
 import '@quasar/extras/roboto-font/roboto-font.css';
@@ -25,7 +25,8 @@ myApp.use(router)
 myApp.use(Quasar, {
 
     plugins: {
-        Notify
+        Notify,
+        Dialog
     }, // import Quasar plugins and add here
 })
 
