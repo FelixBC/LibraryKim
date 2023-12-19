@@ -48,26 +48,40 @@ NPM version 8.19.4 (stable)
 ## 9. Clone the repository (SSH key):
 
 ```bash
+
 git clone git@github.com:FelixBC/LibraryKim.git
+
+```
 
 ## 10 install api with bundler install:
 
 ```bash
+
 bundler i
+
+```
 
 ## 11. To run api go to file:
 
 ```bash
+
  cd libraryKim/api
  rails s
- 
+
+``` 
  ## 12. To install everything you need in web:
  
  ```bash
+
  cd libraryKim/web
  npm i
- 
+
+ ````
+
  ## 13. To run front-end (web) go to file and:
  
  ```bash
+
  npm run dev
+
+```
