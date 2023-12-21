@@ -24,244 +24,80 @@
         class="extraSpaceSideBarHeading sidebar-content"
         v-model="leftDrawerOpen"
         show-if-above
-
         :mini="miniState"
         @mouseover="miniState = false"
         @mouseout="miniState = true"
-
         :width="300"
         :breakpoint="500"
         bordered
-        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
-    >
-
-      <q-list padding class="extraPaddingForSideBarFirstOption">
-        <q-expansion-item
-            expand-separator
-            icon="new_releases"
-            label="Novedades"
-        >
-          <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoUserList">
-                Lista
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoUserCreate">
-                Create
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section>
-                Restrinctions
-              </q-item-section>
-            </q-item>
-          </q-list>
-
-        </q-expansion-item>
-      </q-list>
-      <q-list padding>
-
-        <q-expansion-item
-            expand-separator
-            icon="thumb_up"
-            label="Recomendaciones"
-        >
-          <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoOwnerList">
-                Lista de administradores
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoOwnerCreate">
-                Crear
-              </q-item-section>
-            </q-item>
-
-          </q-list>
-
-        </q-expansion-item>
-      </q-list>
-      <q-list padding>
-
-        <q-expansion-item
-            expand-separator
-            icon="book"
-            label="Libros"
-        >
-          <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoRoosterList">
-                Lista
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoRoosterCreate">
-                Crear
-              </q-item-section>
-            </q-item>
-
-            <q-list padding>
-
-              <q-expansion-item
-                  expand-separator
-                  icon="palette"
-                  label="Mangas"
-              >
-                <q-list padding>
-                  <q-item clickable v-ripple>
-                    <q-item-section @click="gotoColorList">
-                      Lista
-                    </q-item-section>
-                  </q-item>
-
-                  <q-item clickable v-ripple>
-                    <q-item-section @click="gotoColorCreate">
-                      Crear
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-
-              </q-expansion-item>
-            </q-list>
-          </q-list>
-
-        </q-expansion-item>
-      </q-list>
+        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'">
+      <!-- Recommendations -->
+      <q-item
+          clickable
+          v-ripple
+          active-class="my-menu-link">
+        <q-item-section avatar>
+          <q-icon name="thumb_up"/>
+        </q-item-section>
+        <q-item-section>
+          <router-link to="/recommendations">Recomendaciones</router-link>
+        </q-item-section>
+      </q-item>
+      <!-- Events -->
       <q-list padding>
         <q-expansion-item
             expand-separator
             icon="calendar_today"
-            label="Eventos"
-        >
+            label="Eventos">
           <q-list padding>
             <q-item clickable v-ripple>
               <q-item-section @click="gotoFightList">
                 Lista
               </q-item-section>
             </q-item>
-
             <q-item clickable v-ripple>
               <q-item-section @click="gotoFightCreate">
                 Crear
               </q-item-section>
             </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section>
-                Restrinctions
-              </q-item-section>
-            </q-item>
           </q-list>
         </q-expansion-item>
       </q-list>
+      <!-- Shopping Cart -->
       <q-list padding>
-
-        <q-expansion-item
-            expand-separator
-            icon="paid"
-            label="Ofertas De Temporada"
-        >
-          <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoTicketList">
-                Lista
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoTicketCreate">
-                Crear
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoFightList">
-                Proximos eventos
-              </q-item-section>
-            </q-item>
-          </q-list>
-
-        </q-expansion-item>
-      </q-list>
-
-      <q-list padding>
-
         <q-expansion-item
             expand-separator
             icon="shopping_cart"
-            label="Carrito"
-        >
+            label="Carrito">
           <q-list padding>
             <q-item clickable v-ripple>
               <q-item-section @click="gotoTicketList">
                 Lista
               </q-item-section>
             </q-item>
-
             <q-item clickable v-ripple>
               <q-item-section @click="gotoTicketCreate">
                 Crear
               </q-item-section>
             </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoFightList">
-                Proximos eventos
-              </q-item-section>
-            </q-item>
           </q-list>
-
         </q-expansion-item>
       </q-list>
+      <!-- Profile -->
       <q-list padding>
-
         <q-expansion-item
             expand-separator
             icon="manage_accounts"
-            label="Mi cuenta"
-        >
-          <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoTicketList">
-                Lista
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoTicketCreate">
-                Crear
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoFightList">
-                Proximos eventos
-              </q-item-section>
-            </q-item>
-          </q-list>
-
+            label="Mi cuenta">
         </q-expansion-item>
       </q-list>
-      <q-item class="extraSpaceOntop">
-        <q-item-section>
-        </q-item-section>
-      </q-item>
       <q-item
-
           clickable
           v-ripple
-          active-class="my-menu-link"
-      >
+          active-class="my-menu-link">
         <q-item-section avatar>
           <q-icon name="settings_power"/>
         </q-item-section>
-
         <q-item-section>Logout</q-item-section>
       </q-item>
     </q-drawer>

@@ -7,12 +7,6 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../components/Login.vue'),
     },
     {
-        path: '/test',
-        name: 'Test',
-        component: () => import('../components/Test.vue'),
-    },
-
-    {
         path: '/userCreate',
         name: 'UserCreate',
         component: () => import('../components/UserCreate.vue'),
@@ -23,9 +17,9 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../components/MainUserLayout.vue'),
         children: [
             {
-                path: '/test',
-                name: 'Test',
-                component: () => import('../components/Test.vue'),
+                path: '/recommendations',
+                name: 'Recommendation',
+                component: () => import('../components/Recommendations.vue'),
             }
         ]
     },
@@ -40,100 +34,79 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('../components/Home.vue'),
             },
             {
-                path: '/roleCreate',
-                name: 'RoleCreate',
-                component: () => import('../components/RoleCreate.vue'),
+                path: '/users',
+                name: 'UserList',
+                component: () => import('../components/UserList.vue'),
             },
             {
-                path: '/roleList',
-                name: 'RoleList',
-                component: () => import('../components/RoleList.vue'),
+                path: '/users/create',
+                name: 'UserCreate',
+                component: () => import('../components/UserCreate.vue'),
             },
             {
-                path: '/authorCreate',
-                name: 'AuthorCreate',
-                component: () => import('../components/AuthorCreate.vue'),
-            },
-            {
-                path: '/authorList',
-                name: 'AuthorList',
-                component: () => import('../components/AuthorList.vue'),
-            },
-
-            {
-                path: '/genderCreate',
-                name: 'GenderCreate',
-                component: () => import('../components/GenderCreate.vue'),
-            },
-            {
-                path: '/genderList',
-                name: 'GenderList',
-                component: () => import('../components/GenderList.vue'),
-            },
-            {
-                path: '/employeeCreate',
-                name: 'EmployeeCreate',
-                component: () => import('../components/EmployeeCreate.vue'),
-            },
-            {
-                path: '/employeeList',
+                path: '/employees',
                 name: 'EmployeeList',
                 component: () => import('../components/EmployeeList.vue'),
             },
             {
-                path: '/cityCreate',
-                name: 'CityCreate',
-                component: () => import('../components/CityCreate.vue'),
+                path: '/employees/create',
+                name: 'EmployeeCreate',
+                component: () => import('../components/EmployeeCreate.vue'),
             },
             {
-                path: '/cityList',
-                name: 'CityList',
-                component: () => import('../components/CityList.vue'),
-            },
-            {
-                path: '/provinceCreate',
-                name: 'ProvinceCreate',
-                component: () => import('../components/ProvinceCreate.vue'),
-            },
-            {
-                path: '/provinceList',
+                path: '/provinces',
                 name: 'ProvinceList',
                 component: () => import('../components/ProvinceList.vue'),
             },
             {
-                path: '/sectorCreate',
+                path: '/provinces/create',
+                name: 'ProvinceCreate',
+                component: () => import('../components/ProvinceCreate.vue'),
+            },
+            {
+                path: '/cities',
+                name: 'CityList',
+                component: () => import('../components/CityList.vue'),
+            },
+            {
+                path: '/cities/create',
+                name: 'CityCreate',
+                component: () => import('../components/CityCreate.vue'),
+            },
+            {
+                path: '/sectors/create',
                 name: 'SectorCreate',
                 component: () => import('../components/SectorCreate.vue'),
             },
             {
-                path: '/sectorList',
+                path: '/sectors',
                 name: 'SectorList',
                 component: () => import('../components/SectorList.vue'),
             },
             {
-                path: '/supplierTypeCreate',
-                name: 'SupplierTypeCreate',
-                component: () => import('../components/SupplierTypeCreate.vue'),
+                path: '/books',
+                name: 'BookList',
+                component: () => import('../components/BookList.vue'),
             },
             {
-                path: '/supplierTypeList',
-                name: 'SupplierTypeList',
-                component: () => import('../components/SupplierTypeList.vue'),
+                path: '/books/create',
+                name: 'BookCreate',
+                component: () => import('../components/BookCreate.vue'),
+            },
+            {
+                path: '/authors',
+                name: 'AuthorList',
+                component: () => import('../components/AuthorList.vue'),
+            },
+            {
+                path: '/authors/create',
+                name: 'AuthorCreate',
+                component: () => import('../components/AuthorCreate.vue'),
             },
             {
                 path: '/productCreate',
                 name: 'ProductCreate',
                 component: () => import('../components/ProductCreate.vue'),
-            },
-            {
-                path: '/supplierCategoryCreate',
-                name: 'SupplierCategoryCreate',
-                component: () => import('../components/SupplierCategoryCreate.vue'),
-            },
-            {
-                path: '/supplierCategoryList',
-                name: 'SupplierCategoryList',
-                component: () => import('../components/SupplierCategoryList.vue'),
             },
             {
                 path: '/reservationSpaceCreate',
@@ -174,11 +147,10 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/orderList',
                 name: 'OrderList',
                 component: () => import('../components/OrderList.vue'),
-            },
+            }
         ]
 
     }
-
 ];
 
 

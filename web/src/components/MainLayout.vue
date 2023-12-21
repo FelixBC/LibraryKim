@@ -23,346 +23,160 @@
         class="extraSpaceSideBarHeading sidebar-content"
         v-model="leftDrawerOpen"
         show-if-above
-
         :mini="miniState"
         @mouseover="miniState = false"
         @mouseout="miniState = true"
-
         :width="200"
         :breakpoint="500"
         bordered
-        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
-    >
+        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'">
 
+      <!-- Users -->
       <q-list padding class="extraPaddingForSideBarFirstOption">
-
         <q-expansion-item
             expand-separator
             icon="perm_identity"
-            label="Usuarios"
-        >
+            label="Usuarios">
           <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoUserList">
-                Lista
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoUserCreate">
-                Create
-              </q-item-section>
-            </q-item>
-
             <q-item clickable v-ripple>
               <q-item-section>
-                Restrinctions
+                <router-link to="/users">Lista</router-link>
               </q-item-section>
             </q-item>
-
-            <q-list padding>
-              <q-expansion-item
-                  expand-separator
-                  icon="perm_identity"
-                  label="Empleados"
-              >
-                <q-list padding>
-                  <q-item clickable v-ripple>
-                    <q-item-section @click="goToEmployeeList">
-                      Lista
-                    </q-item-section>
-                  </q-item>
-                  <q-item clickable v-ripple>
-                    <q-item-section @click="goToEmployeeCreate">
-                      Crear
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-              </q-expansion-item>
-            </q-list>
-
-            <q-list padding>
-              <q-expansion-item
-                  expand-separator
-                  icon="perm_identity"
-                  label="Roles"
-              >
-                <q-list padding>
-                  <q-item clickable v-ripple>
-                    <q-item-section @click="gotoRolesList">
-                      Lista
-                    </q-item-section>
-                  </q-item>
-                  <q-item clickable v-ripple>
-                    <q-item-section @click="gotoRolesCreate">
-                      Crear
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-              </q-expansion-item>
-            </q-list>
-
-
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/users/create">Crear</router-link>
+              </q-item-section>
+            </q-item>
           </q-list>
-          <q-list padding>
-            <q-expansion-item
-                expand-separator
-                icon="perm_identity"
-                label="Genders"
-            >
-              <q-list padding>
-                <q-item clickable v-ripple>
-                  <q-item-section @click="goToGendersList">
-                    Lista
-                  </q-item-section>
-                </q-item>
-                <q-item clickable v-ripple>
-                  <q-item-section @click="goToGendersCreate">
-                    Crear
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-expansion-item>
-          </q-list>
-
         </q-expansion-item>
       </q-list>
-
-
+      <!-- Employees -->
+      <q-list padding>
+        <q-expansion-item
+            expand-separator
+            icon="perm_identity"
+            label="Empleados">
+          <q-list padding>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/employees">Lista</router-link>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/employees/create">Crear</router-link>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-expansion-item>
+      </q-list>
+      <!-- Provinces -->
       <q-list padding>
         <q-expansion-item
             expand-separator
             icon="location_city"
-            label="Direcciones"
-        >
+            label="Provincias">
           <q-list padding>
             <q-item clickable v-ripple>
-              <q-item-section @click="goToAddressList">
-                Lista
+              <q-item-section>
+                <router-link to="/provinces">Lista</router-link>
               </q-item-section>
             </q-item>
             <q-item clickable v-ripple>
-              <q-item-section @click="goToAddressCreate">
-                Crear
+              <q-item-section>
+                <router-link to="/provinces/create">Crear</router-link>
               </q-item-section>
             </q-item>
-
-            <q-list padding>
-              <q-expansion-item
-                  expand-separator
-                  icon="location_city"
-                  label="Paises"
-              >
-                <q-list padding>
-                  <q-item clickable v-ripple>
-                    <q-item-section @click="goToContriesList">
-                      Lista
-                    </q-item-section>
-                  </q-item>
-                  <q-item clickable v-ripple>
-                    <q-item-section @click="goToContriesCreate">
-                      Crear
-                    </q-item-section>
-                  </q-item>
-
-                  <q-list padding>
-                    <q-expansion-item
-                        expand-separator
-                        icon="location_city"
-                        label="Ciudades"
-                    >
-                      <q-list padding>
-                        <q-item clickable v-ripple>
-                          <q-item-section @click="goToCitiesList">
-                            Lista
-                          </q-item-section>
-                        </q-item>
-                        <q-item clickable v-ripple>
-                          <q-item-section @click="goToCitiesCreate">
-                            Crear
-                          </q-item-section>
-                        </q-item>
-
-                        <q-list padding>
-                          <q-expansion-item
-                              expand-separator
-                              icon="location_city"
-                              label="Provincias"
-                          >
-                            <q-list padding>
-                              <q-item clickable v-ripple>
-                                <q-item-section @click="goToProvincesList">
-                                  Lista
-                                </q-item-section>
-                              </q-item>
-                              <q-item clickable v-ripple>
-                                <q-item-section @click="goToProvincesCreate">
-                                  Crear
-                                </q-item-section>
-                              </q-item>
-
-                              <q-list padding>
-                                <q-expansion-item
-                                    expand-separator
-                                    icon="location_city"
-                                    label="Sectores"
-                                >
-                                  <q-list padding>
-                                    <q-item clickable v-ripple>
-                                      <q-item-section @click="goToSectorList">
-                                        Lista
-                                      </q-item-section>
-                                    </q-item>
-                                    <q-item clickable v-ripple>
-                                      <q-item-section @click="goToSectorCreate">
-                                        Crear
-                                      </q-item-section>
-                                    </q-item>
-                                  </q-list>
-                                </q-expansion-item>
-                              </q-list>
-                            </q-list>
-                          </q-expansion-item>
-                        </q-list>
-                      </q-list>
-                    </q-expansion-item>
-                  </q-list>
-                </q-list>
-              </q-expansion-item>
-            </q-list>
           </q-list>
         </q-expansion-item>
       </q-list>
-
-
+      <!-- Cities -->
+      <q-list padding>
+        <q-expansion-item
+            expand-separator
+            icon="location_city"
+            label="Ciudades">
+          <q-list padding>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/cities">Lista</router-link>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/cities/create">Crear</router-link>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-expansion-item>
+      </q-list>
+      <!-- Sectors -->
+      <q-list padding>
+        <q-expansion-item
+            expand-separator
+            icon="location_city"
+            label="Sectores">
+          <q-list padding>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/sectors">Lista</router-link>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/sectors/create">Crear</router-link>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-expansion-item>
+      </q-list>
+      <!-- Authors -->
+      <q-list padding>
+        <q-expansion-item
+            expand-separator
+            icon="perm_identity"
+            label="Autores">
+          <q-list padding>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/authors">Lista</router-link>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/authors/create">Crear</router-link>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-expansion-item>
+      </q-list>
+      <!-- Books -->
       <q-list padding>
         <q-expansion-item
             expand-separator
             icon="book"
-            label="Books"
-        >
+            label="Libros">
           <q-list padding>
             <q-item clickable v-ripple>
-              <q-item-section @click="goToProductList">
-                Lista
+              <q-item-section>
+                <router-link to="/books">Lista</router-link>
               </q-item-section>
             </q-item>
-
             <q-item clickable v-ripple>
-              <q-item-section @click="goToProductCreate">
-                Crear
+              <q-item-section>
+                <router-link to="/books/create">Crear</router-link>
               </q-item-section>
             </q-item>
-
-            <q-list padding>
-
-              <q-expansion-item
-                  expand-separator
-                  icon="inventory"
-                  label="Inventario"
-              >
-                <q-list padding>
-                  <q-item clickable v-ripple>
-                    <q-item-section @click="goToProductList">
-                      Lista
-                    </q-item-section>
-                  </q-item>
-
-                  <q-item clickable v-ripple>
-                    <q-item-section @click="goToProductCreate">
-                      Crear
-                    </q-item-section>
-                  </q-item>
-
-                  <q-list padding>
-                    <q-expansion-item
-                        expand-separator
-                        icon="library_books"
-                        label="Autores"
-                    >
-                      <q-list padding>
-                        <q-item clickable v-ripple>
-                          <q-item-section @click="goToAuthorsList">
-                            Lista
-                          </q-item-section>
-                        </q-item>
-
-                        <q-item clickable v-ripple>
-                          <q-item-section @click="goToAuthorsCreate">
-                            Crear
-                          </q-item-section>
-                        </q-item>
-                      </q-list>
-                    </q-expansion-item>
-                  </q-list>
-
-                </q-list>
-
-              </q-expansion-item>
-            </q-list>
-          </q-list>
-
-        </q-expansion-item>
-      </q-list>
-
-      <q-list padding>
-        <q-expansion-item
-            expand-separator
-            icon="store"
-            label="Suplidores"
-        >
-
-          <q-list padding>
-            <q-expansion-item
-                expand-separator
-                icon="store"
-                label="Categorias"
-            >
-              <q-list padding>
-                <q-item clickable v-ripple>
-                  <q-item-section @click="goToSupplierCategoriesList">
-                    Lista
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-ripple>
-                  <q-item-section @click="goToSuplierCategoriesCreate">
-                    Crear
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-expansion-item>
-          </q-list>
-
-          <q-list padding>
-            <q-expansion-item
-                expand-separator
-                icon="store"
-                label="Tipo"
-            >
-              <q-list padding>
-                <q-item clickable v-ripple>
-                  <q-item-section @click="goToSupplierTypeList">
-                    Lista
-                  </q-item-section>
-                </q-item>
-
-                <q-item clickable v-ripple>
-                  <q-item-section @click="goToSuplierTypeCreate">
-                    Crear
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-expansion-item>
           </q-list>
         </q-expansion-item>
       </q-list>
+      <!-- Store -->
       <q-list padding>
         <q-expansion-item
             expand-separator
             icon="calendar_today"
-            label="Eventos"
-        >
+            label="Eventos">
           <q-list padding>
             <q-item clickable v-ripple>
               <q-item-section @click="goToEventsList">
@@ -378,13 +192,11 @@
           </q-list>
         </q-expansion-item>
       </q-list>
-
       <q-list padding>
         <q-expansion-item
             expand-separator
             icon="calendar_today"
-            label="Reservaciones"
-        >
+            label="Reservaciones">
           <q-list padding>
             <q-item clickable v-ripple>
               <q-item-section @click="goToReservationsList">
@@ -400,14 +212,11 @@
           </q-list>
         </q-expansion-item>
       </q-list>
-
       <q-list padding>
-
         <q-expansion-item
             expand-separator
             icon="paid"
-            label="Facturacion"
-        >
+            label="Facturacion">
           <q-list padding>
             <q-item clickable v-ripple>
               <q-item-section @click="goToList">
@@ -421,23 +230,17 @@
               </q-item-section>
             </q-item>
           </q-list>
-
         </q-expansion-item>
-
       </q-list>
-
-
       <q-item class="extraSpaceOntop">
         <q-item-section>
         </q-item-section>
       </q-item>
       <q-item
-
           clickable
           v-ripple
           active-class="my-menu-link"
-          @click="showLogoutConfirmation"
-      >
+          @click="showLogoutConfirmation" >
         <q-item-section avatar>
           <q-icon name="settings_power"/>
         </q-item-section>
@@ -502,59 +305,6 @@ const showLogoutConfirmation = () => {
     router.push('/');
   });
 };
-
-
-const gotoUserCreate = (): void => {
-  router.push('/UserCreate');
-};
-const gotoUserList = (): void => {
-  router.push('/UserList');
-};
-const gotoDashboard = (): void => {
-  router.push('/');
-};
-const gotoRolesList = (): void => {
-  router.push('/RolesList');
-};
-const gotoRolesCreate = (): void => {
-  router.push('/RolesCreate');
-};
-const goToGendersList = (): void => {
-  router.push('/GendersList');
-};
-const goToGendersCreate = (): void => {
-  router.push('/GendersCreate');
-};
-const goToEmployeeList = (): void => {
-  router.push('/EmployeeList');
-};
-const goToEmployeeCreate = (): void => {
-  router.push('/EmployeeCreate');
-};
-const goToAddressList = (): void => {
-  router.push('/AddressList');
-};
-const goToAddressCreate = (): void => {
-  router.push('/AddressCreate');
-};
-const goToContriesList = (): void => {
-  router.push('/ContriesList');
-};
-const goToContriesCreate = (): void => {
-  router.push('/ContriesCreate');
-};
-const goToCitiesList = (): void => {
-  router.push('/CitiesList');
-};
-const goToCitiesCreate = (): void => {
-  router.push('/CitiesCreate');
-};
-const goToProvincesList = (): void => {
-  router.push('/ProvincesList');
-};
-const goToProvincesCreate = (): void => {
-  router.push('/ProvincesCreate');
-};
 const goToSectorList = (): void => {
   router.push('/SectorList');
 };
@@ -597,8 +347,6 @@ const goToReservationsList = (): void => {
 const goToReservationsCreate = (): void => {
   router.push('/ReservationsCreate');
 };
-
-
 const toggleLeftDrawer = (): void => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 };

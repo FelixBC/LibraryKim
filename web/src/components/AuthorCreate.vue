@@ -1,24 +1,37 @@
 <script lang="ts" setup>
 import {ref} from 'vue'
 import {Author} from "./types.ts";
+import {useRouter} from "vue-router";
 
 const name = ref<string | null>(null)
 const API_URL = "http://localhost:3000/authors";
 const authors = ref<Author[]>([]);
+const router = useRouter();
 
 const createAuthor = async () => {
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: name.value,
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        author: {
+          name: name.value,
+        }
+      })
     })
-  })
-  const data = await res.json()
-  authors.value.push(data);
-  onReset();
+    if (!res) {
+      throw new Error('Something went wrong')
+    }
+
+    const data = await res.json();
+    authors.value.push(data);
+
+    router.push('/authors')
+  } catch (error) {
+    console.error(error)
+  }
 }
 const onReset = () => {
   name.value = null;
@@ -46,8 +59,7 @@ const onReset = () => {
                     label="Author *"
                     hint="Jhon Doe"
                     lazy-rules
-                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un Autor']"
-                />
+                    :rules="[ val => val && !val.isEmpty || 'Debe escribir un Autor']"/>
               </q-card-section>
             </div>
             <div class="divButtons">

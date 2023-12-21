@@ -10,26 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_19_195135) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_21_140057) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
-
-  create_table "address_vs_employees", force: :cascade do |t|
-    t.integer "idPeoplevsEmployee"
-    t.integer "idAddress"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "addresses", force: :cascade do |t|
-    t.integer "idCountry"
-    t.integer "idProvincia"
-    t.integer "idCity"
-    t.integer "idSector"
-    t.string "street"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -37,101 +21,64 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_19_195135) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cities", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "contacts", force: :cascade do |t|
-    t.integer "ID_Email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "countries", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "emails", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "employees", force: :cascade do |t|
-    t.date "birth_date"
-    t.bigint "address_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_employees_on_address_id"
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.string "name"
-    t.date "dateEvent"
-    t.time "timeEvent"
-    t.datetime "currentDate", precision: nil
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "genders", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "order_details", force: :cascade do |t|
-    t.integer "orderID"
-    t.integer "productTypeID"
-    t.integer "quantity"
-    t.decimal "unitPrice"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.string "trackingNumber"
-    t.integer "supplierID"
-    t.integer "userID"
-    t.decimal "totalOrder"
-    t.datetime "deliveryDate"
-    t.datetime "realArrivalDate"
-    t.integer "paymentMethodID"
+  create_table "book_checkouts", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "user_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "people", force: :cascade do |t|
-    t.integer "Identification"
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.bigint "author_id"
+    t.string "isbn"
+    t.integer "genre_id"
+    t.integer "quantity"
+    t.float "price"
+    t.integer "rating"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
     t.string "name"
-    t.integer "phoneNumber"
-    t.integer "ID_Genero"
-    t.date "Fecha_Nacimiento"
-    t.integer "ID_Address"
-    t.integer "ID_Email"
+    t.bigint "province_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role_id"
-    t.integer "gender_id"
-    t.string "identification_number"
+    t.index ["province_id"], name: "index_cities_on_province_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "identification"
+    t.string "email"
+    t.string "phone_number"
     t.date "birth_date"
-  end
-
-  create_table "people_vs_employees", force: :cascade do |t|
-    t.integer "idPeople"
-    t.integer "idEmpleado"
+    t.float "salary"
+    t.integer "gender_id"
+    t.integer "province_id"
+    t.integer "city_id"
+    t.integer "sector_id"
+    t.string "street"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "phones", force: :cascade do |t|
-    t.integer "number"
+  create_table "order_details", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "product_id"
+    t.integer "quantity"
+    t.decimal "unit_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -151,44 +98,39 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_19_195135) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "eventID"
-    t.integer "clientID"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "roles", force: :cascade do |t|
     t.string "name"
+    t.integer "reservation_space_id"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "sectors", force: :cascade do |t|
     t.string "name"
+    t.bigint "city_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_sectors_on_city_id"
   end
 
-  create_table "supplier_categories", force: :cascade do |t|
+  create_table "suppliers", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "supplier_types", force: :cascade do |t|
-    t.string "name"
+    t.integer "type_id"
+    t.integer "province_id"
+    t.integer "city_id"
+    t.integer "sector_id"
+    t.string "street"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
   end
 
-  add_foreign_key "employees", "addresses"
+  add_foreign_key "cities", "provinces"
+  add_foreign_key "sectors", "cities"
 end

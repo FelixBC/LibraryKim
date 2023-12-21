@@ -83,18 +83,17 @@ const onUpdateProvince = async ({id, name}) => {
 <template>
   <q-layout>
     <q-page class="flex-md-center" padding>
-      <q-card class="full-width" style="max-width: 450px;">
+      <q-card class="full-width">
         <q-card-section
             style="font-size: 1.3em;"
             class="text-center">
           <q-card-section>
-            <h4>Lista de province</h4>
+            <h4>Lista de provincias</h4>
           </q-card-section>
           <q-input
               v-model.trim="filterValue"
               filled
-              bottom-slots
-              label="Buscar"
+              bottom-slots label="Buscar"
           >
             <template v-slot:before>
               <q-icon name="person"/>

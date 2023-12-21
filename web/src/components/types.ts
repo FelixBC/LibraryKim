@@ -9,7 +9,6 @@ export interface Author {
 export interface Employee {
     id: number;
     name: string;
-    role: string;
     identification: string;
     sector: string;
     province: string;
@@ -19,6 +18,7 @@ export interface Employee {
     gender: number;
     phoneNumber: string;
     email: number;
+    salary: number;
 }
 
 export interface Email {
@@ -56,13 +56,10 @@ export interface Address {
 
 }
 
-
 export interface User {
     id: number;
-    idRole: number;
-    name: string;
+    email: string;
     password: string;
-    ID_Contact: number;
 }
 
 export interface Role {
@@ -80,6 +77,10 @@ export interface Gender {
     name: string;
 }
 
+export interface Genre {
+    id: number;
+    name: string;
+}
 export interface Product {
     id: number;
     name: string;
@@ -107,12 +108,10 @@ export interface SupplierType {
     id: number;
     name: string;
 }
-
 export interface SupplierCategory {
     id: number;
     name: string;
 }
-
 export interface ReservationSpace {
     id: number;
     name: string;
@@ -128,14 +127,12 @@ export interface Event {
     currentDate: string;
     description: string;
 }
-
 export interface Reservation {
     id: number;
     eventID: number;
     clientID: number;
     status: string;
 }
-
 export interface Order {
     id: number;
     trackingNumber: string;
@@ -147,11 +144,23 @@ export interface Order {
     paymentMethodID: number;
     status: string;
 }
-
 export interface OrderDetail {
     id: number;
     orderID: number;
     productTypeID: number;
     quantity: number;
     unitPrice: number;
+}
+export interface Book {
+    id: number;
+    title: string;
+    isbn: string;
+    genreId: number;
+    quantity: number;
+    price: float;
+    rating: integer;
+}
+export interface Author {
+    id: number;
+    name: string;
 }

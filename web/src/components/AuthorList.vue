@@ -82,7 +82,7 @@ const onUpdateAuthor = async ({id, name}) => {
 <template>
   <q-layout>
     <q-page class="flex-md-center" padding>
-      <q-card class="full-width" style="max-width: 450px;">
+      <q-card class="full-width">
         <q-card-section
             style="font-size: 1.3em;"
             class="text-center">

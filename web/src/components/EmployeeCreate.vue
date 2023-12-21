@@ -3,22 +3,19 @@ import {ref, onMounted} from 'vue'
 import {Role, City, Employee, Gender, Province, Sector} from "./types.ts";
 
 
-
 const name = ref<string | null>(null)
 const identificationNumber = ref<string | null>(null)
-const birth_date = ref<string | undefined>()
+const birthDate = ref<string | undefined>()
 const phoneNumber = ref<number | undefined>()
 const email = ref<string | undefined>()
-const country = ref<string | undefined>()
 const province = ref<string | undefined>()
 const city = ref<string | undefined>()
 const street = ref<string | undefined>()
-const date = ref<string | undefined>()
-const selectedValueRoles = ref<string | null>(null)
-const selectedValueProvinces = ref<string | null>(null)
-const selectedValueSectors = ref<string | null>(null)
-const selectedValueCities = ref<string | null>(null)
+const salary = ref<string | undefined>()
 const selectedValueGenders = ref<string | null>(null)
+const selectedValueProvinces = ref<string | null>(null)
+const selectedValueCities = ref<string | null>(null)
+const selectedValueSectors = ref<string | null>(null)
 
 //converting the data from the api to a type of data that we can use in the app (typescript)
 
@@ -60,6 +57,7 @@ const filterOptionsProvinces = (val, update) => {
     })
   })
 }
+
 const filteredOptionsSectors = ref([])
 const filterOptionsSectors = (val, update) => {
   if (val == '') {
@@ -90,6 +88,7 @@ const filterOptionsCities = (val, update) => {
     })
   })
 }
+
 const filteredOptionsGenders = ref([])
 const filterOptionsGenders = (val, update) => {
   if (val == '') {
@@ -110,11 +109,10 @@ const filterOptionsGenders = (val, update) => {
 //this takes the data from the api
 
 const API_URL = "http://localhost:3000/employees";
-const API_URL_ROLES = "http://localhost:3000/roles";
 const API_URL_PROVINCES = "http://localhost:3000/provinces";
 const API_URL_SECTORS = "http://localhost:3000/sectors";
 const API_URL_CITIES = "http://localhost:3000/cities";
-const API_URL_GENDERS = "http://localhost:3000/genders";
+const API_URL_GENDERS = "http://localhost:3000/employees/general_params";
 
 
 //load the data from the api
@@ -122,25 +120,20 @@ const API_URL_GENDERS = "http://localhost:3000/genders";
 onMounted(async () => {
 
   //Get the data from the api
-  const resRoles = await fetch(API_URL_ROLES);
-  const resProvinces = await fetch(API_URL_PROVINCES);
-  const resSectors = await fetch(API_URL_SECTORS);
-  const resCities = await fetch(API_URL_CITIES);
   const resGenders = await fetch(API_URL_GENDERS);
+  const resProvinces = await fetch(API_URL_PROVINCES);
+  const resCities = await fetch(API_URL_CITIES);
+  const resSectors = await fetch(API_URL_SECTORS);
 
 //this is going to take the data from the api and push it to the employees array
-  const dataRoles = await resRoles.json();
-  roles.value = dataRoles as Roles[];
+  const dataGenders = await resGenders.json();
+  genders.value = dataGenders as Gender[];
   const dataProvinces = await resProvinces.json();
   provinces.value = dataProvinces as Provinces[];
-  const dataSectors = await resSectors.json();
-  sectors.value = dataSectors as Sectors[];
   const dataCities = await resCities.json();
   cities.value = dataCities as City[];
-  const dataGenders = await resGenders.json();
-  genders.value = dataGenders as City[];
-
-
+  const dataSectors = await resSectors.json();
+  sectors.value = dataSectors as Sectors[];
 });
 
 //this is the data that is going to be sent to the api
@@ -154,39 +147,35 @@ const createEmployee = async () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      roles: roles.value,
-      name: name.value,
-      genders: genders.value,
-      identificationNumber: identificationNumber.value,
-      birth_date: birth_date.value,
-      phoneNumber: phoneNumber.value,
-      email: email.value,
-      country: country.value,
-      province: province.value,
-      sector: sectors.value,
-      city: city.value,
-      street: street.value
+      employee: {
+        name: name.value,
+        identificationNumber: identificationNumber.value,
+        email: email.value,
+        phoneNumber: phoneNumber.value,
+        birthDate: birthDate.value,
+        genders: selectedValueGenders.value.id,
+        provinceId: selectedValueProvinces.value.id,
+        cityId: selectedValueCities.value.id,
+        sectorId: selectedValueSectors.value.id,
+        street: street.value,
+        salary: salary.value
+      }
     })
   })
   //this is going to take the data from the api and push it to the employees array
 
   const data = await res.json()
   employees.value.push(data);
-  onReset();
 }
-
 
 
 //this is going to reset the form(put it empty)
 const onReset = () => {
   name.value = null;
-  roles.value = null;
-  genders.value = null;
   identificationNumber.value = null;
-  birth_date.value = null;
+  birthDate.value = null;
   phoneNumber.value = null;
   email.value = null;
-  country.value = null;
   province.value = null;
   sectors.value = null;
   city.value = null;
@@ -202,7 +191,7 @@ const onReset = () => {
             style="font-size: 1.3em;"
             class="text-center">
           <q-card-section>
-            <h4>Crear Employee</h4>
+            <h4>Crear empleado</h4>
           </q-card-section>
 
           <div class="form-columns">
@@ -249,17 +238,15 @@ const onReset = () => {
                     label="Celular"
                     hint="809-000-0000"
                     lazy-rules
-                    :rules="[val => val && !val.isEmpty && val.length == 12 && (val.includes(849) || val.includes(809) || val.includes(829)) || 'Debe escribir un celular valido']"
-
-                />
+                    :rules="[val => val && !val.isEmpty && val.length == 12 && (val.includes(849) || val.includes(809) || val.includes(829)) || 'Debe escribir un celular valido']"/>
               </q-card-section>
               <q-card-section>
-                <q-input filled hint="Fecha De nacimiento" label="2000/01/13" v-model="date" mask="date"
+                <q-input filled hint="Fecha De nacimiento" label="2000/01/13" v-model="birthDate" mask="date"
                          :rules="['date']">
                   <template v-slot:append>
                     <q-icon name="event" class="cursor-pointer">
                       <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                        <q-date v-model="date">
+                        <q-date v-model="birthDate">
                           <div class="row items-center justify-end">
                             <q-btn v-close-popup label="Close" color="primary" flat/>
                           </div>
@@ -268,23 +255,9 @@ const onReset = () => {
                     </q-icon>
                   </template>
                 </q-input>
-
               </q-card-section>
               <div class="col">
                 <q-card-section>
-                  <q-select
-                      filled
-                      v-model="selectedValueRoles"
-                      bg-color="grey-4"
-                      label="Roles"
-                      option-value="id"
-                      option-label="name"
-                      :options="roles"
-                      :filter="filterOptionsRoles"
-                  />
-                </q-card-section>
-                <q-card-section>
-
                   <q-select
                       filled
                       v-model="selectedValueGenders"
@@ -293,21 +266,7 @@ const onReset = () => {
                       option-value="id"
                       option-label="name"
                       :options="genders"
-                      :filter="filterOptionsGenders"
-                  />
-
-                </q-card-section>
-                <q-card-section>
-                  <q-select
-                      filled
-                      v-model="selectedValueCities"
-                      bg-color="grey-4"
-                      label="Ciudad"
-                      option-value="id"
-                      option-label="name"
-                      :options="cities"
-                      :filter="filterOptionsCities"
-                  />
+                      :filter="filterOptionsGenders"/>
 
                 </q-card-section>
                 <q-card-section>
@@ -319,8 +278,18 @@ const onReset = () => {
                       option-value="id"
                       option-label="name"
                       :options="provinces"
-                      :filter="filterOptionsProvinces"
-                  />
+                      :filter="filterOptionsProvinces"/>
+                </q-card-section>
+                <q-card-section>
+                  <q-select
+                      filled
+                      v-model="selectedValueCities"
+                      bg-color="grey-4"
+                      label="Ciudad"
+                      option-value="id"
+                      option-label="name"
+                      :options="cities"
+                      :filter="filterOptionsCities"/>
                 </q-card-section>
                 <q-card-section>
                   <q-select
@@ -331,8 +300,7 @@ const onReset = () => {
                       option-value="id"
                       option-label="name"
                       :options="sectors"
-                      :filter="filterOptionsSectors"
-                  />
+                      :filter="filterOptionsSectors"/>
                 </q-card-section>
                 <q-card-section>
                   <q-input
@@ -341,8 +309,16 @@ const onReset = () => {
                       label="Calle"
                       hint="Calle 1"
                       lazy-rules
-                      :rules="[ val => val && !val.isEmpty || 'Debe escribir una calle']"
-                  />
+                      :rules="[ val => val && !val.isEmpty || 'Debe escribir una calle']"/>
+                </q-card-section>
+                <q-card-section>
+                  <q-input
+                      filled
+                      v-model="salary"
+                      label="Salario"
+                      hint="20000"
+                      lazy-rules
+                      :rules="[ val => val && !val.isEmpty || 'Debe escribir el salario']"/>
                 </q-card-section>
               </div>
             </div>
@@ -351,7 +327,6 @@ const onReset = () => {
               <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm"/>
             </div>
           </div>
-
 
         </q-card-section>
       </q-card>

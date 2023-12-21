@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {onMounted, ref, computed} from "vue";
 import {User} from "./types.ts";
-import EditNameModal from "./EditNameModal.vue";
+import EditEmailModal from "./EditEmailModal.vue";
 
 const name = ref<string | null>(null)
 const API_URL = "http://localhost:3000/users";
@@ -23,7 +23,7 @@ const itemsPerPage = ref(10);
 
 const paginatedUsers = computed(() => {
   const filteredUsers = users.value.filter(user =>
-      user.name.toLowerCase().includes(filterValue.value.toLowerCase())
+      user.email.toLowerCase().includes(filterValue.value.toLowerCase())
   );
 
   return filteredUsers.slice(0, itemsPerPage.value);
@@ -57,14 +57,17 @@ const deleteUser = async (id) => {
   })
   users.value = users.value.filter(person => person.id !== id)
 }
-const onUpdateUser = async ({id, name}) => {
+const updateUser = async ({id, email}) => {
+
   const res = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: name,
+      user: {
+        email: email,
+      }
     })
   });
 
@@ -82,7 +85,7 @@ const onUpdateUser = async ({id, name}) => {
 <template>
   <q-layout>
     <q-page class="flex-md-center" padding>
-      <q-card class="full-width" style="max-width: 450px;">
+      <q-card class="full-width">
         <q-card-section
             style="font-size: 1.3em;"
             class="text-center">
@@ -93,8 +96,7 @@ const onUpdateUser = async ({id, name}) => {
               v-model.trim="filterValue"
               filled
               bottom-slots
-              label="Buscar"
-          >
+              label="Buscar">
             <template v-slot:before>
               <q-icon name="person"/>
             </template>
@@ -108,26 +110,26 @@ const onUpdateUser = async ({id, name}) => {
           <q-card>
             <q-markup-table>
               <thead>
-              <tr>
-                <th class="text-right">Nombre</th>
-                <th></th>
-                <th></th>
-              </tr>
+                <tr>
+                  <th class="text-right">Nombre</th>
+                  <th></th>
+                  <th></th>
+                </tr>
               </thead>
               <tbody v-for="user in paginatedUsers" :key="user.id">
-              <tr>
-                <td class="text-left">{{ user.name }}</td>
-                <td class="text-right">
-                  <div>
+                <tr>
+                  <td class="text-left">{{ user.email }}</td>
+                  <td class="text-right">
+                    <div>
 
-                    <q-btn v-if="!showModal" round color="secondary" icon="edit" @click="editUser(user.id)"
-                           class="small-btn"></q-btn>
-                    <q-btn round color="secondary" icon="delete" @click="deleteUser(user.id)"
-                           class="small-btn"></q-btn>
-                  </div>
-                </td>
-                <th></th>
-              </tr>
+                      <q-btn v-if="!showModal" round color="secondary" icon="edit" @click="editUser(user.id)"
+                             class="small-btn"></q-btn>
+                      <q-btn round color="secondary" icon="delete" @click="deleteUser(user.id)"
+                             class="small-btn"></q-btn>
+                    </div>
+                  </td>
+                  <th></th>
+                </tr>
               </tbody>
               <div>
               </div>
@@ -136,8 +138,8 @@ const onUpdateUser = async ({id, name}) => {
         </q-card-section>
       </q-card>
     </q-page>
-    <EditNameModal v-model:show="showModal" v-bind="editingUser" @close="onModalClose"
-                   @save="onUpdateUser"></EditNameModal>
+    <EditEmailModal v-model:show="showModal" v-bind="editingUser" @close="onModalClose"
+                    @save="updateUser"></EditEmailModal>
   </q-layout>
 </template>
 <style scoped>

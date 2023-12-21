@@ -1,7 +1,15 @@
 # app/models/employee.rb
 class Employee < ApplicationRecord
-  belongs_to :person
-  belongs_to :address
+  enum gender: { male: 0, female: 1, unspecified: 2 }
+  belongs_to :province
+  belongs_to :city
+  belongs_to :sector
 
-  validates :birth_date, presence: true
+  validates_presence_of :name,
+                        :province_id,
+                        :city_id,
+                        :sector_id,
+                        :street,
+                        :birth_date,
+                        :salary
 end
