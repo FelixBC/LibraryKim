@@ -3,7 +3,11 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    if params[:role]
+      @users = User.where(role_id: User.roles[params[:role]])
+      else
+      @users = User.all
+    end
 
     render json: @users
   end

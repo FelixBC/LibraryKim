@@ -1,13 +1,19 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { Reservation } from "./types.ts";
+import {onMounted, ref} from 'vue';
+import {Reservation} from "./types.ts";
+import {useRouter} from "vue-router";
 
-const eventID = ref<number | null>(null);
-const clientID = ref<number | null>(null);
 const status = ref<string | null>(null);
+const selectedValueEvents = ref<string | null>(null);
+const selectedValueClients = ref<string | null>(null);
+const events = ref<Event[]>([]);
+const clients = ref<Client[]>([]);
 
 const API_URL = "http://localhost:3000/reservations";
+const EVENTS_API_URL = "http://localhost:3000/events";
+const CLIENTS_API_URL = "http://localhost:3000/users?role=client";
 const reservations = ref<Reservation[]>([]);
+const router = useRouter();
 
 const createReservation = async () => {
   const res = await fetch(API_URL, {
@@ -16,22 +22,85 @@ const createReservation = async () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      eventID: eventID.value,
-      clientID: clientID.value,
-      status: status.value,
+      reservation: {
+        eventId: selectedValueEvents.value.id,
+        clientId: selectedValueClients.value.id,
+        status: status.value,
+      }
     })
   });
 
   const data = await res.json();
   reservations.value.push(data);
-  resetForm();
+await router.push('/reservations');
+
 };
 
-const resetForm = () => {
-  eventID.value = null;
-  clientID.value = null;
-  status.value = null;
+const fetchEvents = async () => {
+  try {
+    const response = await fetch(EVENTS_API_URL);
+    if (!response.ok) {
+      throw new Error('Failed to fetch events');
+    }
+    events.value = await response.json();
+    console.log(events.value);
+  } catch (error) {
+    console.error('Error fetching events:', error);
+  }
 };
+const fetchClients = async () => {
+  try {
+    const response = await fetch(CLIENTS_API_URL,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch clients');
+    }
+    clients.value = await response.json();
+    console.log(clients.value);
+  } catch (error) {
+    console.error('Error fetching clients:', error);
+  }
+};
+
+const filterOptionsEvents = (val, update) => {
+  if (val == '') {
+    update(() => {
+      filteredOptionsEvents.value = events.value;
+    })
+  }
+  update(() => {
+    const needle = val.toLowerCase()
+    filteredOptionsEvents.value = events.value.filter(event => {
+      const fullName = `${event.name}`.toLowerCase();
+      return fullName.includes(needle);
+    })
+  })
+}
+const filterOptionsClients = (val, update) => {
+  if (val == '') {
+    update(() => {
+      filteredOptionsClients.value = clients.value;
+    })
+  }
+  update(() => {
+    const needle = val.toLowerCase()
+    filteredOptionsClients.value = clients.value.filter(client => {
+      const fullName = `${client.name}`.toLowerCase();
+      return fullName.includes(needle);
+    })
+  })
+}
+
+onMounted(() => {
+  fetchEvents();
+  fetchClients();
+});
+
 
 </script>
 
@@ -43,34 +112,31 @@ const resetForm = () => {
           <q-card-section>
             <h4>Crear Reserva</h4>
           </q-card-section>
-
           <div class="form-columns">
             <div class="form-column">
               <q-card-section>
-                <q-input
+                <q-select
                     filled
-                    v-model="eventID"
-                    label="ID del Evento"
-                    type="number"
+                    v-model="selectedValueEvents"
+                    bg-color="grey-4"
+                    label="Event"
+                    option-value="id"
+                    option-label="name"
+                    :options="events"
+                    :filter="filterOptionsEvents"
                     lazy-rules
-                    :rules="[val => !isNaN(val) || 'Debe ser un número']"
-                />
-                <q-input
+                    :rules="[ val => val && !val.isEmpty || 'Debe selectionar un evento']"/>
+                <q-select
                     filled
-                    v-model="clientID"
-                    label="ID del Cliente"
-                    type="number"
+                    v-model="selectedValueClients"
+                    bg-color="grey-4"
+                    label="Client"
+                    option-value="id"
+                    option-label="email"
+                    :options="clients"
+                    :filter="filterOptionsClients"
                     lazy-rules
-                    :rules="[val => !isNaN(val) || 'Debe ser un número']"
-                />
-                <q-input
-                    filled
-                    v-model="status"
-                    label="Estado"
-                    hint="Estado de la Reserva"
-                    lazy-rules
-                    :rules="[val => val && val.trim() !== '' || 'Debe escribir un estado']"
-                />
+                    :rules="[ val => val && !val.isEmpty || 'Debe selectionar un cliente']"/>
               </q-card-section>
             </div>
             <div class="divButtons">
@@ -78,7 +144,6 @@ const resetForm = () => {
               <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm"/>
             </div>
           </div>
-
         </q-card-section>
       </q-card>
     </q-form>

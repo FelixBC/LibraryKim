@@ -114,6 +114,16 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('../components/EventCreate.vue'),
             },
             {
+                path: '/reservations/create',
+                name: 'ReservationCreate',
+                component: () => import('../components/ReservationCreate.vue'),
+            },
+            {
+                path: '/reservations',
+                name: 'ReservationList',
+                component: () => import('../components/ReservationList.vue'),
+            },
+            {
                 path: '/productCreate',
                 name: 'ProductCreate',
                 component: () => import('../components/ProductCreate.vue'),
@@ -127,16 +137,6 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/reservationSpaceList',
                 name: 'ReservationSpaceList',
                 component: () => import('../components/ReservationSpaceList.vue'),
-            },
-            {
-                path: '/reservationCreate',
-                name: 'ReservationCreate',
-                component: () => import('../components/ReservationCreate.vue'),
-            },
-            {
-                path: '/reservationList',
-                name: 'ReservationList',
-                component: () => import('../components/ReservationList.vue'),
             },
             {
                 path: '/orderCreate',

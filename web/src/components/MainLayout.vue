@@ -199,23 +199,18 @@
             label="Reservaciones">
           <q-list padding>
             <q-item clickable v-ripple>
-              <q-item-section @click="goToReservationsList">
-                Lista
+              <q-item-section>
+                <router-link to="/reservations">Lista</router-link>
               </q-item-section>
             </q-item>
-
             <q-item clickable v-ripple>
-              <q-item-section @click="goToReservationsCreate">
-                Crear
+              <q-item-section>
+                <router-link to="/reservations/create">Crear</router-link>
               </q-item-section>
             </q-item>
           </q-list>
         </q-expansion-item>
       </q-list>
-      <q-item class="extraSpaceOntop">
-        <q-item-section>
-        </q-item-section>
-      </q-item>
       <q-item
           clickable
           v-ripple

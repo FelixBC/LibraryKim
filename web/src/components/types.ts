@@ -129,9 +129,9 @@ export interface Event {
 }
 export interface Reservation {
     id: number;
-    eventID: number;
-    clientID: number;
-    status: string;
+    eventId: number;
+    clientId: number;
+    statusId: number;
 }
 export interface Order {
     id: number;
@@ -162,6 +162,11 @@ export interface Book {
     rating: integer;
 }
 export interface Author {
+    id: number;
+    name: string;
+}
+
+export interface ReservationStatus {
     id: number;
     name: string;
 }

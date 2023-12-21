@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get '/employees/general_params', to: 'employees#general_params'
   get '/books/general_params', to: 'books#general_params'
+  get '/reservations/general_params', to: 'reservations#general_params'
 
   resources :users, :provinces, :cities, :sectors, :employees, :books, :authors
   resources :order_details

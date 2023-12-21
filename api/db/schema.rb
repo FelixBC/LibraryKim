@@ -108,9 +108,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_21_150007) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.string "name"
-    t.integer "reservation_space_id"
-    t.string "description"
+    t.integer "event_id"
+    t.integer "client_id"
+    t.integer "status_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -137,6 +137,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_21_150007) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
+    t.integer "role_id", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

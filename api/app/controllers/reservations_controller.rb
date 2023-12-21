@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
 
   # POST /reservations
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = Reservation.new(reservation_params.merge(status_id: Reservation.statuses[:pending]))
 
     if @reservation.save
       render json: @reservation, status: :created, location: @reservation
@@ -33,19 +33,25 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def general_params
+    @statuses = Reservation.statuses.map { |k, v| { id: v, name: k } }
+    render json: @statuses
+  end
+
   # DELETE /reservations/1
   def destroy
     @reservation.destroy
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reservation
-      @reservation = Reservation.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def reservation_params
-      params.require(:reservation).permit(:eventID, :clientID, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def reservation_params
+    params.require(:reservation).permit(:event_id, :client_id, :status_id)
+  end
 end
