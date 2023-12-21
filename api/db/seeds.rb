@@ -25,9 +25,7 @@ employee_1 = Employee.create(name: "Juan",
                              sector_id: sector_1.id,
                              street: "Calle 1",
                              birth_date: "1990-01-01",
-                             salary: 10000,
-)
-byebug
+                             salary: 10000)
 employee_2 = Employee.create(name: "Pedro",
                              identification: "402-2454334-8",
                              phone_number: "809-555-6666",
@@ -36,8 +34,7 @@ employee_2 = Employee.create(name: "Pedro",
                              sector_id: sector_2.id,
                              street: "Calle 2",
                              birth_date: "1990-01-01",
-                             salary: 15000,
-)
+                             salary: 15000)
 employee_3 = Employee.create(name: "Maria",
                              identification: "402-24543342-3",
                              phone_number: "809-555-3333",
@@ -46,8 +43,7 @@ employee_3 = Employee.create(name: "Maria",
                              sector_id: sector_3.id,
                              street: "Calle 3",
                              birth_date: "1990-01-01",
-                             salary: 20000,
-)
+                             salary: 20000)
 employee_4 = Employee.create(name: "Jose",
                              identification: "031-24543342-3",
                              phone_number: "809-555-2222",
@@ -56,8 +52,7 @@ employee_4 = Employee.create(name: "Jose",
                              sector_id: sector_4.id,
                              street: "Calle 4",
                              birth_date: "1990-01-01",
-                             salary: 25000,
-)
+                             salary: 25000)
 
 author_1 = Author.create(name: "J. R. R. Tolkien")
 author_2 = Author.create(name: "George Orwell")

@@ -1,16 +1,18 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { Event } from "./types.ts";
+import {ref} from 'vue';
+import {Event} from "./types.ts";
+import {useRouter} from "vue-router";
 
 const name = ref<string | null>(null);
-const dateEvent = ref<string | null>(null);
-const timeEvent = ref<string | null>(null);
-const currentDate = ref<string | null>(null);
+const eventDate = ref<string | null>(null);
 const description = ref<string | null>(null);
+const imageUrl = ref<string | null>(null);
+const capacity = ref<integer | null>(null);
 
 
 const API_URL = "http://localhost:3000/events";
 const events = ref<Event[]>([]);
+const router = useRouter();
 
 const create = async () => {
   const res = await fetch(API_URL, {
@@ -19,26 +21,20 @@ const create = async () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: name.value,
-      dateEvent: dateEvent.value,
-      timeEvent: timeEvent.value,
-      currentDate: now,
-      description: Description.value,
+      event: {
+        name: name.value,
+        eventDate: eventDate.value,
+        description: description.value,
+        imageUrl: imageUrl.value,
+        capacity: capacity.value,
+      }
     })
   });
 
   const data = await res.json();
   events.value.push(data);
-  onReset();
+  router.push('/events');
 };
-
-const onReset = () => {
-  name.value = null;
-  dateEvent.value = null;
-  timeEvent.value = null;
-  description.value = null;
-};
-
 </script>
 
 <template>
@@ -63,28 +59,33 @@ const onReset = () => {
                 />
                 <q-input
                     filled
-                    v-model="dateEvent"
+                    v-model="eventDate"
                     label="Fecha del Evento"
                     type="date"
                     lazy-rules
-                    :rules="[val => val || 'Debe seleccionar una fecha']"
-                />
-                <q-input
-                    filled
-                    v-model="timeEvent"
-                    label="Hora del Evento"
-                    type="time"
-                    lazy-rules
-                    :rules="[val => val || 'Debe seleccionar una hora']"
-                />
+                    :rules="[val => val && val.trim() !== '' || 'Debe seleccionar una fecha']"/>
                 <q-input
                     filled
                     v-model="description"
                     label="Descripcion"
                     hint="Descripcion del Evento"
                     lazy-rules
-                    :rules="[val => val && val.trim() !== '' || 'Debe escribir una descripcion']"
+                    :rules="[val => val && val.trim() !== '' || 'Debe escribir una descripcion']"/>
+                <q-input
+                    filled
+                    v-model="imageUrl"
+                    label="Url de Imagen"
+                    hint="URL de la imagen (completa)"
+                    lazy-rules
+                    :rules="[val => val && val.trim() !== '' || 'Debe escribir una URL']"
                 />
+                <q-input
+                    filled
+                    v-model="capacity"
+                    label="Capacidad"
+                    hint="Capacidad de reservas por dia del evento"
+                    lazy-rules
+                    :rules="[val => val && val.trim() !== '' || 'Debe indicar la capacidad']" />
               </q-card-section>
             </div>
             <div class="divButtons">

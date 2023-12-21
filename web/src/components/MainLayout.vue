@@ -171,7 +171,7 @@
           </q-list>
         </q-expansion-item>
       </q-list>
-      <!-- Store -->
+      <!-- Venues -->
       <q-list padding>
         <q-expansion-item
             expand-separator
@@ -179,19 +179,19 @@
             label="Eventos">
           <q-list padding>
             <q-item clickable v-ripple>
-              <q-item-section @click="goToEventsList">
-                Lista
+              <q-item-section>
+                <router-link to="/events">Lista</router-link>
               </q-item-section>
             </q-item>
-
             <q-item clickable v-ripple>
-              <q-item-section @click="goToEventsCreate">
-                Crear
+              <q-item-section>
+                <router-link to="/events/create">Crear</router-link>
               </q-item-section>
             </q-item>
           </q-list>
         </q-expansion-item>
       </q-list>
+      <!-- Venue Reservations -->
       <q-list padding>
         <q-expansion-item
             expand-separator
@@ -206,26 +206,6 @@
 
             <q-item clickable v-ripple>
               <q-item-section @click="goToReservationsCreate">
-                Crear
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-expansion-item>
-      </q-list>
-      <q-list padding>
-        <q-expansion-item
-            expand-separator
-            icon="paid"
-            label="Facturacion">
-          <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section @click="goToList">
-                Lista
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoTicketCreate">
                 Crear
               </q-item-section>
             </q-item>

@@ -122,10 +122,10 @@ export interface ReservationSpace {
 export interface Event {
     id: number;
     name: string;
-    dateEvent: string;
-    timeEvent: string;
-    currentDate: string;
+    eventDate: string;
     description: string;
+    imageUrl: string;
+    capacity: integer;
 }
 export interface Reservation {
     id: number;
@@ -153,6 +153,7 @@ export interface OrderDetail {
 }
 export interface Book {
     id: number;
+    authorId: number;
     title: string;
     isbn: string;
     genreId: number;

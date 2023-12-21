@@ -20,7 +20,6 @@ class EmployeesController < ApplicationController
     if @employee.save
       render json: @employee, status: :created
     else
-      byebug
       render json: @employee, status: :unprocessable_entity
     end
   end
