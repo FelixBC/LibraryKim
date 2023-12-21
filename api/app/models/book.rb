@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
   belongs_to :author
+  has_many :book_checkouts, dependent: :destroy
 
   enum genre: {
     "Fantasy": 0,
@@ -22,4 +23,15 @@ class Book < ApplicationRecord
     "Travel": 17,
     "Religion": 18
   }
+
+  def as_json(options = {})
+    super(options).deep_transform_keys { |key| key.camelize(:lower) }
+                  .merge({
+                           rented: book_checkouts.where(status_id: BookCheckout.statuses[:Prestado]).count
+                         })
+  end
+
+  def to_json
+    super(options).deep_transform_keys { |key| key.camelize(:lower) }
+  end
 end

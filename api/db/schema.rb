@@ -23,8 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_21_150007) do
 
   create_table "book_checkouts", force: :cascade do |t|
     t.integer "book_id"
-    t.integer "user_id"
-    t.string "status"
+    t.integer "client_id"
+    t.integer "status_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

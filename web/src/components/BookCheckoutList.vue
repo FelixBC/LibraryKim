@@ -1,23 +1,19 @@
 <script lang="ts" setup>
 import {onMounted, ref, computed} from "vue";
-import {Reservation, ReservationStatus} from "./types.ts";
+import {Book, BookCheckout, Reservation, ReservationStatus} from "./types.ts";
 import EditReservationModal from "./EditReservationModal.vue";
 import EditEventModal from "./EditEventModal.vue";
 
-const eventID = ref<number | null>(null);
-const clientID = ref<number | null>(null);
-const status = ref<string | null>(null);
-
-const API_URL = "http://localhost:3000/reservations";
-const EVENTS_API_URL = "http://localhost:3000/events";
+const API_URL = "http://localhost:3000/book_checkouts";
+const BOOKS_API_URL = "http://localhost:3000/books";
 const CLIENTS_API_URL = "http://localhost:3000/users?role=client";
-const STATUSES_API_URL = "http://localhost:3000/reservations/general_params";
+const STATUSES_API_URL = "http://localhost:3000/book_checkouts/general_params";
 
-const reservations = ref<Reservation[]>([]);
-const events = ref<Event[]>([]);
+const bookCheckouts = ref<BookCheckout[]>([]);
+const books = ref<Book[]>([]);
 const clients = ref<Client[]>([]);
-const reservationStatuses = ref<ReservationStatus[]>([]);
-const editingReservation = ref<Reservation | null>(null);
+const bookCheckoutStatuses = ref<ReservationStatus[]>([]);
+const editingBookCheckout = ref<Reservation | null>(null);
 
 const filterValue = ref('');
 
@@ -33,36 +29,24 @@ const handleItemsPerPageChange = (value: number) => {
   itemsPerPage.value = value;
 };
 
-const paginatedReservations = computed(() => {
-  const filteredReservations = reservations.value.filter(reservation =>
-      displayEvent(reservation.eventId).toLowerCase().includes(filterValue.value.toLowerCase())
+const paginatedBookCheckouts = computed(() => {
+  const filteredBookCheckouts = bookCheckouts.value.filter(bookCheckout =>
+      displayBook(bookCheckout.bookId).toLowerCase().includes(filterValue.value.toLowerCase())
   );
 
-  return filteredReservations.slice(0, itemsPerPage.value);
+  return filteredBookCheckouts.slice(0, itemsPerPage.value);
 });
 
-const fetchReservations = async () => {
+const fetchBookCheckouts = async () => {
   try {
     const response = await fetch(API_URL);
     if (!response.ok) {
-      throw new Error('Failed to fetch reservations');
+      throw new Error('Failed to fetch book checkouts');
     }
-    reservations.value = await response.json();
-    console.log(reservations.value);
+    bookCheckouts.value = await response.json();
+    console.log(bookCheckouts.value);
   } catch (error) {
-    console.error('Error fetching reservations:', error);
-  }
-};
-const fetchEvents = async () => {
-  try {
-    const response = await fetch(EVENTS_API_URL);
-    if (!response.ok) {
-      throw new Error('Failed to fetch events');
-    }
-    events.value = await response.json();
-    console.log(events.value);
-  } catch (error) {
-    console.error('Error fetching events:', error);
+    console.error('Error fetching book checkouts:', error);
   }
 };
 const fetchClients = async () => {
@@ -84,7 +68,20 @@ const fetchClients = async () => {
   }
 };
 
-const onUpdateReservation = async ({id, eventId, clientId, statusId}) => {
+const fetchBookCheckoutStatuses = async () => {
+  try {
+    const response = await fetch(STATUSES_API_URL)
+    if (!response.ok) {
+      throw new Error('Failed to fetch book checkout statuses');
+    }
+    bookCheckoutStatuses.value = await response.json();
+    console.log(bookCheckoutStatuses.value);
+  } catch (error) {
+    console.error('Error fetching book checkout statuses:', error);
+  }
+};
+
+const onUpdateBookCheckout = async ({id, bookId, clientId, bookCheckoutStatusId}) => {
   debugger;
   const res = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
@@ -92,20 +89,20 @@ const onUpdateReservation = async ({id, eventId, clientId, statusId}) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      reservation: {
-        eventId: eventId,
+      bookCheckout: {
+        bookId: bookId,
         clientId: clientId,
         statusId: statusId
       }
     })
   });
   const data = await res.json();
-  const index = reservations.value.findIndex(reservation => reservation.id === id);
+  const index = bookCheckouts.value.findIndex(bookCheckout => bookCheckout.id === id);
 
   if (index !== -1) {
-    reservations.value[index].eventId = data.eventId;
-    reservations.value[index].clientId = data.clientId;
-    reservations.value[index].statusId = data.statusId;
+    bookCheckouts.value[index].bookId = data.bookId;
+    bookCheckouts.value[index].clientId = data.clientId;
+    bookCheckouts.value[index].statusId = data.statusId;
   }
 
   showModal.value = false;
@@ -117,33 +114,45 @@ const fetchStatuses = async () => {
     if (!response.ok) {
       throw new Error('Failed to fetch statuses');
     }
-    reservationStatuses.value = await response.json();
-    console.log(reservationStatuses.value);
+    bookCheckoutStatuses.value = await response.json();
+    console.log(bookCheckoutStatuses.value);
   } catch (error) {
     console.error('Error fetching statuses:', error);
   }
 };
 
+const fetchBooks = async () => {
+  try {
+    const response = await fetch(BOOKS_API_URL);
+    if (!response.ok) {
+      throw new Error('Failed to fetch books');
+    }
+    books.value = await response.json();
+    console.log(books.value);
+  } catch (error) {
+    console.error('Error fetching books:', error);
+  }
+};
 
 onMounted(async () => {
-  await fetchReservations();
-  await fetchEvents();
+  await fetchBookCheckouts();
+  await fetchBooks();
   await fetchClients();
   await fetchStatuses();
 });
 
-const deleteReservation = async (id) => {
+const deleteBookCheckout = async (id) => {
   await fetch(`${API_URL}/${id}`, {
     method: 'DELETE'
   });
-  reservations.value = reservations.value.filter(reservation => reservation.id !== id);
+  bookCheckouts.value = bookCheckouts.value.filter(bookCheckout => bookCheckout.id !== id);
 };
 
-const editReservation = async (id) => {
-  const reservation = reservations.value.find(reservation => reservation.id === id);
+const editBookCheckout = async (id) => {
+  const bookCheckout = bookCheckouts.value.find(bookCheckout => bookCheckout.id === id);
   showModal.value = true;
-  if (reservation) {
-    editingReservation.value = reservation
+  if (bookCheckout) {
+    editBookCheckout.value = bookCheckout
     window.scroll({
       top: 0,
       behavior: 'smooth'
@@ -151,10 +160,10 @@ const editReservation = async (id) => {
   }
 };
 
-const displayEvent = (id) => {
-  const event = events.value.find(event => event.id === id);
-  if (event) {
-    return event.name;
+const displayBook = (id) => {
+  const book = books.value.find(book => book.id === id);
+  if (book) {
+    return book.title;
   } else {
     return '';
   }
@@ -167,9 +176,12 @@ const displayClient = (id) => {
 };
 
 const displayStatus = (id) => {
-  const status = reservationStatuses.value.find(status => status.id === id);
+  debugger;
+  const status = bookCheckoutStatuses.value.find(status => status.id === id);
   if (status) {
     return status.name;
+  } else {
+    return '';
   }
 };
 
@@ -181,7 +193,7 @@ const displayStatus = (id) => {
       <q-card class="full-width">
         <q-card-section style="font-size: 1.3em;" class="text-center">
           <q-card-section>
-            <h4>Lista de Reservas</h4>
+            <h4>Rentas de Libros</h4>
           </q-card-section>
           <q-input
               v-model.trim="filterValue"
@@ -202,22 +214,21 @@ const displayStatus = (id) => {
             <q-markup-table>
               <thead>
                 <tr class="text-center">
-                  <th>Evento</th>
+                  <th>Titulo</th>
                   <th>Cliente</th>
                   <th>Estado</th>
-                  <th>Acciones</th>
                 </tr>
               </thead>
-              <tbody v-for="reservation in paginatedReservations" :key="reservation.id">
+              <tbody v-for="bookCheckout in paginatedBookCheckouts" :key="bookCheckout.id">
                 <tr class="text-center">
-                  <td>{{ displayEvent(reservation.eventId) }}</td>
-                  <td>{{ displayClient(reservation.clientId) }}</td>
-                  <td>{{ displayStatus(reservation.statusId) }}</td>
+                  <td>{{ displayBook(bookCheckout.bookId) }}</td>
+                  <td>{{ displayClient(bookCheckout.clientId) }}</td>
+                  <td>{{ displayStatus(bookCheckout.statusId) }}</td>
                   <td>
                     <div>
-                      <q-btn round color="secondary" icon="edit" @click="editReservation(reservation.id)"
+                      <q-btn round color="secondary" icon="edit" @click="editBookCheckout(bookCheckout.id)"
                              class="small-btn"></q-btn>
-                      <q-btn round color="secondary" icon="delete" @click="deleteReservation(reservation.id)"
+                      <q-btn round color="secondary" icon="delete" @click="deleteBookCheckout(bookCheckout.id)"
                              class="small-btn"></q-btn>
                     </div>
                   </td>
@@ -229,12 +240,12 @@ const displayStatus = (id) => {
         </q-card-section>
       </q-card>
     </q-page>
-    <EditReservationModal v-model:show="showModal"
-                          v-bind="editingReservation"
-                          :events="events"
+    <EditBookCheckoutModal v-model:show="showModal"
+                          v-bind="editingBookCheckout"
+                          :books="books"
                           :clients="clients"
-                          :reservationStatuses="reservationStatuses"
-                          @save="onUpdateReservation"
+                          :bookCheckoutStatuses="bookCheckoutStatuses"
+                          @save="onUpdateBookCheckout"
                           @hide="showModal = false" />
   </q-layout>
 </template>

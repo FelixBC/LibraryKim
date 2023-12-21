@@ -44,53 +44,25 @@
         </q-item-section>
       </q-item>
       <!-- Events -->
-      <q-list padding>
-        <q-expansion-item
-            expand-separator
-            icon="calendar_today"
-            label="Eventos">
-          <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoFightList">
-                Lista
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoFightCreate">
-                Crear
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-expansion-item>
-      </q-list>
-      <!-- Shopping Cart -->
-      <q-list padding>
-        <q-expansion-item
-            expand-separator
-            icon="shopping_cart"
-            label="Carrito">
-          <q-list padding>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoTicketList">
-                Lista
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple>
-              <q-item-section @click="gotoTicketCreate">
-                Crear
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-expansion-item>
-      </q-list>
+      <q-item
+          clickable
+          v-ripple
+          active-class="my-menu-link">
+        <q-item-section avatar>
+          <q-icon name="calendar_today"/>
+        </q-item-section>
+        <q-item-section>
+          <router-link to="/current-events">Eventos</router-link>
+        </q-item-section>
+      </q-item>
       <!-- Profile -->
-      <q-list padding>
-        <q-expansion-item
-            expand-separator
-            icon="manage_accounts"
-            label="Mi cuenta">
-        </q-expansion-item>
-      </q-list>
+<!--      <q-list padding>-->
+<!--        <q-expansion-item-->
+<!--            expand-separator-->
+<!--            icon="manage_accounts"-->
+<!--            label="Mi cuenta">-->
+<!--        </q-expansion-item>-->
+<!--      </q-list>-->
       <q-item
           clickable
           v-ripple

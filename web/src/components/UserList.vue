@@ -110,20 +110,18 @@ const updateUser = async ({id, email}) => {
           <q-card>
             <q-markup-table>
               <thead>
-                <tr>
-                  <th class="text-right">Nombre</th>
-                  <th></th>
-                  <th></th>
+                <tr class="text-center">
+                  <th>Email</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody v-for="user in paginatedUsers" :key="user.id">
-                <tr>
-                  <td class="text-left">{{ user.email }}</td>
-                  <td class="text-right">
+                <tr class="text-center">
+                  <td>{{ user.email }}</td>
+                  <td>
                     <div>
-
                       <q-btn v-if="!showModal" round color="secondary" icon="edit" @click="editUser(user.id)"
-                             class="small-btn"></q-btn>
+                             class="small-btn q-ma-sm"></q-btn>
                       <q-btn round color="secondary" icon="delete" @click="deleteUser(user.id)"
                              class="small-btn"></q-btn>
                     </div>

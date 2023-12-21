@@ -63,7 +63,7 @@ const onReset = () => {
       <div class="div_background">
         <q-page class="bg-light-grey window-height window-width row justify-center items-center">
           <q-form>
-            <q-card class="full-width" style="max-width: 450px;">
+            <q-card class="full-width" style="max-width: 800px;">
               <q-card-section>
                 <div class="icon_arrowback">
                   <router-link to="/">

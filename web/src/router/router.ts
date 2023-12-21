@@ -18,8 +18,13 @@ const routes: Array<RouteRecordRaw> = [
         children: [
             {
                 path: '/recommendations',
-                name: 'Recommendation',
+                name: 'Recommendations',
                 component: () => import('../components/Recommendations.vue'),
+            },
+            {
+                path: '/current-events',
+                name: 'Events',
+                component: () => import('../components/Events.vue'),
             }
         ]
     },
@@ -122,6 +127,16 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/reservations',
                 name: 'ReservationList',
                 component: () => import('../components/ReservationList.vue'),
+            },
+            {
+                path: '/book-checkouts',
+                name: 'BookCheckoutList',
+                component: () => import('../components/BookCheckoutList.vue'),
+            },
+            {
+                path: '/book-checkouts/create',
+                name: 'BookCheckoutCreate',
+                component: () => import('../components/BookCheckoutCreate.vue'),
             },
             {
                 path: '/productCreate',

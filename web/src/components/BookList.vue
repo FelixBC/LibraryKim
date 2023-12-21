@@ -20,7 +20,8 @@ const authors = ref<Author[]>([]);
 
 const paginatedBooks = computed(() => {
   const filteredBooks = books.value.filter(book =>
-      book.title.toLowerCase().includes(filterValue.value.toLowerCase())
+      book.title.toLowerCase().includes(filterValue.value.toLowerCase()) ||
+      displayGenre(book.genreId).toLowerCase().includes(filterValue.value.toLowerCase())
   );
 
   return filteredBooks.slice(0, itemsPerPage.value);
@@ -115,7 +116,7 @@ onMounted(async () => {
           <q-input
               v-model.trim="filterValue"
               filled
-              bottom-slots label="Buscar">
+              bottom-slots label="Buscar por titulo o genero">
             <template v-slot:before>
               <q-icon name="person"/>
             </template>
@@ -135,7 +136,8 @@ onMounted(async () => {
                   <th>ISBN</th>
                   <th>Genero</th>
                   <th>Cantidad</th>
-                  <th>Precio</th>
+                  <th>Rentados</th>
+                  <th>Precio de Venta</th>
                   <th>Rating</th>
                 </tr>
               </thead>
@@ -146,6 +148,7 @@ onMounted(async () => {
                   <td>{{ book.isbn }}</td>
                   <td>{{ displayGenre(book.genreId) }}</td>
                   <td>{{ book.quantity }}</td>
+                  <td>{{ book.rented }} / {{ book.quantity}}</td>
                   <td>RD ${{ book.price }}</td>
                   <td>{{ book.rating }}</td>
                   <td>

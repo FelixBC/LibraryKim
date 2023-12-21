@@ -1,27 +1,27 @@
 <script lang="ts" setup>
 import {computed, onMounted, ref} from 'vue'
-import {Book} from "./types.ts";
+import {Event} from "./types.ts";
 
 const slide = ref(1);
 const autoplay = ref(true);
 
-const API_URL = "http://localhost:3000/books";
-const books = ref<Book[]>([]);
+const API_URL = "http://localhost:3000/events";
+const events = ref<Event[]>([]);
 
 onMounted(async () => {
   const res = await fetch(API_URL);
   const data = await res.json();
-  books.value = data.reduce((acc, item, index) => {
+  events.value = data.reduce((acc, item, index) => {
     const groupIndex = Math.floor(index / 6);
     acc[groupIndex] = acc[groupIndex] || [];
     acc[groupIndex].push(item);
     return acc;
-  }, []) as [Book[]];
+  }, []) as [Event[]];
 });
 
-const shuffledAndExtendedCollection = computed(() => {
-  const shuffled = books.value.sort(() => 0.5 - Math.random());
-  return shuffled.flatMap(b => [b,b]);
+const shuffledAndDoubledCollection = computed(() => {
+  const shuffled = events.value.sort(() => 0.5 - Math.random());
+  return shuffled.flatMap(b => [b,b,b,b]);
 });
 
 </script>
@@ -30,7 +30,7 @@ const shuffledAndExtendedCollection = computed(() => {
     <q-card-section>
       <q-card-section>
         <p>
-          <h3 class="text-center">Recomendaciones</h3>
+          <h3 class="text-center">Eventos</h3>
         </p>
       </q-card-section>
       <div class="q-pa-md">
@@ -48,23 +48,26 @@ const shuffledAndExtendedCollection = computed(() => {
             height="300px"
             class="bg-grey-9 shadow-2 rounded-borders">
           <q-carousel-slide
-              v-for="(bookGroup, bookGroupIndex) in shuffledAndExtendedCollection"
-              :key="bookGroupIndex"
-              :name="bookGroupIndex" class="column no-wrap">
+              v-for="(eventGroup, eventGroupIndex) in shuffledAndDoubledCollection"
+              :key="eventGroupIndex"
+              :name="eventGroupIndex" class="column no-wrap">
             <div class="row fit justify-around items-center">
               <q-card
-                  v-for="book in bookGroup"
+                  v-for="event in eventGroup"
                   class="flex column justify-center half-white-half-black q-mt-5">
                 <q-card-section>
                   <q-img class="rounded-borders col-6 "
-                         :src="book.imageUrl"
-                         width="120px"/>
+                         :src="event.imageUrl"
+                         width="200px"/>
                 </q-card-section>
                 <q-card-section class="q-pa-none flex justify-center text-white">
-                  <span>{{ book.title }}</span>
+                  <span>{{ event.name }}</span>
                 </q-card-section>
                 <q-card-section class="q-pa-none flex justify-center text-amber">
-                  RD ${{ book.price }}
+                  {{ event.description }}
+                </q-card-section>
+                <q-card-section class="q-pa-none flex justify-center text-amber">
+                  Capacity: {{ event.capacity }}
                 </q-card-section>
               </q-card>
             </div>

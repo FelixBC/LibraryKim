@@ -108,26 +108,25 @@ const onUpdateProvince = async ({id, name}) => {
           <q-card>
             <q-markup-table>
               <thead>
-              <tr>
-                <th class="text-right">Nombre</th>
-                <th></th>
-                <th></th>
-              </tr>
+                <tr class="text-center">
+                  <th >Nombre</th>
+                  <th></th>
+                  <th></th>
+                </tr>
               </thead>
               <tbody v-for="province in paginatedProvinces" :key="province.id">
-              <tr>
-                <td class="text-left">{{ province.name }}</td>
-                <td class="text-right">
-                  <div>
-
-                    <q-btn v-if="!showModal" round color="secondary" icon="edit" @click="editProvince(province.id)"
-                           class="small-btn"></q-btn>
-                    <q-btn round color="secondary" icon="delete" @click="deleteProvince(province.id)"
-                           class="small-btn"></q-btn>
-                  </div>
-                </td>
-                <th></th>
-              </tr>
+                <tr class="text-center">
+                  <td>{{ province.name }}</td>
+                  <td>
+                    <div>
+                      <q-btn v-if="!showModal" round color="secondary" icon="edit" @click="editProvince(province.id)"
+                             class="small-btn q-ma-sm"></q-btn>
+                      <q-btn round color="secondary" icon="delete" @click="deleteProvince(province.id)"
+                             class="small-btn"></q-btn>
+                    </div>
+                  </td>
+                  <th></th>
+                </tr>
               </tbody>
               <div>
               </div>

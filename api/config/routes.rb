@@ -2,13 +2,13 @@ Rails.application.routes.draw do
   get '/employees/general_params', to: 'employees#general_params'
   get '/books/general_params', to: 'books#general_params'
   get '/reservations/general_params', to: 'reservations#general_params'
+  get '/book_checkouts/general_params', to: 'book_checkouts#general_params'
 
-  resources :users, :provinces, :cities, :sectors, :employees, :books, :authors
+  # Done
+  resources :users, :provinces, :cities, :sectors, :employees, :books, :authors, :book_checkouts, :reservations, :events
+  # Pending?
   resources :order_details
   resources :orders
-  resources :reservations
-  resources :events
-  resources :reservation_spaces
 
   post '/login', to: 'sessions#create'
   get '/reservation_spaces', to: 'reservation_spaces#index'

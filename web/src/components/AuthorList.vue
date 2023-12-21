@@ -93,8 +93,7 @@ const onUpdateAuthor = async ({id, name}) => {
               v-model.trim="filterValue"
               filled
               bottom-slots
-              label="Buscar"
-          >
+              label="Buscar">
             <template v-slot:before>
               <q-icon name="person"/>
             </template>
@@ -108,26 +107,23 @@ const onUpdateAuthor = async ({id, name}) => {
           <q-card>
             <q-markup-table>
               <thead>
-              <tr>
-                <th class="text-right">Nombre</th>
-                <th></th>
-                <th></th>
-              </tr>
+                <tr class="text-center">
+                  <th>Nombre</th>
+                  <th>Acciones</th>
+                </tr>
               </thead>
               <tbody v-for="author in paginatedAuthors" :key="author.id">
-              <tr>
-                <td class="text-left">{{ author.name }}</td>
-                <td class="text-right">
-                  <div>
-
-                    <q-btn v-if="!showModal" round color="secondary" icon="edit" @click="editAuthor(author.id)"
-                           class="small-btn"></q-btn>
-                    <q-btn round color="secondary" icon="delete" @click="deleteAuthor(author.id)"
-                           class="small-btn"></q-btn>
-                  </div>
-                </td>
-                <th></th>
-              </tr>
+                <tr class="text-center">
+                  <td>{{ author.name }}</td>
+                  <td>
+                    <div>
+                      <q-btn v-if="!showModal" round color="secondary" icon="edit" @click="editAuthor(author.id)"
+                             class="small-btn"></q-btn>
+                      <q-btn round color="secondary" icon="delete" @click="deleteAuthor(author.id)"
+                             class="small-btn q-ma-sm"></q-btn>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
               <div>
               </div>

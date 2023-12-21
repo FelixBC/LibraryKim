@@ -83,21 +83,22 @@ const editEmployee = async (id) => {
           <q-card>
             <q-markup-table>
               <thead>
-                <tr>
-                  <th class="text-right">Nombre</th>
-                  <th class="text-right">Telefono</th>
-                  <th class="text-right">Salario</th>
+                <tr class="text-center">
+                  <th>Nombre</th>
+                  <th>Telefono</th>
+                  <th>Salario</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody v-for="employee in paginatedEmployees" :key="employee.id">
-                <tr>
-                  <td class="text-left">{{ employee.name }}</td>
-                  <td class="text-left">{{ employee.phoneNumber }}</td>
-                  <td class="text-left">{{ employee.salary }}</td>
-                  <td class="text-right">
+                <tr class="text-center">
+                  <td>{{ employee.name }}</td>
+                  <td>{{ employee.phoneNumber }}</td>
+                  <td>{{ employee.salary }}</td>
+                  <td>
                     <div>
                       <!-- pending -->
-                      <!-- <q-btn round color="secondary" icon="edit" @click="editEmployee(employee.id)" class="small-btn"></q-btn>-->
+<!--                       <q-btn round color="secondary" icon="edit" @click="editEmployee(employee.id)" class="small-btn"></q-btn>-->
                       <q-btn round color="secondary" icon="delete" @click="deleteEmployee(employee.id)"
                              class="small-btn"></q-btn>
                     </div>

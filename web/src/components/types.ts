@@ -159,7 +159,8 @@ export interface Book {
     genreId: number;
     quantity: number;
     price: float;
-    rating: integer;
+    rating: number;
+    rented: number;
 }
 export interface Author {
     id: number;
@@ -169,4 +170,11 @@ export interface Author {
 export interface ReservationStatus {
     id: number;
     name: string;
+}
+
+export interface BookCheckout {
+    id: number;
+    bookId: number;
+    clientId: number;
+    statusId: number;
 }

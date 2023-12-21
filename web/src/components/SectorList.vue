@@ -94,8 +94,7 @@ const onUpdateSector = async ({id, name}) => {
               v-model.trim="filterValue"
               filled
               bottom-slots
-              label="Buscar"
-          >
+              label="Buscar">
             <template v-slot:before>
               <q-icon name="person"/>
             </template>
@@ -109,22 +108,20 @@ const onUpdateSector = async ({id, name}) => {
           <q-card>
             <q-markup-table>
               <thead>
-              <tr>
-                <th class="text-right">Nombre</th>
-                <th></th>
-                <th></th>
+              <tr class="text-center">
+                <th>Nombre</th>
+                <th>Acciones</th>
               </tr>
               </thead>
               <tbody v-for="sector in paginatedSectors" :key="sector.id">
-              <tr>
-                <td class="text-left">{{ sector.name }}</td>
-                <td class="text-right">
+              <tr class="text-center">
+                <td>{{ sector.name }}</td>
+                <td>
                   <div>
-
                     <q-btn v-if="!showModal" round color="secondary" icon="edit" @click="editSector(sector.id)"
                            class="small-btn"></q-btn>
                     <q-btn round color="secondary" icon="delete" @click="deleteSector(sector.id)"
-                           class="small-btn"></q-btn>
+                           class="small-btn q-ma-sm"></q-btn>
                   </div>
                 </td>
                 <th></th>

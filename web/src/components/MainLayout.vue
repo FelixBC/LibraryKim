@@ -211,6 +211,26 @@
           </q-list>
         </q-expansion-item>
       </q-list>
+      <!-- Book Checkouts -->
+      <q-list padding>
+        <q-expansion-item
+            expand-separator
+            icon="calendar_today"
+            label="Rentas de libros">
+          <q-list padding>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/book-checkouts">Lista</router-link>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                  <router-link to="/book-checkouts/create">Crear</router-link>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-expansion-item>
+      </q-list>
       <q-item
           clickable
           v-ripple

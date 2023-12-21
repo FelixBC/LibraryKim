@@ -1,3 +1,6 @@
 class BookCheckout < ApplicationRecord
-  enum status: { checked_out: 0, returned: 1 }
+  belongs_to :book
+  belongs_to :client, class_name: "User", foreign_key: "client_id"
+
+  enum status: { Prestado: 0, Devuelto: 1 }
 end
