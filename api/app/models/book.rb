@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   belongs_to :author
   has_many :book_checkouts, dependent: :destroy
+  validate :book_capacity_greater_than_books_lent
 
   enum genre: {
     "Fantasy": 0,
@@ -27,11 +28,21 @@ class Book < ApplicationRecord
   def as_json(options = {})
     super(options).deep_transform_keys { |key| key.camelize(:lower) }
                   .merge({
-                           rented: book_checkouts.where(status_id: BookCheckout.statuses[:Prestado]).count
+                           rented: book_checkouts.where(status_id: BookCheckout.statuses[:lent]).count
                          })
   end
 
   def to_json
     super(options).deep_transform_keys { |key| key.camelize(:lower) }
   end
+
+  private
+
+  def book_capacity_greater_than_books_lent
+    if quantity < book_checkouts.where(status_id: BookCheckout.statuses[:lent]).count
+      errors.add(:quantity, "Can't be less than books lent")
+    end
+  end
+
 end
+
