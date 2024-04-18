@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_12_21_150007) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
