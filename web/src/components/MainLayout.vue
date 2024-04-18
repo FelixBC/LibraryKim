@@ -168,6 +168,11 @@
                 <router-link to="/books/create">Crear</router-link>
               </q-item-section>
             </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section>
+                <router-link to="/books/search">Buscar</router-link>
+              </q-item-section>
+            </q-item>
           </q-list>
         </q-expansion-item>
       </q-list>

@@ -44,6 +44,12 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('../components/UserList.vue'),
             },
             {
+                path: '/advanceSearch',
+                name: 'AdvanceSearch',
+                component: () => import('../components/AdvanceSearch.vue'),
+            },
+
+            {
                 path: '/users/create',
                 name: 'UserCreate',
                 component: () => import('../components/UserCreate.vue'),
@@ -97,6 +103,10 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/books/create',
                 name: 'BookCreate',
                 component: () => import('../components/BookCreate.vue'),
+            },{
+                path: '/books/search',
+                name: 'Search',
+                component: () => import('../components/SearchBar.vue'),
             },
             {
                 path: '/authors',
