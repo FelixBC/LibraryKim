@@ -1,4 +1,11 @@
 class BooksController < ApplicationController
+
+  def search
+  query = params[:query]
+  results = BookSearch.advanced_search(query)
+  render json: results
+  end
+
   def index
     books = Book.all
     render json: books
@@ -36,4 +43,4 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :author, :isbn, :genre_id, :quantity, :price, :rating, :image_url)
   end
-end
+  end

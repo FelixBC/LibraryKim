@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get '/books/general_params', to: 'books#general_params'
   get '/reservations/general_params', to: 'reservations#general_params'
   get '/book_checkouts/general_params', to: 'book_checkouts#general_params'
-
+  #get '/search', to: 'search#search'
+  #get '/search', to: 'books#search'
+  post '/books/search', to: 'books#search'
   # Done
   resources :users, :provinces, :cities, :sectors, :employees, :books, :authors, :book_checkouts, :reservations, :events
   # Pending?
