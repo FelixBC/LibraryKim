@@ -90,7 +90,13 @@ export default {
               </q-card-section>
             </div>
             <div class="divButtons">
-              <q-btn color="primary" type="submit">Buscar</q-btn>
+              <q-btn color="primary" type="submit" v-if="!loading">Buscar</q-btn>
+                <q-spinner v-if="loading"
+                          color="primary"
+
+                                  size="3em"
+
+                                />
               <q-btn label="Búsqueda Avanzada" type="button" color="primary" flat class="q-ml-sm" @click="advancedSearch"/>
             </div>
           </div>
@@ -98,32 +104,61 @@ export default {
         </q-card-section>
       </q-card>
     </q-form>
+
+<!--  :src="book.imageLinks.thumbnail"-->
+  <div class="q-pa-md example-row-equal-width">
+
+    <div class="row align-center justify-center">
+      <div class="col-3 align-center justify-center" v-for="book in searchResults" :key="book.id">
+          <q-card-section v-if="searchResults.length>0">
+            <q-img
+                contain
+                :src="book.volumeInfo.imageLinks.thumbnail"
+                spinner-color="white"
+                style="height: 80%; width: 80%"
+            />
+            <q-card-actions >
+              <span style="font-size:20px; text-align:center; display:inline-block; width:100%">{{book.volumeInfo.title}}</span>
+<!--              <span style="font-size:20px; text-align:center; display:inline-block; width:100%">{{book.imageLinks.thumbnail}}</span>-->
+            </q-card-actions>
+          </q-card-section>
+      </div>
+    </div>
+  </div>
   </q-page>
 
-
-    <q-card class="full-width" style="max-width: 450px;" v-if="searchResults && searchResults.length">
-      <q-card-section>
-        <h4>Resultados de la búsqueda</h4>
-        <ul>
-          <li v-for="book in searchResults" :key="book.id">
-            {{ book.title }}
-          </li>
-        </ul>
-      </q-card-section>
-    </q-card>
+<!--    <q-card class="full-width" style="max-width: 450px;" v-if="searchResults && searchResults.length">-->
+<!--      <q-card-section>-->
+<!--        <h4>Resultados de la búsqueda</h4>-->
+<!--        <ul>-->
+<!--          <li v-for="book in searchResults" :key="book.id">-->
+<!--            {{ book.volumeInfo.title }}-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </q-card-section>-->
+<!--    </q-card>-->
+<!--  <span v-if="searchResults.length>0">{{searchResults[0]}}</span>-->
   </template>
 
   <script>
     export default {
       data() {
         return {
+          loading:false,
           searchQuery: '',
+          books:[{id:1},{id:2}],
           searchResults: [] // Define la variable searchResults y asigna un array vacío inicialmente
         };
       },
       methods: {
         simpleSearch() {
-          fetch('/books/search', {
+          // if(this.searchQuery ==''){
+          //   console.error('Indique una busqueda');
+          // }
+
+
+          this.loading=true;
+          fetch('http://localhost:3000/books/search', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -132,8 +167,10 @@ export default {
           })
               .then(response => response.json())
               .then(data => {
-                // Maneja la respuesta del servidor y asigna los resultados a searchResults
-                console.log(this.searchResults = data.items); // Suponiendo que 'data' contiene una lista de resultados de búsqueda
+                console.log('aqui si se puede',data)
+                this.searchResults = data.items;
+                console.log(data.items[0].volumeInfo.imageLinks.thumbnail)
+                this.loading=false;
               })
               .catch(error => {
                 console.error(error);
@@ -145,62 +182,3 @@ export default {
       }
     };
   </script>
-
-<!--
-
-<template>
-  <div>
-    <h1>Search for books</h1>
-    <form @submit.prevent="submitSearch">
-      <label>
-        <input type="text" v-model="query" placeholder="Search...">
-      </label>
-      <button type="submit">Search</button>
-    </form>
-    <h2 v-if="results.length">Results</h2>
-    <ul v-if="results.length">
-      <li v-for="result in results" :key="result.id">{{ result.title }}</li>
-    </ul>
-    <p v-else>No results found</p>
-  </div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      query: '',
-      results: []
-    };
-  },
-  methods: {
-    submitSearch() {
-      fetch(`/books/search?query=${encodeURIComponent(this.query)}`)
-          .then(response => {
-            // Verificar si la respuesta es exitosa
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            // Convertir la respuesta a JSON
-            return response.json();
-          })
-          .then(data => {
-            // Imprimir la respuesta para verificar el formato
-            console.log('Respuesta del servidor:', data);
-            // Actualizar los resultados con los datos recibidos del servidor
-            this.results = data;
-          })
-          .catch(error => {
-            console.error('Error al realizar la solicitud:', error);
-          });
-    }
-
-
-  }
-};
-</script>
-
-<style scoped>
-/* Estilos específicos del componente */
-</style>
--->
