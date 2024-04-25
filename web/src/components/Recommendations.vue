@@ -21,7 +21,7 @@ onMounted(async () => {
 
 const shuffledAndExtendedCollection = computed(() => {
   const shuffled = books.value.sort(() => 0.5 - Math.random());
-  return shuffled.flatMap(b => [b,b]);
+  return shuffled.flatMap(b => [b, b]);
 });
 
 </script>
@@ -30,8 +30,9 @@ const shuffledAndExtendedCollection = computed(() => {
     <q-card-section>
       <q-card-section>
         <p>
-          <h3 class="text-center">Recomendaciones</h3>
+          <h3 class="text-center">Recomendaciones por referencia</h3>
         </p>
+        <q-input model-value="" label="Libro" label-color="dark"/>
       </q-card-section>
       <div class="q-pa-md">
         <q-carousel

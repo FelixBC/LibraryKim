@@ -172,6 +172,11 @@ export interface ReservationStatus {
     name: string;
 }
 
+export interface BookCheckoutStatus {
+    id: number;
+    name: string;
+}
+
 export interface BookCheckout {
     id: number;
     bookId: number;

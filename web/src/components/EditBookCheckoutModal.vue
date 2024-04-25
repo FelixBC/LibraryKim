@@ -1,20 +1,21 @@
 <!-- EditNameModal.vue -->
+import
 <template>
   <q-dialog :model-value="show">
     <q-card class="full-width">
       <q-card-section>
-        <h1 class="text-h6">Editar Evento</h1>
+        <h1 class="text-h6">Editar Libro</h1>
         <q-select
             filled
-            v-model="selectedValueEvents"
+            v-model="selectedValueBooks"
             bg-color="grey-4"
-            label="Event"
+            label="Book"
             option-value="id"
             option-label="name"
-            :options="events"
-            :filter="filterOptionsEvents"
+            :options="books"
+            :filter="filterOptionsBooks"
             lazy-rules
-            :rules="[ val => val && !val.isEmpty || 'Debe selectionar un evento']"/>
+            :rules="[ val => val && !val.isEmpty || 'Debe selectionar un libro']"/>
       </q-card-section>
       <q-card-section>
         <h1 class="text-h6">Editar Cliente</h1>
@@ -39,8 +40,8 @@
             label="Estado"
             option-value="id"
             option-label="name"
-            :options="reservationStatuses"
-            :filter="filterOptionsReservationStatuses"
+            :options="bookCheckoutStatuses"
+            :filter="filterOptionsBookCheckoutStatuses"
             lazy-rules
             :rules="[ val => val && !val.isEmpty || 'Debe selectionar un estado']"/>
       </q-card-section>
@@ -54,24 +55,24 @@
 <script setup>
 import { ref, toRefs, watch} from 'vue';
 
-const props = defineProps(['id', 'eventId','clientId', 'statusId','events', 'clients', 'reservationStatuses', 'show']);
-const {id, eventId, clientId, statusId, events, clients, reservationStatuses, show} = toRefs(props)
+const props = defineProps(['id', 'bookId', 'clientId', 'statusId', 'clients', 'books', 'bookCheckoutStatuses','show']);
+const {id, bookId, clientId, statusId, books, clients, bookCheckoutStatuses, show} = toRefs(props)
 const emits = defineEmits(['save', 'update:show']);
-const selectedValueEvents = ref(null);
+const selectedValueBooks = ref(null);
 const selectedValueClients = ref(null);
 const selectedValueStatus = ref(null);
-const filteredOptionsReservationStatuses = ref([]);
+const filteredOptionsBookCheckoutStatuses = ref([]);
 
-const filterOptionsEvents = (val, update) => {
+const filterOptionsBooks = (val, update) => {
   if (val == '') {
     update(() => {
-      filteredOptionsEvents.value = events.value;
+      filteredOptionsBooks.value = books.value;
     })
   }
   update(() => {
     const needle = val.toLowerCase()
-    filteredOptionsEvents.value = events.value.filter(event => {
-      const fullName = `${event.name}`.toLowerCase();
+    filteredOptionsBooks.value = books.value.filter(book => {
+      const fullName = `${book.name}`.toLowerCase();
       return fullName.includes(needle);
     })
   })
@@ -91,15 +92,15 @@ const filterOptionsClients = (val, update) => {
   })
 }
 
-const filterOptionsReservationStatuses = (val, update) => {
+const filterOptionsBookCheckoutStatuses = (val, update) => {
   if (val == '') {
     update(() => {
-      filteredOptionsReservationStatuses.value = reservationStatuses.value;
+      filteredOptionsBookCheckoutStatuses.value = bookCheckoutStatuses.value;
     })
   }
   update(() => {
     const needle = val.toLowerCase()
-    filteredOptionsReservationStatuses.value = reservationStatuses.value.filter(status => {
+    filteredOptionsBookCheckoutStatuses.value = bookCheckoutStatuses.value.filter(status => {
       const fullName = `${status.name}`.toLowerCase();
       return fullName.includes(needle);
     })
@@ -108,9 +109,9 @@ const filterOptionsReservationStatuses = (val, update) => {
 
 watch(show, (show) => {
   if (show) {
-    selectedValueEvents.value = events.value.find(event => event.id === eventId.value);
+    selectedValueBooks.value = books.value.find(book => book.id === bookId.value);
     selectedValueClients.value = clients.value.find(client => client.id === clientId.value);
-    selectedValueStatus.value = reservationStatuses.value.find(status => status.id === statusId.value);
+    selectedValueStatus.value = bookCheckoutStatuses.value.find(status => status.id === statusId.value);
   }
 })
 
@@ -122,7 +123,7 @@ const closeModal = () => {
 const saveChanges = () => {
   emits('save', {
     id: props.id,
-    eventId: selectedValueEvents.value.id,
+    bookId: selectedValueBooks.value.id,
     clientId: selectedValueClients.value.id,
     statusId: selectedValueStatus.value.id
   })
