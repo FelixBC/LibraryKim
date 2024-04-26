@@ -1,19 +1,20 @@
 <script lang="ts" setup>
 import {onMounted, ref, computed} from "vue";
-import {Book, BookCheckout, Reservation, ReservationStatus} from "./types.ts";
-import EditReservationModal from "./EditReservationModal.vue";
-import EditEventModal from "./EditEventModal.vue";
+import {Book, BookCheckout, BookCheckoutStatus } from "./types.ts";
+import EditBookCheckoutModal from "./EditBookCheckoutModal.vue";
 
 const API_URL = "http://localhost:3000/book_checkouts";
 const BOOKS_API_URL = "http://localhost:3000/books";
 const CLIENTS_API_URL = "http://localhost:3000/users?role=client";
 const STATUSES_API_URL = "http://localhost:3000/book_checkouts/general_params";
 
+
+const bookReturnDate = ref<string | null>(null);
 const bookCheckouts = ref<BookCheckout[]>([]);
 const books = ref<Book[]>([]);
 const clients = ref<Client[]>([]);
-const bookCheckoutStatuses = ref<ReservationStatus[]>([]);
-const editingBookCheckout = ref<Reservation | null>(null);
+const bookCheckoutStatuses = ref<BookCheckoutStatus[]>([]);
+const editingBookCheckout = ref<BookCheckout | null>(null);
 
 const filterValue = ref('');
 
@@ -82,7 +83,6 @@ const fetchBookCheckoutStatuses = async () => {
 };
 
 const onUpdateBookCheckout = async ({id, bookId, clientId, bookCheckoutStatusId}) => {
-  debugger;
   const res = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
     headers: {
@@ -92,7 +92,7 @@ const onUpdateBookCheckout = async ({id, bookId, clientId, bookCheckoutStatusId}
       bookCheckout: {
         bookId: bookId,
         clientId: clientId,
-        statusId: statusId
+        statusId: bookCheckoutStatusId
       }
     })
   });
@@ -149,10 +149,11 @@ const deleteBookCheckout = async (id) => {
 };
 
 const editBookCheckout = async (id) => {
-  const bookCheckout = bookCheckouts.value.find(bookCheckout => bookCheckout.id === id);
   showModal.value = true;
+  const bookCheckout = bookCheckouts.value.find(bookCheckout => bookCheckout.id === id);
+
   if (bookCheckout) {
-    editBookCheckout.value = bookCheckout
+    editingBookCheckout.value = bookCheckout
     window.scroll({
       top: 0,
       behavior: 'smooth'
@@ -176,7 +177,6 @@ const displayClient = (id) => {
 };
 
 const displayStatus = (id) => {
-  debugger;
   const status = bookCheckoutStatuses.value.find(status => status.id === id);
   if (status) {
     return status.name;
@@ -213,33 +213,36 @@ const displayStatus = (id) => {
           <q-card>
             <q-markup-table>
               <thead>
-                <tr class="text-center">
-                  <th>Titulo</th>
-                  <th>Cliente</th>
-                  <th>Estado</th>
-                </tr>
+              <tr class="text-center">
+                <th>Titulo</th>
+                <th>Cliente</th>
+                <th>Estado</th>
+              </tr>
               </thead>
               <tbody v-for="bookCheckout in paginatedBookCheckouts" :key="bookCheckout.id">
-                <tr class="text-center">
-                  <td>{{ displayBook(bookCheckout.bookId) }}</td>
-                  <td>{{ displayClient(bookCheckout.clientId) }}</td>
-                  <td>{{ displayStatus(bookCheckout.statusId) }}</td>
-                  <td>
-                    <div>
-                      <q-btn round color="secondary" icon="edit" @click="editBookCheckout(bookCheckout.id)"
-                             class="small-btn"></q-btn>
-                      <q-btn round color="secondary" icon="delete" @click="deleteBookCheckout(bookCheckout.id)"
-                             class="small-btn"></q-btn>
-                    </div>
-                  </td>
-                  <td></td>
-                </tr>
+              <tr class="text-center">
+                <td>{{ displayBook(bookCheckout.bookId) }}</td>
+                <td>{{ displayClient(bookCheckout.clientId) }}</td>
+                <td>{{ displayStatus(bookCheckout.statusId) }}</td>
+                <td>
+                  <div>
+                    <q-btn round color="secondary" icon="edit" @click="editBookCheckout(bookCheckout.id)"
+                           class="small-btn"></q-btn>
+                    <q-btn round color="secondary" icon="delete" @click="deleteBookCheckout(bookCheckout.id)"
+                           class="small-btn"></q-btn>
+                  </div>
+                </td>
+                <td></td>
+              </tr>
               </tbody>
             </q-markup-table>
           </q-card>
         </q-card-section>
       </q-card>
     </q-page>
+
+<!--    <EditBookModal v-model:show="showModal" v-bind="editingBook" @update:show="showModal = $event"-->
+<!--                   @save="onUpdateBook"></EditBookModal>-->
     <EditBookCheckoutModal v-model:show="showModal"
                           v-bind="editingBookCheckout"
                           :books="books"

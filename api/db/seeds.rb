@@ -77,6 +77,7 @@ author_8 = Author.create!(name: "Aldous Huxley")
 author_9 = Author.create!(name: "Leo Tolstoy")
 author_10 = Author.create!(name: "Charlotte Brontë")
 author_11 = Author.create!(name: "Fyodor Dostoevsky")
+author_12 = Author.create!(name: "John Gray")
 
 book_1 = Book.create!(title: "The Lord of the Rings", author: author_1, isbn: "9780544003415", genre_id: 1, quantity: 10, price: 1000, rating: 5, image_url: "https://pictures.abebooks.com/isbn/9780544003415-us.jpg")
 book_2 = Book.create!(title: "1984", author: author_2, isbn: "9780451524935", genre_id: 2, quantity: 15, price: 800, rating: 4.5, image_url: "https://149522020.v2.pressablecdn.com/wp-content/uploads/2017/01/2a34d8_a6741e88335241308890543d203ad89dmv2.jpg")
@@ -90,6 +91,7 @@ book_9 = Book.create!(title: "War and Peace", author: author_9, isbn: "978140007
 book_10 = Book.create!(title: "Jane Eyre", author: author_10, isbn: "9780141441146", genre_id: 10, quantity: 7, price: 800, rating: 4.4, image_url: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1692725440i/197321006.jpg")
 book_11 = Book.create!(title: "Crime and Punishment", author: author_11, isbn: "9780143058144", genre_id: 11, quantity: 5, price: 950, rating: 4.7, image_url: "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/81EcXiV-9WL._AC_UF1000,1000_QL80_.jpg")
 book_12 = Book.create!(title: "Anna Karenina", author: author_9, isbn: "9781853262715", genre_id: 12, quantity: 4, price: 1000, rating: 4.0, image_url: "https://storage.googleapis.com/s4-bucket/citadel/5f6206cf7a179fdaf9b65c2a/d9625f0d-7c24-4d78-84d6-5d59b0a731f8-image.jpg?GoogleAccessId=dragonstone-production@glose-platform.iam.gserviceaccount.com&Expires=32503680000&Signature=D3GFpszEnEgob5iSkKLG6lZH5d6ArZRTfhSDADmG4MtV4FzCsVSDM%2BTKjyhGuYVZor459cJU%2BI%2BZ3c0pxcjRLjtpX08IvqUPfLNOJwn5Tr6guK/pxh2Lox44FskwZSCpqFhoBRR%2Ba%2By6ws99LhsGwMkDEcQxkJKJ1oDbk2DW/nrAFwVqVGkpJpqkq018Btf5DiqzP0E%2BBb1dZJU4absR0Lr/e7e9b0A4meHMd2PeqiSxEGdluNx5CRyXinta50Jr6Nz4kQzKHxGU2ffqlPatFM1JMN5kIjW9uL1D3Ne5pU1lW7ZEEu0qlWlvPiglNAMyJJJe9133KbuJNxz8tYKHkg%3D%3D")
+book_13 = Book.create!(title: "Men are from Mars Woman are from Venus", author: author_12, isbn: "6381853277725", genre_id: 4, quantity: 3, price: 1700, rating: 5, image_url: "https://upload.wikimedia.org/wikipedia/en/8/84/Men-Mars-Women-Venus-Cover.jpg")
 
 event_1 = Event.create!(name: "Book Fair", event_date: "2021-11-01", description: "Used & New Book Fair!!", image_url: "https://www.shutterstock.com/shutterstock/photos/2229060415/display_1500/stock-vector-abstract-modern-business-conference-design-template-with-creative-round-lines-minimal-flyer-layout-2229060415.jpg", capacity: 10)
 event_2 = Event.create!(name: "Template Concert Fair", event_date: "2021-11-02", description: "Free Random book Fair!", image_url: "https://img.freepik.com/free-psd/banner-template-concert_23-2148403186.jpg", capacity: 30)
@@ -109,6 +111,7 @@ reservation_8 = Reservation.create!(client: client_user, event: event_3, status_
 reservation_9 = Reservation.create!(client: client_user, event: event_4, status_id: Reservation.statuses[:Aprovada])
 reservation_10 = Reservation.create!(client: client_user, event: event_4, status_id: Reservation.statuses[:Cancelada])
 
+
 book_checkout_1 = BookCheckout.create!(client: client_user, book: book_1, status_id: BookCheckout.statuses[:lent])
 book_checkout_2 = BookCheckout.create!(client: client_user, book: book_1, status_id: BookCheckout.statuses[:returned])
 book_checkout_3 = BookCheckout.create!(client: client_user, book: book_1, status_id: BookCheckout.statuses[:lent])
@@ -119,3 +122,16 @@ book_checkout_7 = BookCheckout.create!(client: client_user, book: book_3, status
 book_checkout_8 = BookCheckout.create!(client: client_user, book: book_3, status_id: BookCheckout.statuses[:lent])
 book_checkout_9 = BookCheckout.create!(client: client_user, book: book_4, status_id: BookCheckout.statuses[:returned])
 book_checkout_10 = BookCheckout.create!(client: client_user, book: book_4, status_id: BookCheckout.statuses[:returned])
+
+book_checkout_1 = BookCheckout.create!(client: client_user, book: book_1, status_id: BookCheckout.statuses[:Prestado], borrow_date: "2024-04-25", return_date: "2024-05-15")
+book_checkout_2 = BookCheckout.create!(client: client_user, book: book_1, status_id: BookCheckout.statuses[:Devuelto], borrow_date: "2024-04-25", return_date: "2024-05-30")
+book_checkout_3 = BookCheckout.create!(client: client_user, book: book_1, status_id: BookCheckout.statuses[:Prestado], borrow_date: "2024-04-25", return_date: "2024-05-15")
+book_checkout_4 = BookCheckout.create!(client: client_user, book: book_1, status_id: BookCheckout.statuses[:Devuelto], borrow_date: "2024-04-25", return_date: "2024-05-30")
+book_checkout_5 = BookCheckout.create!(client: client_user, book: book_1, status_id: BookCheckout.statuses[:Prestado], borrow_date: "2024-04-25", return_date: "2024-05-15")
+book_checkout_6 = BookCheckout.create!(client: client_user, book: book_2, status_id: BookCheckout.statuses[:Prestado], borrow_date: "2024-04-25", return_date: "2024-05-15")
+book_checkout_7 = BookCheckout.create!(client: client_user, book: book_3, status_id: BookCheckout.statuses[:Devuelto], borrow_date: "2024-04-25", return_date: "2024-05-30")
+book_checkout_8 = BookCheckout.create!(client: client_user, book: book_3, status_id: BookCheckout.statuses[:Prestado], borrow_date: "2024-04-25", return_date: "2024-05-15")
+book_checkout_9 = BookCheckout.create!(client: client_user, book: book_4, status_id: BookCheckout.statuses[:Devuelto], borrow_date: "2024-04-25", return_date: "2024-05-30")
+book_checkout_10 = BookCheckout.create!(client: client_user, book: book_4, status_id: BookCheckout.statuses[:Devuelto], borrow_date: "2024-04-25", return_date: "2024-05-15")
+
+

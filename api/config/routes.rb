@@ -25,4 +25,7 @@ Rails.application.routes.draw do
   get '/orders', to: 'orders#index'
   put '/orders/:id', to: 'orders#update'
   delete '/orders/:id', to: 'orders#destroy'
+  get '/book_checkout', to: 'book_checkouts#index'
+  put '/book_checkout/:id', to: 'book_checkouts#update'
+  delete '/book_checkout/:id', to: 'book_checkouts#destroy'
 end

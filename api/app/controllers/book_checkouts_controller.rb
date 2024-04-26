@@ -15,8 +15,9 @@ class BookCheckoutsController < ApplicationController
 
   # POST /book_checkouts
   def create
-    @book_checkout = BookCheckout.new(book_checkout_params.merge(status_id: BookCheckout.statuses[:checked_out]))
-
+    borrow_date = Date.today
+    @book_checkout = BookCheckout.new(book_checkout_params.merge(borrow_date: borrow_date,
+                                                                 status_id: BookCheckout.statuses[:Prestado]))
     if @book_checkout.save
       render json: @book_checkout, status: :created, location: @book_checkout
     else
@@ -44,13 +45,14 @@ class BookCheckoutsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book_checkout
-      @book_checkout = BookCheckout.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def book_checkout_params
-      params.require(:book_checkout).permit(:book_id, :client_id, :status_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book_checkout
+    @book_checkout = BookCheckout.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def book_checkout_params
+    params.require(:book_checkout).permit(:book_id, :client_id, :status_id, :borrow_date, :return_date)
+  end
 end

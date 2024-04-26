@@ -24,6 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_18_171615) do
     t.integer "book_id"
     t.integer "client_id"
     t.integer "status_id"
+    t.date "borrow_date"
+    t.date "return_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

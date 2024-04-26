@@ -85,7 +85,6 @@ const fetchClients = async () => {
 };
 
 const onUpdateReservation = async ({id, eventId, clientId, statusId}) => {
-  debugger;
   const res = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
     headers: {
